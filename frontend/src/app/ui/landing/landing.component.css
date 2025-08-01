@@ -1,0 +1,19 @@
+.container{
+    color: var(--dark-accent);
+    background-color: var(--light-accent);
+    height: 100vh;
+}
+
+.name-splash{
+    font-size: 200px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.tagline{
+    margin: 0;
+    text-align: right;
+    font-size: 2em;
+    margin-right: 12em;
+
+}
