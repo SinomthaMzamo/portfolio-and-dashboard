@@ -1,0 +1,219 @@
+:root {
+    --scale-min: 0.5;         /* Default minimum scale size */
+    --scale-max: 1;           /* Default maximum scale size */
+    --orbit-duration: 10s;    /* Default duration of animation */
+}
+
+.cont{
+    /* margin:right; */
+    position: relative;
+    height:720px;
+    width:720px;
+}
+  .react-logo{
+    position: absolute;
+    top:35%;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    background: rgb(249, 249, 249);
+    background-image: url('./assets/reactjs-icon.svg');
+    background-size: 95%; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    animation: orbit infinite ease-in-out 6s;
+  }
+  .python-logo{
+    position: absolute;
+    top:45%;
+    left: 10%;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    background:transparent;
+    background-image: url('./assets/python-icon.svg');
+    background-size: 95%; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    animation: orbit infinite ease-in-out 7s;
+  }
+  .java-logo{
+    position: absolute;
+    top:65%;
+    left: 50%;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    background: rgb(249, 249, 249);
+    background-image: url('./assets/java-icon.svg');
+    background-size: 95%; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    animation: orbit infinite ease-in-out 8s;
+  }
+  .sqlite-logo{
+    position: absolute;
+    top:25%;
+    left: 50%;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    background: transparent;
+    background-image: url('./assets/sqlite-icon.svg');
+    background-size: 85%; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    animation: orbit infinite ease-in-out 5s;
+  }
+  .avatar{
+    position: absolute;
+    /* background: rgba( 255, 209, 0, 0.7 ); */
+    background-image: url('./assets/Sinomtha_Mzamo_Picture.jpg'); /* Relative path */
+    background-size: cover; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    backdrop-filter: blur( 5px );
+    height:360px;
+    width:360px;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border-radius: 100%;
+    z-index:2;
+  }
+  .react-logo {
+    --start-left: 0%;
+    --start-top: 35%;
+    --orbit-length: 30%;       /* Horizontal distance */
+    --vertical-shift: 0%;      /* Vertical oscillation */
+    --orbit-duration: 6s;
+    --scale-min: 0.5;
+    --scale-max: 1;
+}
+
+.python-logo {
+    --start-left: 50%;
+    --start-top: 75%;
+    --orbit-length: 50%;
+    --vertical-shift: 15%;
+    --orbit-duration: 12s;
+    --scale-min: 0.3;
+    --scale-max: 0.8;
+}
+
+.java-logo {
+    --start-left: 50%;
+    --start-top: 65%;
+    --orbit-length: 40%;
+    --vertical-shift: 10%;
+    --orbit-duration: 11s;
+    --scale-min: 0.5;
+    --scale-max: 0.9;
+}
+
+.sqlite-logo {
+    --start-left: 50%;
+    --start-top: 25%;
+    --orbit-length: 60%;
+    --vertical-shift: 20%;
+    --orbit-duration: 8s;
+    --scale-min: 0.6;
+    --scale-max: 1;
+}
+
+
+
+  /* Define the orbit animation using variables */
+@keyframes journey {
+    0% {
+        left: var(--start-left);
+        z-index: 1;
+        transform: translate(0%, -50%) scale(var(--scale-min));
+    }
+    25% {
+        left: calc(var(--start-left) + var(--orbit-length));
+        top: calc(var(--start-top) - var(--vertical-shift));
+    }
+    50% {
+        left: calc(var(--start-left) + var(--orbit-length) * 2);
+        top: var(--start-top);
+        z-index: 3;
+        transform: translate(0%, -50%) scale(var(--scale-max));
+    }
+    75% {
+        left: calc(var(--start-left) + var(--orbit-length));
+        top: calc(var(--start-top) + var(--vertical-shift));
+    }
+    100% {
+        left: var(--start-left);
+        top: var(--start-top);
+        z-index: 1;
+        transform: translate(0%, -50%) scale(var(--scale-min));
+    }
+}
+
+
+  /* defite orbit animation key frames */
+  @keyframes orbit{
+    0%{
+      left:0%;
+      z-index:1;
+      scale:0.5;
+      transform:translate(0%,-50%);
+    }
+    25%{
+      scale:0.3;
+      transform:translate(-100%,-50%);
+    }
+    50%{
+      left:100%;
+      z-index:1;
+      
+    }
+    50.001%{
+      z-index:3;
+      
+    }
+    75%{
+      scale:1;
+    }
+    100%{
+      left:0%;
+      transform:translate(0%,-50%);
+      z-index:3;
+      scale:0.52; 
+    }
+  }
+
+
+
+@keyframes orbitlong {
+    0% {
+        left: -25%; /* Starting point */
+        top: 45%;
+        z-index: 1; /* Behind at the start */
+        scale: 0.5;
+        transform: translate(0%, -20%);
+    }
+    40% { 
+        z-index: 1; /* Still behind */
+    }
+    49% { 
+        z-index: 1; /* Just before reaching the overlap */
+    }
+    50% {
+        left: 125%; /* Reaches overlap point */
+        top: 55%; 
+        z-index: 3; /* Brings it to the front */
+    }
+    75% {
+        scale: 1; /* Fully scaled, moving forward */
+    }
+    100% {
+        left: -25%;
+        top: 45%; /* Returns to starting point */
+        z-index: 1; /* Goes back behind */
+        scale: 0.52;
+        transform: translate(0%, -50%);
+    }
+}

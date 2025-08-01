@@ -1,0 +1,71 @@
+.section{
+    background-color: var(--light-accent);
+    height: 100vh;
+}
+
+.section-title{
+    color: var(--dark-accent);
+}
+
+.education{
+    background-color: var(--white);
+    padding: 1em;
+    margin: 1em 0;
+    box-shadow: 0 4px 6px rgba(0.2, 0, 0, 0.2);
+}
+
+.info span{
+    font-size: 1em;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    margin: 0;
+}
+
+.skills{
+    justify-content: flex-start;
+}
+
+.badge{
+    color: var(--white);
+    padding: 0.3em 0.8em;
+    margin-right: 2em;
+    width: fit-content;
+}
+
+.blue{
+    background-color: var(--blue-transparent);
+    border: 1px solid var(--blue);
+    border-radius: 1rem;
+}
+
+.green{
+    background-color: var(--green-transparent);
+    border: 1px solid var(--green);
+    border-radius: 1rem;
+}
+
+.mustard{
+    background-color: var(--mustard-transparent);
+    border: 1px solid var(--mustard);
+    border-radius: 1rem;
+}
+
+.dark{
+    background-color: var(--dark-transparent);
+    border: 1px solid var(--dark-accent);
+    border-radius: 1rem;
+}
+
+.pink{
+    background-color: var(--pink-transparent);
+    border: 1px solid var(--pink);
+    border-radius: 1rem;
+}
+
+.gray{
+    background-color: var(--gray-transparent);
+    border: 1px solid var(--gray);
+    border-radius: 1rem; 
+}
+

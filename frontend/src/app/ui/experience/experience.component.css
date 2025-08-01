@@ -1,0 +1,12 @@
+.section{
+    background-color: var(--dark-accent);
+    height: 100vh;
+}
+
+.section-title{
+    color: whitesmoke;
+}
+
+.experience{
+    color: var(--light-accent);
+}

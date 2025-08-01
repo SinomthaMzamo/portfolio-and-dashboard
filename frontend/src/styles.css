@@ -1,7 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
     --dark-accent: #5E0E08;
-    --light-accent: #FDEFB6;
+    --dark-transparent: #5e0e089b;
+    --light-accent: blanchedalmond;
+    --light-transparent: rgba(255, 235, 205, 0.227);
+    --white: whitesmoke;
+    --green: #1D6A1F;
+    --green-transparent: #1d6a2087;  
+    --mustard: #9E7533;
+    --mustard-transparent: #9e753388;
+    --blue: #38339e;
+    --blue-transparent: #38339e80;
+    --pink: #9e337c;
+    --pink-transparent: #9e337c80;
+    --gray: #2f2c2e;
+    --gray-transparent: #2f2c2e83;
     --navbar-offset: 113px ;
 }
 
@@ -14,7 +27,9 @@ body {
     padding-top: var(--navbar-offset); 
 }
 
-
+p{
+    margin: 0;
+}
 .btn {
     border-radius: 0;
     padding: 1em;
@@ -37,11 +52,17 @@ body {
     width: 90%;
     margin: 0 auto;
     padding: 4em;
-    border: 2px solid gainsboro;
+    /* border: 2px solid gainsboro; */
 }
 
 .section-title{
     font-size: 80px; 
+    /* padding: 32px; */
+}
+
+.subsection-title{
+    font-size: 56px;
+    text-align: center;
 }
   
 .light-bg{
@@ -52,4 +73,11 @@ body {
 .dark-bg{
     background-color: var(--dark-accent);
     color: var(--light-accent);
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 1em;
 }
