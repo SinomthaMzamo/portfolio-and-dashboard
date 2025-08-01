@@ -1,0 +1,50 @@
+
+.nav-bar{
+    /* ensures navbar is always on top and visible */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+
+    /* controls orientation of navbar items */
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5em;
+
+    /* navbar dimensions */
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid var(--light-accent);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+
+    color: var(--dark-accent);
+    background-color: var(--light-accent);
+}
+
+.logo{
+    /* padding: 0.5em; */
+    font-weight:900;
+    font-size: 2em;
+}
+
+.nav-links{
+    display: flex;
+    width: 640px;
+    justify-content: space-between;
+    font-size: 1.5em;
+}
+
+.nav-item{
+    padding: 0.5em;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-item:hover{
+    border-bottom: 2px solid var(--dark-accent);
+    transition: ease-in 20ms;
+}
+
+.nav-btn{
+    
+}
+

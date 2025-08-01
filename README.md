@@ -1,6 +1,6 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This capstone project is a cloud-hosted personal portfolio showcasing my skills, projects, and blog posts. Visitors explore the public-facing site, while authenticated admins manage content through a private AWS-powered admin dashboard.
 
 ### What is this repository for? ###
 
@@ -25,5 +25,5 @@ This README would normally document whatever steps are necessary to get your app
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
+* Sinomtha Mzamo
 * Other community or team contact
