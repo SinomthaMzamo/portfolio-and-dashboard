@@ -5,10 +5,11 @@ import { AboutComponent } from "./ui/about/about.component";
 import { LandingComponent } from "./ui/landing/landing.component";
 import { ExperienceComponent } from "./ui/experience/experience.component";
 import { EducationComponent } from "./ui/education/education.component";
+import { ProjectsComponent } from "./ui/projects/projects.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, AboutComponent, LandingComponent, ExperienceComponent, EducationComponent],
+  imports: [RouterOutlet, NavbarComponent, AboutComponent, LandingComponent, ExperienceComponent, EducationComponent, ProjectsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

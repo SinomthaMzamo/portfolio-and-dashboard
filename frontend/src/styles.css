@@ -43,6 +43,12 @@ p{
     border: 2px solid var(--dark-accent);
 }
 
+.light {
+    background-color: var(--light-accent);
+    color: var(--dark-accent);
+    border: 2px solid var(--light-accent);
+}
+
 .section{
     width: 100%;
     position: relative;

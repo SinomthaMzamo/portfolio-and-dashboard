@@ -1,6 +1,6 @@
 .section{
     background-color: var(--light-accent);
-    height: 100vh;
+    height: 80vh;
 }
 
 .section-title{
@@ -31,41 +31,38 @@ h1, h2, h3, h4, h5, h6, p{
     padding: 0.3em 0.8em;
     margin-right: 2em;
     width: fit-content;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 1rem;
 }
 
 .blue{
     background-color: var(--blue-transparent);
-    border: 1px solid var(--blue);
-    border-radius: 1rem;
+    border-color: var(--blue);
 }
 
 .green{
     background-color: var(--green-transparent);
-    border: 1px solid var(--green);
-    border-radius: 1rem;
+    border-color: var(--green);
 }
 
 .mustard{
     background-color: var(--mustard-transparent);
-    border: 1px solid var(--mustard);
-    border-radius: 1rem;
+    border-color: var(--mustard);
 }
 
 .dark{
     background-color: var(--dark-transparent);
-    border: 1px solid var(--dark-accent);
-    border-radius: 1rem;
+    border-color: var(--dark-accent);
 }
 
 .pink{
     background-color: var(--pink-transparent);
-    border: 1px solid var(--pink);
-    border-radius: 1rem;
+    border-color: var(--pink);
 }
 
 .gray{
     background-color: var(--gray-transparent);
-    border: 1px solid var(--gray);
-    border-radius: 1rem; 
+    border-color: var(--gray);
 }
 
