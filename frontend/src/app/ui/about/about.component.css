@@ -2,8 +2,14 @@
     color: var(--dark-accent);
 }
 
+.container{
+}
+
 .about-content{
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
 }
 
 .description{
@@ -12,6 +18,8 @@
     justify-content:center;
     gap: 1.5em;
     font-size: 1.5em;
+    width: 45%;
+    flex-grow: 1;
 }
 
 .journey{

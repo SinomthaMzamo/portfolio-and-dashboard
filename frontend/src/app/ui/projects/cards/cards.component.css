@@ -1,15 +1,72 @@
 .card-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
     border: 2px solid blue;
     width: fit-content;
     border: 2px solid gainsboro;
     padding: 1em;
+    background-color: var(--white);
 }
 
 .thumbnail{
     width: 460px;
     height: 240px;
+    border: 2px solid var(--dark-accent);
+    background-color: var(--dark-transparent);
+}
+
+.project-details{
+    gap: 0.5em;
 }
 
 .links{
     justify-content: space-around;
 }
+
+.icon{
+    font-size: 4em;
+    text-align: center;
+    color: var(--dark-accent);
+}
+
+.more{
+    display: block;
+}
+
+.less{
+    display: none;
+}
+
+.tags-wrapper small {
+    font-weight: 700;
+}
+
+.tags{
+    /* justify-content: flex-start; */
+}
+
+.badge{
+    /* margin-right: 0.5em; */
+}
+
+.language-bar {
+    display: flex;
+    height: 20px;
+    border-radius: 5px;
+    overflow: hidden;
+    /* border: 1px solid #ccc; */
+    margin: 10px 0;
+    width: 100%;
+    max-width: 600px;
+}
+
+.lang {
+    height: 100%;
+}
+
+.js { background-color: #f1e05a; }
+.py { background-color: #3572A5; }
+.ts { background-color: var(--green-transparent) }
+.html { background-color: #e34c26; }
+.sqlite{ background-color: var(--blue-transparent);}

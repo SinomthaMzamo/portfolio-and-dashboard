@@ -1,8 +1,18 @@
-section{
-    height: 100vh;
+.section{
+    background-color: var(--light-accent);
+}
+
+.section-title{
+    color: var(--dark-accent);
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    margin: 0;
 }
 
 .projects-content{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, 500px);
+    gap: 1em;
+    margin: 3em 0;
 }

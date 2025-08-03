@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { BadgeComponent } from "../../../shared/badge/badge.component";
 
 @Component({
   selector: 'app-tile',
-  imports: [],
+  imports: [BadgeComponent],
   templateUrl: './tile.component.html',
   styleUrl: './tile.component.css'
 })

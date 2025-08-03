@@ -22,47 +22,12 @@ h1, h2, h3, h4, h5, h6, p{
     margin: 0;
 }
 
+.skills-wrapper small {
+    font-weight: 700;
+}
+
 .skills{
     justify-content: flex-start;
-}
-
-.badge{
-    color: var(--white);
-    padding: 0.3em 0.8em;
-    margin-right: 2em;
-    width: fit-content;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 1rem;
-}
-
-.blue{
-    background-color: var(--blue-transparent);
-    border-color: var(--blue);
-}
-
-.green{
-    background-color: var(--green-transparent);
-    border-color: var(--green);
-}
-
-.mustard{
-    background-color: var(--mustard-transparent);
-    border-color: var(--mustard);
-}
-
-.dark{
-    background-color: var(--dark-transparent);
-    border-color: var(--dark-accent);
-}
-
-.pink{
-    background-color: var(--pink-transparent);
-    border-color: var(--pink);
-}
-
-.gray{
-    background-color: var(--gray-transparent);
-    border-color: var(--gray);
+    gap: 0.3em;
 }
 

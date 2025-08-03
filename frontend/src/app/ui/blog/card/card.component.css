@@ -1,0 +1,26 @@
+.card-wrapper{
+    width: fit-content;
+    height: auto;
+    padding: 1rem;
+    border: solid 1px var(--dark-accent);
+    border-radius: 1rem;
+    background-color: var(--dark-transparent);
+    display: flex;
+    flex-direction: column;
+
+}
+
+.horizontal{
+    display: flex;
+}
+
+.vertical{
+    display: flex;
+    flex-direction: column;
+}
+
+.blog-image{
+    height: 15rem;
+    width: auto;
+    background-color: var(--light-transparent);
+}
