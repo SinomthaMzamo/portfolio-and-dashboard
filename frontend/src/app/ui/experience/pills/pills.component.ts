@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-pills',
@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './pills.component.css'
 })
 export class PillsComponent {
+  @Input({required:true}) text!:string;
 
 }

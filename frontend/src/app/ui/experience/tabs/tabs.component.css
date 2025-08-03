@@ -1,0 +1,19 @@
+.tab{
+    flex: 1;
+    padding: 16px 3.88rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--white);
+}
+
+.selected{
+    border: 1px solid var(--white);    
+    border-bottom: none;
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.default{
+    border: none;
+    border-bottom: 1px solid var(--white);
+}
+

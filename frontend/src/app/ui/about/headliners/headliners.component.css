@@ -3,7 +3,7 @@
     margin-bottom: 10em;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 6.5rem;
+    gap: 6vw;
 }
 
 .tile{
@@ -17,13 +17,13 @@
 
 span{
     color: var(--dark-accent);
-    font-size: 60px;
-    margin-bottom: 18px;
+    font-size: 3.5vw;
+    margin-bottom: 1rem;
     display: block;
     font-weight: 500;
-    max-width: fit-content;
+    width: max-content;
 }
 
 p{
-    font-size: 1.5em;
+    font-size: 1.5vw;
 }

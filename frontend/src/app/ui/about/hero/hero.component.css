@@ -7,8 +7,11 @@
 .cont{
     /* margin:right; */
     position: relative;
-    height:720px;
+    height:360px;
     width:720px;
+    padding: 4rem 0;
+    /* border: 2px solid var(--dark-accent); */
+    
 }
   .react-logo{
     position: absolute;
