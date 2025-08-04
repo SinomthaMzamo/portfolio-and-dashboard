@@ -7,27 +7,12 @@
     color: whitesmoke;
 }
 
-.experience{
-    color: var(--light-accent);
+.experience-content{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+    gap: 1rem;    
+    align-items: stretch;
+    justify-items: stretch;
 }
 
-.card-wrapper{
-    padding: 0;
-    /* border: 2px dotted thistle; */
-    width: fit-content;
-}
 
-.tabs{
-    display: flex;
-    width: 100%;
-}
-.pills-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid var(--white);
-    border-top: none;
-    border-bottom: none;
-    padding: 0.5rem;
-    gap: 0.5rem;
-}

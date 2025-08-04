@@ -179,8 +179,8 @@ body {
     font-size: 0.77777em;
     font-style: italic;
     line-height: 1.5em;
-    border: 2px solid var(--light-accent);
-    background-color: var(--light-transparent);
+    /* border: 2px solid var(--light-accent);
+    background-color: var(--light-transparent); */
     padding: 0.5em;
     border-radius: 12px;
   }

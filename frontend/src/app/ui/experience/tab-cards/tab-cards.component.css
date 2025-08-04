@@ -1,0 +1,56 @@
+.experience{
+    color: var(--light-accent);
+    padding-top: 4rem;
+    width: 100%;
+    min-width: fit-content;
+    border-radius: 2rem;
+}
+
+h1, h2, h3, h4, h5, h6{
+    margin: 0;
+    font-weight: normal;
+}
+
+.role{
+    min-width: max-content;
+    font-size: clamp(1.3rem, 1.5vw, 1.1rem);;
+}
+
+.role h5{
+    font-size: clamp(0.75rem, 0.83vw, 0.9rem);
+}
+
+.card-wrapper{
+    padding: 0;
+    margin: 1rem 0;
+    width: 100%;
+    color: var(--white);
+}
+
+.tabs{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.tabs > * {
+    flex: 1;              /* All items grow equally */
+    margin: 0;            /* No spacing between items */
+    padding: 0;           /* Optional: remove inner spacing */
+}
+
+.pills-wrapper{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    border: 1px solid var(--white);
+    border-top: none;
+    border-bottom: none;
+    padding: 0.5rem;
+    gap: 0.5rem;
+}
+
+.pills-wrapper > * {
+    /* flex-grow: 1; */
+}

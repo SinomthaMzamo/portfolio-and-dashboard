@@ -1,0 +1,36 @@
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 4rem;
+}
+
+.particulars{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.particulars > * {
+    flex-grow: 1;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    color: var(--white);
+}
+
+input, textarea{
+    padding: 0.5rem;
+    border: 2px groove var(--light-transparent);
+    background-color: var(--dark-transparent);
+}
+
+.stretch{
+    width: 100%;
+}

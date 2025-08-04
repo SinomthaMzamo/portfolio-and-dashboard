@@ -1,24 +1,21 @@
 <div class="education">
     <div class="row">
         <div class="info">
-            <h3>WeThinkCode_</h3>
-            <span>Sep 2023 - Dec 2024</span>
+            <h3>{{education.institution}}</h3>
+            <span>{{education.duration.start}} - {{education.duration.end}}</span>
         </div>
         <div class="info">
-            <h3>Systems Development NQF 5</h3>
-            <span>A-</span>
+            <h3>{{education.qualification}}</h3>
+            <span>{{education.grade}}</span>
         </div>
     </div>
     <hr>
     <div class="skills-wrapper">
         <small>skills</small>
         <div class="skills row">
-            <app-badge [class]="'blue'" [text]="'python'"></app-badge>  
-            <app-badge [class]="'dark'" [text]="'java'"></app-badge>
-            <app-badge [class]="'pink'" [text]="'test-driven development'"></app-badge>
-            <app-badge [class]="'gray'" [text]="'brownfields development'"></app-badge>
-            <app-badge [class]="'green'" [text]="'oop'"></app-badge>
-            <app-badge [class]="'mustard'" [text]="'full-stack development'"></app-badge> 
+            @for (item of education.skills; track $index) {
+                <app-badge [class]="item.colour" [text]="item.skill"></app-badge>
+            }
         </div>
     </div> 
       

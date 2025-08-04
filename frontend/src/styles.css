@@ -2,8 +2,8 @@
 :root{
     --dark-accent: #5E0E08;
     --dark-transparent: #5e0e089b;
-    --light-accent: blanchedalmond;
-    --light-transparent: rgba(255, 235, 205, 0.227);
+    --light-accent: #f8ecb6;
+    --light-transparent: rgba(248, 202, 134, 0.481);
     --white: whitesmoke;
     --green: #1D6A1F;
     --green-transparent: #1d6a2087;  
@@ -20,6 +20,10 @@
     --mid-section-gap: 60px;
     --entry-width: 750px;
     --timeline-width: calc(2 * var(--entry-width) + var(--mid-section-gap));
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -56,14 +60,15 @@ p{
 .section{
     width: 100%;
     position: relative;
-    /* min-height: 80vh; */
+    min-height: max-content;
+    scroll-margin: var(--navbar-offset);
+    /* overflow: hidden; */
 }
 
 .container{
     width: 90%;
     margin: 0 auto;
     padding: 4em;
-    /* border: 2px solid gainsboro; */
 }
 
 .section-title{

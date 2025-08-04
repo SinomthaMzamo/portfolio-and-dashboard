@@ -1,0 +1,6 @@
+.section{
+    background-color: var(--dark-accent);
+}
+.section-title{
+    color: var(--white);
+}

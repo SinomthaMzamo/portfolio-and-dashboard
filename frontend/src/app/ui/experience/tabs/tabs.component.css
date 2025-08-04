@@ -1,9 +1,12 @@
 .tab{
-    flex: 1;
-    padding: 16px 3.88rem;
-    font-size: 1rem;
+    /* flex-grow: 1; */
+    /* flex-shrink: 1 ; */
+    padding: 0.5rem 0;
+    text-align: center;
+    font-size: clamp(0.8rem, 0.9vw, 1.1rem);
     font-weight: 700;
     border-bottom: 1px solid var(--white);
+    min-width: max-content;
 }
 
 .selected{

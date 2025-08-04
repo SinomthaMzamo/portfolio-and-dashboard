@@ -1,5 +1,5 @@
 .section{
-    background-color: var(--light-accent);
+    background-color: white;
 }
 
 .section-title{
@@ -15,4 +15,5 @@ h1, h2, h3, h4, h5, h6, p{
     grid-template-columns: repeat(auto-fill, 500px);
     gap: 1em;
     margin: 3em 0;
+    padding-bottom: 4rem;
 }
