@@ -4,10 +4,9 @@
             Blog
         </div>
         <div class="blog-contents">
-            <app-card></app-card>
-            <app-card></app-card>
-            <app-card></app-card>
-            <app-card></app-card>
+            @for (item of blogPosts; track $index) {
+                <app-card [blogPost]="item"></app-card>
+            }
         </div>
     </div>
 </section>

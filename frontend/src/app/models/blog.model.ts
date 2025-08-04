@@ -6,6 +6,7 @@ export type Tag = {
 export type BlogPost = {
     title: string;
     introduction: string;
+    imgSrc:string;
     tags: Tag[];
     readTime: number;
     datePublished: Date;

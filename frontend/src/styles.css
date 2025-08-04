@@ -2,6 +2,7 @@
 :root{
     --dark-accent: #5E0E08;
     --dark-transparent: #5e0e089b;
+    --dark-more-transparent: #5e0e0883;
     --light-accent: #f8ecb6;
     --light-transparent: rgba(248, 202, 134, 0.481);
     --white: whitesmoke;
@@ -13,7 +14,7 @@
     --blue-transparent: #38339e80;
     --pink: #9e337c;
     --pink-transparent: #9e337c80;
-    --gray: #2f2c2e;
+    --gray: #373436;
     --gray-transparent: #2f2c2e83;
     /* Timeline variables */
     --navbar-offset: 113px;
