@@ -2,6 +2,8 @@
     color: var(--dark-accent);
 }
 
+.section{}
+
 .container{
 }
 
@@ -12,6 +14,7 @@
     justify-content: center;
 }
 
+
 .description{
     display: flex;
     flex-direction: column;
@@ -20,9 +23,22 @@
     font-size: 1.5em;
     width: 45%;
     flex-grow: 1;
+    
+}
+
+.description p {
+    
+	background: linear-gradient(to right, var(--mustard) 0%, var(--dark-accent) 100%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .journey{
     display: flex;
     flex-direction: column;
+}
+
+.greet{
+    font-size: 3rem;
+    font-weight: 600;
 }

@@ -3,10 +3,13 @@
     <h5>{{ duration.start }} - {{ duration.end }} ({{ header.mode }})</h5>
     <div class="card-wrapper">
         <div class="tabs">
-            <app-tabs [category]="tabTitles[0]" class="selected"></app-tabs>
-            @for (tab of tabTitles.slice(1); track $index) {
-                <app-tabs [category]="tab" class="default"></app-tabs>
-            }
+            @for (tabTitle of tabTitles; track $index; let i = $index) {
+                <app-tabs
+                  [category]="tabTitle"
+                  [class]="i === selectedTabIndex ? 'selected' : 'default'"
+                  (click)="onTabSelected(i)">
+                </app-tabs>
+              }
         </div>
         <div class="pills-wrapper">
             @for (pill of selectedTabOutcomes; track $index) {

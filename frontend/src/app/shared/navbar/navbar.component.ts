@@ -8,5 +8,8 @@ import { ItemComponent } from "./item/item.component";
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+  downloadCV() {
+    window.open('CV.pdf', '_blank');
+  }
 
 }

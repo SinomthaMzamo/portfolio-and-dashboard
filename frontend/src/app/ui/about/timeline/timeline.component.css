@@ -176,13 +176,17 @@ body {
   .desc {
     margin: 1em 0.75em 0 0;
     
-    font-size: 0.77777em;
+    font-size: 0.88888em;
     font-style: italic;
     line-height: 1.5em;
-    /* border: 2px solid var(--light-accent);
-    background-color: var(--light-transparent); */
+    border: 2px solid var(--accent-white);
+    background-color: var(--accent-white);
     padding: 0.5em;
     border-radius: 12px;
+  }
+
+  .direction-l .desc{
+    text-align: left;
   }
   
   .direction-r .desc {

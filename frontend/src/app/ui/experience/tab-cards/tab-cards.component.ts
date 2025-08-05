@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './tab-cards.component.css'
 })
 export class TabCardsComponent {
+
   @Input({ required: true }) experienceEntry!: ExperienceEntry;
   @Input() class: string = "";
 
@@ -18,6 +19,20 @@ export class TabCardsComponent {
   duration: { start: string, end: string } = { start: '', end: '' };
   tabTitles: string[] = [];
   selectedTabOutcomes: string[] = [];
+
+  selectedTabIndex = 0;
+  ngOnInit(): void {
+    this.updateSelectedTab();
+  }
+
+  onTabSelected(index: number): void {
+    this.selectedTabIndex = index;
+    this.updateSelectedTab();
+  }
+
+  updateSelectedTab(): void {
+    this.selectedTabOutcomes = this.experienceEntry.tabs[this.selectedTabIndex].notableOutcomes;
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['experienceEntry'] && this.experienceEntry) {

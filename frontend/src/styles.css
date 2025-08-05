@@ -3,6 +3,7 @@
     --dark-accent: #5E0E08;
     --dark-transparent: #5e0e089b;
     --dark-more-transparent: #5e0e0883;
+    --accent-white: #eddcda;
     --light-accent: #f8ecb6;
     --light-transparent: rgba(248, 202, 134, 0.481);
     --white: whitesmoke;
@@ -16,6 +17,8 @@
     --pink-transparent: #9e337c80;
     --gray: #373436;
     --gray-transparent: #2f2c2e83;
+    --orange: orange;
+    --orange-transparent: rgba(255, 166, 0, 0.417);
     /* Timeline variables */
     --navbar-offset: 113px;
     --mid-section-gap: 60px;
@@ -140,5 +143,9 @@ p{
 .gray{
     background-color: var(--gray-transparent);
     border-color: var(--gray);
+}
+.orange{
+    background-color: var(--orange-transparent);
+    border-color: var(--orange);
 }
 

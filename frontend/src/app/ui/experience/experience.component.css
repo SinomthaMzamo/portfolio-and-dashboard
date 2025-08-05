@@ -13,6 +13,8 @@
     gap: 1rem;    
     align-items: stretch;
     justify-items: stretch;
+
+    grid-auto-rows: 1fr;
 }
 
 

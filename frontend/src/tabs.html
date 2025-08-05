@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabs</title>
+    <style>
+        ul.tabs {
+            margin: 0;
+            padding: 0;
+            float: left;
+            list-style: none;
+            height: 32px;
+            border-bottom: 1px solid #333;
+            width: 100%;
+        }
+
+        ul.tabs li {
+            float: left;
+            margin: 0;
+            cursor: pointer;
+            padding: 0px 21px;
+            height: 31px;
+            line-height: 31px;
+            border-top: 1px solid #333;
+            border-left: 1px solid #333;
+            border-bottom: 1px solid #333;
+            background-color: #666;
+            color: #ccc;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tab_last { border-right: 1px solid #333; }
+
+        ul.tabs li:hover {
+            background-color: #ccc;
+            color: #333;
+        }
+
+        ul.tabs li.active {
+            background-color: #fff;
+            color: #333;
+            border-bottom: 1px solid #fff;
+            display: block;
+        }
+
+        .tab_container {
+            border: 1px solid #333;
+            border-top: none;
+            clear: both;
+            float: left;
+            width: 100%;
+            background: #fff;
+            overflow: auto;
+        }
+
+        .tab_content {
+            padding: 20px;
+            display: none;
+        }
+
+        .tab_drawer_heading { display: none; }
+
+        @media screen and (max-width: 480px) {
+            .tabs {
+                display: none;
+            }
+            .tab_drawer_heading {
+                background-color: #ccc;
+                color: #fff;
+                border-top: 1px solid #333;
+                margin: 0;
+                padding: 5px 20px;
+                display: block;
+                cursor: pointer;
+                -webkit-touch-callout: none;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+            }
+            .d_active {
+                background-color: #666;
+                color: #fff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul class="tabs">
+        <li class="active" rel="tab1">Tab 1</li>
+        <li rel="tab2">Tab 2</li>
+        <li rel="tab3">Tab 3</li>
+        <li rel="tab4">Tab 4</li>
+    </ul>
+    <div class="tab_container">
+        <div id="tab1" class="tab_content">
+            <h2>Tab 1 content</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac metus augue.</p>
+        </div>
+        <!-- #tab1 -->
+
+        <div id="tab2" class="tab_content">
+            <h2>Tab 2 content</h2>
+            <p>Nunc dui velit, scelerisque eu placerat volutpat, dapibus eu nisi. Vivamus eleifend vestibulum odio non vulputate.</p>
+        </div>
+        <!-- #tab2 -->
+
+        <div id="tab3" class="tab_content">
+            <h2>Tab 3 content</h2>
+            <p>Nulla eleifend felis vitae velit tristique imperdiet. Etiam nec imperdiet elit. Pellentesque sem lorem, scelerisque sed facilisis sed, vestibulum sit amet eros.</p>
+        </div>
+        <!-- #tab3 -->
+
+        <div id="tab4" class="tab_content">
+            <h2>Tab 4 content</h2>
+            <p>Integer ultrices lacus sit amet lorem viverra consequat. Vivamus lacinia interdum sapien non faucibus. Maecenas bibendum, lectus at ultrices viverra, elit magna egestas magna, a adipiscing mauris justo nec eros.</p>
+        </div>
+        <!-- #tab4 --> 
+    </div>
+    <!-- .tab_container -->
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const tabButtons = document.querySelectorAll("ul.tabs li");
+            const tabContents = document.querySelectorAll(".tab_content");
+        
+            // Hide all tab contents
+            tabContents.forEach(tc => tc.style.display = "none");
+        
+            // Show the first tab content
+            const firstContent = tabContents[0];
+            if (firstContent) firstContent.style.display = "block";
+        
+            // Set the first tab as active
+            const firstTab = tabButtons[0];
+            if (firstTab) firstTab.classList.add("active");
+        
+            tabButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const rel = this.getAttribute("rel");
+        
+                    // Hide all tab contents
+                    tabContents.forEach(tc => tc.style.display = "none");
+        
+                    // Remove active class from all tabs
+                    tabButtons.forEach(b => b.classList.remove("active"));
+        
+                    // Show the selected tab content
+                    const activeContent = document.getElementById(rel);
+                    if (activeContent) activeContent.style.display = "block";
+        
+                    // Set this tab as active
+                    this.classList.add("active");
+                });
+            });
+        
+            // Optional: add class to last tab for styling
+            const lastTab = tabButtons[tabButtons.length - 1];
+            if (lastTab) lastTab.classList.add("tab_last");
+        });
+        </script>
+        
+</body>
+</html>
