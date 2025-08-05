@@ -12,7 +12,7 @@
     gap: 0.5rem;
     padding: 1rem 0.45rem;
     width: 100%; /* 💡 Make it take full width */
-    font-size: clamp(0.85rem, 1vw, 1rem);
+    font-size: clamp(0.775rem, 1vw, 0.8rem);
     background-color: rgba(245, 245, 245, 0.256);
     border: 1px solid rgba(245, 245, 245, 0.256);
     border-radius: 0.8rem;

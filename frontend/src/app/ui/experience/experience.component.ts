@@ -1,19 +1,28 @@
 import { Component } from '@angular/core';
+
 import { ExperienceEntry } from '../../models/experience.model';
 import { TabCardsComponent } from "./tab-cards/tab-cards.component";
 import { CommonModule } from '@angular/common';
+import { FlipCardComponent } from "./flip-card/flip-card.component";
 
 @Component({
   selector: 'app-experience',
-  imports: [CommonModule,TabCardsComponent],
+  imports: [CommonModule, TabCardsComponent, FlipCardComponent],
   templateUrl: './experience.component.html',
   styleUrl: './experience.component.css'
 })
 export class ExperienceComponent {
+  noWorkExperience: ExperienceEntry[] = [];
   workExperience: ExperienceEntry[] = 
   [
     {
-      header: {role:"Software Developer Intern at Safety IO", location: "Cape Town", duration:{start:"Jan 2025", end:"Present"}, mode:"Hybrid"},
+      header: {
+        role: "Software Developer Intern at Safety IO", location: "Cape Town", duration: { start: "Jan 2025", end: "Present" }, mode: "Hybrid",
+        roleDetails: {
+          company: 'Safety IO',
+          role: 'Software Developer Intern'
+        }
+      },
       tabs: 
       [ 
         {
@@ -55,7 +64,13 @@ export class ExperienceComponent {
       ]
     },
     {
-      header: {role:"Coding Expert & Prompt Engineer at Outlier.ai", location: "Global", duration:{start:"Oct 2024", end:"Jan 2025"}, mode:"Remote"},
+      header: {
+        role: "Coding Expert at Outlier.ai", location: "Global", duration: { start: "Oct 2024", end: "Jan 2025" }, mode: "Remote",
+        roleDetails: {
+          company: 'outlier.ai',
+          role: 'Freelance Software Engineer'
+        }
+      },
       tabs: 
       [ 
         {
@@ -79,7 +94,42 @@ export class ExperienceComponent {
       ]
     },
     {
-      header: {role:"Freelancer Private Tutor", location: "King William's Town", duration:{start:"Jan 2017", end:"Nov 2019"}, mode:"Remote"},
+      header: {
+        role: "Freelancer Private Tutor", location: "King William's Town", duration: { start: "Jan 2017", end: "Nov 2019" }, mode: "Remote",
+        roleDetails: {
+          company: 'freelance',
+          role: 'Private Tutor'
+        }
+      },
+      tabs: 
+      [ 
+        {
+          name:"Responsibilities", 
+          notableOutcomes: [
+            "Tutored learners from Grades 6–12 in Math, Science, and English (for younger students) and adapted explanations and teaching style to match individual learning needs.",
+            "Designed personalized lesson plans targeting each student’s gaps and strengths and built strong rapport and trust to support consistent learning progress.",
+            "Simplified complex topics using visual aids, step-by-step examples, and adjusted session pacing and structure based on student feedback and performance"
+          ]
+        },
+        {
+          name: "Impact",
+          notableOutcomes: [
+            "Helped a Grade 10 student recover from a Grade 3 level in Math and Science.",
+            "Improved the student’s confidence, foundational skills, and GPA by 50%.",
+            "Supported her through to a Bachelor’s pass, demonstrating lasting growth.",
+            "Developed long-term academic strategies to ensure independent learning."
+          ]
+        }
+      ]
+    },
+    {
+      header: {
+        role: "NSC Marking Assistant", location: "King William's Town", duration: { start: "Nov 2017", end: "Jan 2019" }, mode: "Onsite",
+        roleDetails: {
+          company: 'Department of education',
+          role: 'NSC Marking Assistant'
+        }
+      },
       tabs: 
       [ 
         {
@@ -101,6 +151,7 @@ export class ExperienceComponent {
         }
       ]
     }
+    
   ]
 
   safetyIO = this.workExperience[0];

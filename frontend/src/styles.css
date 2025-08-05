@@ -17,6 +17,8 @@
     --pink-transparent: #9e337c80;
     --gray: #373436;
     --gray-transparent: #2f2c2e83;
+    --gray-muted: rgb(86, 86, 86);
+    --gray-muted-light: rgb(212, 209, 209);
     --orange: orange;
     --orange-transparent: rgba(255, 166, 0, 0.417);
     /* Timeline variables */
@@ -70,9 +72,10 @@ p{
 }
 
 .container{
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     padding: 4em;
+    overflow-x: hidden;
 }
 
 .section-title{

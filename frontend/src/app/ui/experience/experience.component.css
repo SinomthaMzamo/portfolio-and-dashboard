@@ -9,11 +9,10 @@
 
 .experience-content{
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(560px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(544px, 544px));
     gap: 1rem;    
     align-items: stretch;
     justify-items: stretch;
-
     grid-auto-rows: 1fr;
 }
 

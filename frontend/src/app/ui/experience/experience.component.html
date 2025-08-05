@@ -4,8 +4,12 @@
             Experience
         </div>
         <main class="experience-content">
-            @for (item of workExperience; track $index) {
+            @for (item of noWorkExperience; track $index) {
                 <app-tab-cards [experienceEntry]="item"></app-tab-cards>
+            }
+            <app-tab-cards [experienceEntry]="workExperience[0]" ></app-tab-cards>
+            @for (item of workExperience.slice(1); track $index) {
+                <app-flip-card [experienceEntry]="item"></app-flip-card>
             }
         </main>
     </div>
