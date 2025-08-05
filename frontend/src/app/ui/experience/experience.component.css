@@ -10,10 +10,10 @@
 .experience-content{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(544px, 544px));
-    gap: 1rem;    
+    row-gap: 1rem; 
     align-items: stretch;
-    justify-items: stretch;
-    grid-auto-rows: 1fr;
+    justify-content: space-between;
+    grid-auto-rows: 0.9fr;
 }
 
 

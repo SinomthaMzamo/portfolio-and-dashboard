@@ -113,14 +113,15 @@ h1, h2, h3, h4, h5, h6{
 
   /* new layout */
   .front-wrapper{
-    display: grid;
-    grid-template-columns: 1fr; /* One column */
-    gap: 5rem; 
-    padding: 1rem;
-    padding-top: 0;
-    /* gap: 3rem; */
-    color: var(--white);
-    position: relative;
+    display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Now it works vertically! */
+  height: 100%; /* Required to make space distribution meaningful */
+  padding: 1rem;
+  padding-top: 0;
+  color: var(--white);
+  position: relative;
+  box-sizing: border-box;
   }
 
   .company{
