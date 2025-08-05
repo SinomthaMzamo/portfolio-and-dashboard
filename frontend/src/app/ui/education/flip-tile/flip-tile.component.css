@@ -1,7 +1,7 @@
 .education{
     background-color: var(--white);
-    /* padding: 1em;
-    margin: 1em 0; */
+    width: 100%;
+    min-width: fit-content;
     box-shadow: 0 4px 6px rgba(0.2, 0, 0, 0.2);
 }
 
@@ -25,7 +25,7 @@ h1, h2, h3, h4, h5, h6, p{
 .flip-card {
     background-color: transparent;
     width: 360px;
-    height: 320px;
+    height: 470px;
     perspective: 1000px; /* Add perspective for 3D effect */
     cursor: pointer;
   }
@@ -48,8 +48,12 @@ h1, h2, h3, h4, h5, h6, p{
   .back-wrapper{
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 4rem;
     padding: 1rem;
+    justify-content: space-around;
+    width: 360px;
+    height: 470px;
+    box-sizing: border-box;
   }
 
   .flip-card-front:hover{

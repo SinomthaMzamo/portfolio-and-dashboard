@@ -12,8 +12,8 @@ h1, h2, h3, h4, h5, h6, p{
 
 .projects-content{
     display: grid;
-    grid-template-columns: repeat(auto-fill, 500px);
-    gap: 1em;
+    grid-template-columns: repeat(auto-fill, 360px);
+    gap: 2rem;
     margin: 3em 0;
     padding-bottom: 4rem;
 }

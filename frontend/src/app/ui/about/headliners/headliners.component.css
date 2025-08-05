@@ -15,6 +15,11 @@
 
 }
 
+.tile:hover{
+    transform: scale(1.03);
+    box-shadow: 2px 8px 20px rgba(137, 3, 3, 0.775);
+}
+
 span{
     color: var(--dark-accent);
     font-size: 3.5vw;
