@@ -63,18 +63,15 @@ p{
     border: 2px solid var(--light-accent);
 }
 
-.section{
-    width: 100%;
-    position: relative;
-    min-height: max-content;
-    scroll-margin: var(--navbar-offset);
-    /* overflow: hidden; */
+.section {
+    min-height: 100vh;
+    scroll-margin: var(--navbar-offset); /* optional for anchor offset */
 }
 
-.container{
+.container {
     width: 80%;
     margin: 0 auto;
-    padding: 4em;
+    padding: 2em;
     overflow-x: hidden;
 }
 

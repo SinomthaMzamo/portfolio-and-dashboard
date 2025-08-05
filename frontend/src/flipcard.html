@@ -6,8 +6,8 @@
     <title>Flip cards</title>
     <style>
         .flip-card {
-        width: 300px;      /* fixed width or use relative units */
-        height: 200px;     /* fixed height or use relative units */
+        max-width: 30vh;      /* fixed width or use relative units */
+        height: 30vh;     /* fixed height or use relative units */
         perspective: 1000px;  /* needed for 3D effect */
         }
 
@@ -47,6 +47,18 @@
         color: white;
         transform: rotateY(180deg);
         }
+        .front-wrapper{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 1rem;
+        }
+        .institution-img{
+          width: 40%;
+        }
+        img{
+          width: 100%;
+        }
 
     </style>
 </head>
@@ -55,9 +67,33 @@
         <div class="flip-card-inner">
           <div class="flip-card-front">
             <!-- front content -->
+             <div class="front-wrapper">
+              <div class="institution-img">
+                <img src="../public/wghs-resized.png" alt="highschool logo"></img>
+              </div>
+              <div class="education-info">
+                  <div class="institution-name">Wynberg Girls' High School</div>
+                  <div class="program-duration">Jan 2012 - Dec 2016</div>
+              </div>
+              <i class="material-icons">subdirectory_right_arrow</i>
+             </div>
           </div>
           <div class="flip-card-back">
             <!-- back content -->
+             <div class="back-wrapper">
+              <div class="qualification-info">
+                <div class="qualification">NSC</div>
+                <div class="grade">A-</div>
+              </div>
+              <div class="skills-wrapper">
+                <small>skills</small>
+                <div class="skills row">
+                    @for (item of education.skills; track $index) {
+                        <app-badge [class]="item.colour" [text]="item.skill"></app-badge>
+                    }
+                </div>
+              </div>
+             </div>
           </div>
         </div>
       </div>

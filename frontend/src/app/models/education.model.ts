@@ -3,7 +3,8 @@ export type Education = {
     qualification: "National Senior Certificate" | "BSc Physics & Astrophysics" | "Systems Development NQF 5",
     duration: {start: string, end: string},
     grade: "A-" | "A- with 5 distinctions" | "Incomplete",
-    skills: Skill[]
+    skills: Skill[],
+    imgSrc: string
 }
 
 export type Skill = {
