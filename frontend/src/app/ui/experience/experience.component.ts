@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-
+import { Component, inject, Signal, signal, WritableSignal } from '@angular/core';
 import { ExperienceEntry } from '../../models/experience.model';
 import { TabCardsComponent } from "./tab-cards/tab-cards.component";
 import { CommonModule } from '@angular/common';
 import { FlipCardComponent } from "./flip-card/flip-card.component";
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-experience',
@@ -15,6 +15,54 @@ export class ExperienceComponent {
   noWorkExperience: ExperienceEntry[] = [];
   workExperience: ExperienceEntry[] = 
   [
+    {
+      header: {
+        role: "Software Developer Intern at Safety IO", location: "Cape Town", duration: { start: "Jan 2025", end: "Present" }, mode: "Hybrid",
+        roleDetails: {
+          company: 'Safety IO',
+          role: 'Software Developer Intern'
+        }
+      },
+      tabs: 
+      [ 
+        {
+          name:"Engineering", 
+          notableOutcomes: [
+            "Applied TypeScript and object-oriented principles to develop modular, maintainable features.",
+            "Contributed to Angular components, enhancing the frontend’s responsiveness and accessibility.",
+            "Integrated Node.js services with RESTful APIs to support backend workflows and microservices.",
+            "Designed and executed PostgreSQL queries to support data-driven features and debugging efforts."
+          ]
+        },
+        {
+          name: "UX/UI Design",
+          notableOutcomes: [
+            "Applied an end-to-end UX process using Miro and Figma for user research, ideation, wireframes, and prototypes.",
+            "Facilitated structured design critiques using dot voting, Miro boards, and iterative feedback loops.",
+            "Created developer-friendly design packages for smooth handoff to cross-functional teams.",
+            "Designed organizational diagrams and team maps with strong information architecture principles."
+          ]
+        },
+        {
+          name: "Agile Processes",
+          notableOutcomes: [
+            "Actively participated in daily standups, weekly retrospectives, and demo sessions.",
+            "Maintained tasks on a Kanban board, refined backlogs, and contributed to clear definitions of done.",
+            "Helped shape team agreements that fostered psychological safety, inclusion, and team cohesion.",
+            "Practiced sprint planning using estimation techniques and prioritized collaborative delivery."
+          ]
+        },
+        {
+          name: "Cloud Development",
+          notableOutcomes: [
+            "Prepared for the AWS Certified Cloud Practitioner exam by following internal study plans and labs.",
+            "Co-designed a cloud-focused curriculum with hands-on AWS practice environments.",
+            "Gained exposure to real-world deployment scenarios through internal capstone projects.",
+            "Explored cloud-native design principles including scalability, monitoring, and cost-awareness."
+          ]
+        }
+      ]
+    },
     {
       header: {
         role: "Software Developer Intern at Safety IO", location: "Cape Town", duration: { start: "Jan 2025", end: "Present" }, mode: "Hybrid",
@@ -157,4 +205,29 @@ export class ExperienceComponent {
   safetyIO = this.workExperience[0];
   outlierAI = this.workExperience[1];
   tutoring = this.workExperience[2];
+  private http = inject(HttpClient);
+
+  // Signal to store experience data
+  // ✅ Use WritableSignal instead of Signal
+experiences: WritableSignal<ExperienceEntry[]> = signal([]);
+
+
+  constructor() {
+    this.loadExperiences();
+  }
+
+  loadExperiences() {
+    const url = 'https://vif576si5j.execute-api.af-south-1.amazonaws.com/Prod/experiences/';
+
+    this.http.get<any>(url).subscribe({
+      next: (res) => {
+        if (res.data) {
+          this.experiences.set(res.data);
+        }
+      },
+      error: (err) => {
+        console.error('API error:', err);
+      }
+    });
+  }
 }
