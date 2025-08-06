@@ -5,7 +5,7 @@ import { BlogPost, Education, ExperienceEntry, Project } from "./types";
 const client = new DynamoDBClient({}); // Uses Lambda's IAM role permissions
 const repository = DynamoDBDocumentClient.from(client);
 
-type Entry = BlogPost | ExperienceEntry | Project | Education & {
+export type Entry = (BlogPost | ExperienceEntry | Project | Education) & {
     id:string,
 };
 

@@ -4,7 +4,7 @@
             Experience
         </div>
         <main class="experience-content">
-            @for (item of experiences().slice(1); track $index) {
+            @for (item of experiences(); track $index) {
                 <app-flip-card [experienceEntry]="item"></app-flip-card>
             }
             @for (item of noWorkExperience; track $index) {
