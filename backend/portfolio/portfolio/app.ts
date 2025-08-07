@@ -48,7 +48,7 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
                 response = await getRequestHandler(path, EXPERIENCES_TABLE_NAME, response as Response);
             } else if(path.endsWith("education/")){
                 response = await getRequestHandler(path, EDUCATION_TABLE_NAME, response as Response);
-            } else if(path.endsWith("projects")){
+            } else if(path.endsWith("projects/")){
                 response = await getRequestHandler(path, PROJECTS_TABLE_NAME, response as Response);
             } else if(path.endsWith("blogs/")){
                 response = await getRequestHandler(path, BLOGS_TABLE_NAME, response as Response);

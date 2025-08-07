@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Typing Animation</title>
+  <style>
+    body {
+      font-family: 'Courier New', monospace;
+      background: #111;
+      color: #00ffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .skill-container {
+      font-size: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .skill-text {
+      border-bottom: 2px solid #00ffff;
+      display: inline-block;
+      transform: translateX(0);
+      transition: transform 0.3s ease-out;
+      white-space: nowrap;
+    }
+
+    .thrown-left {
+      animation: throwLeft 0.3s forwards ease-out;
+    }
+
+    @keyframes throwLeft {
+      0% {
+        transform: translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-40px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="skill-container">
+  <span class="skill-text" id="skill"></span>
+</div>
+
+<script>
+  const skills = ["Python", "Java", "UX/UI Design", "Typescript", "Angular"];
+  const skillEl = document.getElementById("skill");
+
+  let index = 0;
+  let charIndex = 0;
+  let typingInterval;
+  const typingSpeed = 100;
+  const pauseTime = 1500;
+
+  function typeSkill() {
+    const currentSkill = skills[index];
+    if (charIndex <= currentSkill.length) {
+      skillEl.textContent = currentSkill.slice(0, charIndex);
+      charIndex++;
+    } else {
+      clearInterval(typingInterval);
+      setTimeout(() => {
+        // throw-left animation
+        skillEl.classList.add("thrown-left");
+        setTimeout(() => {
+          skillEl.classList.remove("thrown-left");
+          skillEl.textContent = '';
+          charIndex = 0;
+          index = (index + 1) % skills.length;
+          typingInterval = setInterval(typeSkill, typingSpeed);
+        }, 300); // matches throwLeft duration
+      }, pauseTime);
+    }
+  }
+
+  typingInterval = setInterval(typeSkill, typingSpeed);
+</script>
+
+</body>
+</html>

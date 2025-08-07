@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { CardComponent } from "./card/card.component";
 import { BlogPost } from '../../models/blog.model';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { ExperienceEntry } from '../../models/experience.model';
 
 @Component({
   selector: 'app-blog',
@@ -64,5 +66,30 @@ export class BlogComponent {
       imgSrc: 'kmp.png'
     }
   ];
+
+  private http = inject(HttpClient);
+  // Signal to store experience data
+  // ✅ Use WritableSignal instead of Signal
+  blogs: WritableSignal<BlogPost[]> = signal([]);
+
+
+  constructor() {
+    this.loadExperiences();
+  }
+
+  loadExperiences() {
+    const url = 'https://vif576si5j.execute-api.af-south-1.amazonaws.com/Prod/blogs/';
+
+    this.http.get<any>(url).subscribe({
+      next: (res) => {
+        if (res.data) {
+          this.blogs.set(res.data);
+        }
+      },
+      error: (err) => {
+        console.error('API error:', err);
+      }
+    });
+  }
   
 }

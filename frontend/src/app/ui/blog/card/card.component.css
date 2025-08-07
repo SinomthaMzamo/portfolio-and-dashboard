@@ -52,4 +52,46 @@
 
 .btn{
     padding: 8px;
+    max-width: fit-content;
+}
+
+
+/* New card styles: */
+
+/* title card styles */
+.title-card-wrapper{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 30%;
+}
+
+.blog-title-new{
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 300;
+}
+.blog-meta-data{
+    color: gray;
+    font-size: 0.5rem;
+}
+
+.left{
+    align-self: flex-start;
+}
+.right{
+    align-self: flex-end;
+}
+
+.img-title{
+    display: flex;
+    gap: 1rem;
+}
+
+.horizontal{
+    flex-direction: row;
+}
+
+.vertical{
+    flex-direction: column;
 }

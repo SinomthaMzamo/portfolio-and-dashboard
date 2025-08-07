@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { CardsComponent } from "./cards/cards.component";
 import { CommonModule } from '@angular/common';
 import { Project } from '../../models/project.model';
+import { HttpClient } from '@angular/common/http';
+import { ExperienceEntry } from '../../models/experience.model';
 
 @Component({
   selector: 'app-projects',
@@ -10,7 +12,7 @@ import { Project } from '../../models/project.model';
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent {
-    projects: Project[] = [
+    projectsList: Project[] = [
       {
         name: 'Minesweeper',
         description: 'My first baby! A fully interactive Minesweeper game built using Python, Pygame, and JSON. It follows the MVC architecture and applies core OOP principles. I used Numpy for efficient grid logic and game-state management.',
@@ -30,5 +32,30 @@ export class ProjectsComponent {
         imgSrc: 'b-a-r.jpg'
       }
     ]
+
+    private http = inject(HttpClient);
+    // Signal to store experience data
+    // ✅ Use WritableSignal instead of Signal
+    projects: WritableSignal<Project[]> = signal([]);
+
+
+    constructor() {
+      this.loadExperiences();
+    }
+
+    loadExperiences() {
+      const url = 'https://vif576si5j.execute-api.af-south-1.amazonaws.com/Prod/projects/';
+
+      this.http.get<any>(url).subscribe({
+        next: (res) => {
+          if (res.data) {
+            this.projects.set(res.data);
+          }
+        },
+        error: (err) => {
+          console.error('API error:', err);
+        }
+      });
+    }
 
 }

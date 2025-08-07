@@ -2,6 +2,10 @@
     color: var(--dark-accent);
 }
 
+.subsection-title{
+    text-align: left;
+}
+
 .section{}
 
 .container{
@@ -29,7 +33,7 @@
 
 .description p {
     
-	background: linear-gradient(to right, var(--mustard) 0%, var(--dark-accent) 100%);
+	background: linear-gradient(to right, var(--green) 20%, var(--dark-accent) 80%);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }

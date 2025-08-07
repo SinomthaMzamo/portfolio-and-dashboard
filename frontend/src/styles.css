@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
-    --dark-accent: #5E0E08;
-    --dark-transparent: #5e0e089b;
-    --dark-more-transparent: #5e0e0883;
-    --accent-white: #eddcda;
-    --light-accent: #f8ecb6;
-    --light-transparent: rgba(248, 202, 134, 0.481);
+    --dark-accent: #072e11;
+    --dark-transparent: #072e11a0;
+    --dark-more-transparent: #072e1173;
+    --dark-accent-bright: #12802e;
+    --dark-accent-black: #031708;
+    --accent-white: #e7f3ea;
+    --light-accent: whitesmoke;
+    --light-transparent: rgba(245, 245, 245, 0.596);
     --white: whitesmoke;
     --green: #1D6A1F;
     --green-transparent: #1d6a2087;  
@@ -26,6 +28,10 @@
     --mid-section-gap: 60px;
     --entry-width: 750px;
     --timeline-width: calc(2 * var(--entry-width) + var(--mid-section-gap));
+    --blog-min-width:335.04px;
+    --blog-max-width: calc(2 * var(--blog-min-width));
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
 }
 
 html {
@@ -43,6 +49,10 @@ body {
 
 p{
     margin: 0;
+}
+
+img{
+    object-fit: fill;
 }
 .btn {
     border-radius: 0;
@@ -152,3 +162,6 @@ p{
     border-color: var(--orange);
 }
 
+.p-0{
+    padding: 0.5rem;
+}
