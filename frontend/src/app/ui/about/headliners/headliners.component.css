@@ -9,10 +9,15 @@
 .tile{
     display: flex;
     flex-direction: column;
-    background-color: blanchedalmond;
+    background-color: var(--light-accent);
     padding: 1em;
     box-shadow: 0 4px 6px rgba(0.2, 0, 0, 0.2);
 
+}
+
+.tile:hover{
+    transform: scale(1.03);
+    box-shadow: 2px 8px 20px rgba(63, 62, 62, 0.775);
 }
 
 span{

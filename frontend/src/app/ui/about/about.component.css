@@ -2,6 +2,12 @@
     color: var(--dark-accent);
 }
 
+.subsection-title{
+    text-align: left;
+}
+
+.section{}
+
 .container{
 }
 
@@ -10,7 +16,9 @@
     flex-wrap: wrap;
     gap: 1rem;
     justify-content: center;
+    margin-bottom: 5rem;
 }
+
 
 .description{
     display: flex;
@@ -20,9 +28,22 @@
     font-size: 1.5em;
     width: 45%;
     flex-grow: 1;
+    
+}
+
+.description p {
+    
+	background: linear-gradient(to right, var(--green) 20%, var(--dark-accent) 80%);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 
 .journey{
     display: flex;
     flex-direction: column;
+}
+
+.greet{
+    font-size: 3rem;
+    font-weight: 600;
 }

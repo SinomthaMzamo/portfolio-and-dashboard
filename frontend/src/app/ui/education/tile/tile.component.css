@@ -1,0 +1,23 @@
+.education{
+    background-color: var(--white);
+    padding: 1em;
+    margin: 1em 0;
+    box-shadow: 0 4px 6px rgba(0.2, 0, 0, 0.2);
+}
+
+.info span{
+    font-size: 1em;
+}
+
+h1, h2, h3, h4, h5, h6, p{
+    margin: 0;
+}
+
+.skills-wrapper small {
+    font-weight: 700;
+}
+
+.skills{
+    justify-content: flex-start;
+    gap: 0.3em;
+}

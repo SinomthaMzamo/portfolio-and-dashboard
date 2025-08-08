@@ -1,0 +1,35 @@
+<div class="flip-card" (click)="flipped = !flipped" [class.flipped]="flipped">
+    <div class="flip-card-inner">
+      <!-- Front of card -->
+      <div class="flip-card-front">
+        <div class="front-wrapper">
+            <div class="institution-img"><img [src]="education.imgSrc" [alt]="education.imgSrc.split('.png')[0]"></div>
+            <div class="education-info">
+                <div class="institution-name">{{education.institution}}</div>
+                <div class="program-duration">{{education.duration.start}} - {{education.duration.end}}</div>
+            </div>
+            <i class="material-icons">subdirectory_right_arrow</i>
+        </div>      
+      </div>
+
+  
+      <!-- Back of card -->
+      <div class="flip-card-back">
+        <div class="back-wrapper">
+            <div class="qualification-info">
+                <div class="qualification">{{education.qualification}}</div>
+                <div class="grade">{{education.grade}}</div>
+            </div>
+            <div class="skills-wrapper">
+                <small>skills</small>
+                <div class="skills row">
+                    @for (item of education.skills; track $index) {
+                        <app-badge [class]="item.colour" [text]="item.skill"></app-badge>
+                    }
+                </div>
+            </div>
+        </div>       
+      </div>
+    </div>
+  </div>
+  

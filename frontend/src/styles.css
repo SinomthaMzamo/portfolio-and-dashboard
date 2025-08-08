@@ -1,9 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
-    --dark-accent: #5E0E08;
-    --dark-transparent: #5e0e089b;
-    --light-accent: blanchedalmond;
-    --light-transparent: rgba(255, 235, 205, 0.227);
+    --dark-accent: #072e11;
+    --dark-transparent: #072e11a0;
+    --dark-more-transparent: #072e1173;
+    --dark-accent-bright: #12802e;
+    --dark-accent-black: #031708;
+    --accent-white: #e7f3ea;
+    --light-accent: whitesmoke;
+    --light-transparent: rgba(245, 245, 245, 0.596);
     --white: whitesmoke;
     --green: #1D6A1F;
     --green-transparent: #1d6a2087;  
@@ -13,13 +17,27 @@
     --blue-transparent: #38339e80;
     --pink: #9e337c;
     --pink-transparent: #9e337c80;
-    --gray: #2f2c2e;
+    --gray: #373436;
     --gray-transparent: #2f2c2e83;
+    --gray-muted: rgb(86, 86, 86);
+    --gray-muted-light: rgb(212, 209, 209);
+    --orange: orange;
+    --orange-transparent: rgba(255, 166, 0, 0.417);
     /* Timeline variables */
     --navbar-offset: 113px;
     --mid-section-gap: 60px;
     --entry-width: 750px;
     --timeline-width: calc(2 * var(--entry-width) + var(--mid-section-gap));
+    --blog-min-width:335.04px;
+    --blog-max-width: calc(2 * var(--blog-min-width));
+    --blog-max-height: 465.422px;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --box-shadow-dark-bg: 0 0 10px rgba(255, 255, 255, 0.2);
+
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -33,6 +51,10 @@ body {
 
 p{
     margin: 0;
+}
+
+img{
+    object-fit: fill;
 }
 .btn {
     border-radius: 0;
@@ -56,18 +78,20 @@ p{
 .section{
     width: 100%;
     position: relative;
-    /* min-height: 80vh; */
+    min-height: max-content;
+    scroll-margin: var(--navbar-offset);
+    /* overflow: hidden; */
 }
 
 .container{
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
     padding: 4em;
-    /* border: 2px solid gainsboro; */
+    overflow-x: hidden;
 }
 
 .section-title{
-    font-size: 80px; 
+    font-size: clamp(2.5rem, 6vw, 4rem);
     /* padding: 32px; */
 }
 
@@ -135,4 +159,15 @@ p{
     background-color: var(--gray-transparent);
     border-color: var(--gray);
 }
+.orange{
+    background-color: var(--orange-transparent);
+    border-color: var(--orange);
+}
 
+.p-0{
+    padding: 0.5rem;
+}
+
+.m-r-0{
+    margin-right: 0.5rem ;
+}

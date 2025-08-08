@@ -1,0 +1,20 @@
+<div class="experience">
+    <h2 class="role"><strong>{{header.role}}</strong>, {{header.location}}</h2>
+    <h5>{{ duration.start }} - {{ duration.end }} ({{ header.mode }})</h5>
+    <div class="card-wrapper">
+        <div class="tabs">
+            @for (tabTitle of tabTitles; track $index; let i = $index) {
+                <app-tabs
+                  [category]="tabTitle"
+                  [class]="i === selectedTabIndex ? 'selected' : 'default'"
+                  (click)="onTabSelected(i)">
+                </app-tabs>
+              }
+        </div>
+        <div class="pills-wrapper">
+            @for (pill of selectedTabOutcomes; track $index) {
+                <app-pills [text]="pill"></app-pills>
+            }
+        </div>
+    </div>
+</div>

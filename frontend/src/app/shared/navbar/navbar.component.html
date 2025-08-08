@@ -1,14 +1,25 @@
 <nav class="nav-bar">
     <div class="logo">Sinomtha.</div>
-    <li class="nav-links">
-        <app-item [sectionID]="'home'"></app-item>
-        <app-item [sectionID]="'about'"></app-item>
-        <app-item [sectionID]="'experience'"></app-item>
-        <app-item [sectionID]="'education'"></app-item>
-        <app-item [sectionID]="'projects'"></app-item>
-        <app-item [sectionID]="'blog'"></app-item>
-        <app-item [sectionID]="'contact'"></app-item>
-    </li>
-    <button class="btn dark-btn">Download CV</button>
-</nav>
-
+  
+    <button
+      class="hamburger"
+      aria-label="Toggle menu"
+      [attr.aria-expanded]="isMenuOpen"
+      (click)="toggleMenu()"
+    >
+      &#9776;
+    </button>
+  
+    <ul class="nav-links" [class.show]="isMenuOpen">
+      <app-item [sectionID]="'home'"></app-item>
+      <app-item [sectionID]="'about'"></app-item>
+      <app-item [sectionID]="'experience'"></app-item>
+      <app-item [sectionID]="'education'"></app-item>
+      <app-item [sectionID]="'projects'"></app-item>
+      <app-item [sectionID]="'blog'"></app-item>
+      <app-item [sectionID]="'contact'"></app-item>
+    </ul>
+  
+    <button class="btn dark-btn" (click)="downloadCV()"><i class="fas fa-download"></i>Download CV</button>
+  </nav>
+  

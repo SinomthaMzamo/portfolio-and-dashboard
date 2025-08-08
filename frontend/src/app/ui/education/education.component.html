@@ -1,88 +1,19 @@
-<section class="section">
+<!-- TODO: The cards should contain info about the actual study program not just name, icon and duration -->
+<section id="education" class="section">
     <div class="container">
         <div class="section-title">
             Education
         </div>
+        <!-- <main class="education-content">    
+            @for (item of educationHistory; track $index) {
+                <app-tile [education]="item"></app-tile>
+                 
+            }
+        </main> -->
         <main class="education-content">
-            <!-- WTC -->
-            <div class="education">
-                <div class="row">
-                    <div class="info">
-                        <h3>WeThinkCode_</h3>
-                        <span>Sep 2023 - Dec 2024</span>
-                    </div>
-                    <div class="info">
-                        <h3>Systems Development NQF 5</h3>
-                        <span>A-</span>
-                    </div>
-                </div>
-                <hr>
-                <div class="skills-wrapper">
-                    <small>skills</small>
-                    <div class="skills row">
-                        <app-badge [class]="'blue'" [text]="'python'"></app-badge>  
-                        <app-badge [class]="'dark'" [text]="'java'"></app-badge>
-                        <app-badge [class]="'pink'" [text]="'test-driven development'"></app-badge>
-                        <app-badge [class]="'gray'" [text]="'brownfields development'"></app-badge>
-                        <app-badge [class]="'green'" [text]="'oop'"></app-badge>
-                        <app-badge [class]="'mustard'" [text]="'full-stack development'"></app-badge> 
-                    </div>
-                </div> 
-                  
-            </div>
-            <!-- UFS -->
-            <div class="education">
-                <div class="row">
-                    <div class="info">
-                        <h3>University of the Free State</h3>
-                        <span>Jan 2020 - May 2022</span>
-                    </div>
-                    <div class="info">
-                        <h3>BSc Physics & Astrophysics</h3>
-                        <span>Incomplete</span>
-                    </div>
-                </div>
-                <hr>
-                <div class="skills-wrapper">
-                    <small>skills</small>
-                    <div class="skills row">
-                        <app-badge [class]="'blue'" [text]="'critical thinking'"></app-badge>
-                        <app-badge [class]="'green'" [text]="'research skills'"></app-badge> 
-                        <app-badge [class]="'mustard'" [text]="'problem solving'"></app-badge> 
-                        <app-badge [class]="'dark'" [text]="'analytical thinking'"></app-badge>
-                        <app-badge [class]="'pink'" [text]="'scientific computing'"></app-badge>
-                        <app-badge [class]="'gray'" [text]="'mathematical modelling'"></app-badge>
-                    </div>
-                </div>              
-                
-            </div>
-            <!-- highschool -->
-            <div class="education">
-                <div class="row">
-                    <div class="info">
-                        <h3>Wynberg Girls' High School</h3>
-                        <span>Jan 2012 - Dec 2016</span>
-                    </div>
-                    <div class="info">
-                        <h3>National Senior Certificate</h3>
-                        <span>A- with 5 distictions</span>
-                    </div>
-                </div>
-                
-                <hr>
-                <div class="skills-wrapper">
-                    <small>skills</small>
-                    <div class="skills row">
-                        <app-badge [class]="'dark'" [text]="'academic writing'"></app-badge>
-                        <app-badge [class]="'pink'" [text]="'conveying complex information'"></app-badge>
-                        <app-badge [class]="'blue'" [text]="'time management'"></app-badge>  
-                        <app-badge [class]="'green'" [text]="'leadership skills'"></app-badge>
-                        <app-badge [class]="'gray'" [text]="'level 3 first-aid'"></app-badge>
-                        <app-badge [class]="'mustard'" [text]="'public speaking'"></app-badge>
-                    </div>
-                </div>
-                
-            </div>
+            @for (item of allEducation; track $index) {
+                <app-flip-tile [education]="item" ></app-flip-tile>
+            }
         </main>
     </div>
 </section>

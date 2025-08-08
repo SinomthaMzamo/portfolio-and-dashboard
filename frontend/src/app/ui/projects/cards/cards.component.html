@@ -1,33 +1,42 @@
 <div class="card-wrapper">
-    <div class="thumbnail"></div>
-    <div class="project-details">
-        <h3 class="project-name">Project Name</h3>
-        <p class="project-description">A secure messaging app that allows users to send encrypted 
-            letters accessible via a unique URL and password. Once the letter is read, 
-            it self-destructs to ensure privacy and confidentiality.</p>
-    </div>
-    <div class="links row">
-        <button class="btn light-btn">Visit the repo</button>
-        <button class="btn dark-btn">View live demo</button>
-    </div>
-    <i class="material-icons more icon">expand_more</i>
-    <i class="material-icons less icon">expand_less</i>
-    <div class="project-stats">
+    <div class="col">
+        <div class="thumbnail">
+            <img [src]="projectInfo.imgSrc" [alt]="projectInfo.name">
+        </div>
         <div class="tags-wrapper">
             <small>tags</small>
+            
             <div class="tags row">
-                <app-badge [class]="'dark'" [text]="'weekend hack'"></app-badge>
-                <app-badge [class]="'blue'" [text]="'encryption'"></app-badge>
-                <app-badge [class]="'green'" [text]="'aws'"></app-badge> 
-                <app-badge [class]="'mustard'" [text]="'full-stack'"></app-badge>
+                @for (item of projectInfo.tags; track $index) {
+                    <app-badge [class]="item.colour" [text]="item.tag"></app-badge>
+                }
             </div>
         </div>
-        <div class="language-bar">
-            <div class="lang js" style="width: 40%;" title="JavaScript - 30%"></div>
-            <div class="lang py" style="width: 30%;" title="Python - 30%"></div>
-            <div class="lang ts" style="width: 20%;" title="TypeScript - 20%"></div>
-            <div class="lang html" style="width: 10%;" title="HTML - 10%"></div>
-            <div class="lang sqlite" style="width: 10%;" title="SQLite - 10%"></div>
+    </div>
+    
+    <div class="project-details">
+        <h3 class="project-name">{{projectInfo.name}}</h3>
+        <p class="project-description">{{projectInfo.description}}</p>
+    </div>
+
+    <i class="material-icons  icon">expand_more</i>
+    <i class="material-icons less icon">expand_less</i>
+
+    <div class="collapsible less">
+        <div class="links row">
+            <button class="btn light-btn">Visit the repo</button>
+            <button class="btn dark-btn">View live demo</button>
+        </div>
+        
+        <div class="project-stats">
+            <div class="language-bar">
+                <div class="lang js" style="width: 40%;" title="JavaScript - 30%"></div>
+                <div class="lang py" style="width: 30%;" title="Python - 30%"></div>
+                <div class="lang ts" style="width: 20%;" title="TypeScript - 20%"></div>
+                <div class="lang html" style="width: 10%;" title="HTML - 10%"></div>
+                <div class="lang sqlite" style="width: 10%;" title="SQLite - 10%"></div>
+            </div>
         </div>
     </div>
+    
 </div>

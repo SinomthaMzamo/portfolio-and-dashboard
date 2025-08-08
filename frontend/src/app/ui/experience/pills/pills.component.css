@@ -3,17 +3,18 @@
     width: 1rem;
     border-radius: 50%;
     background-color: var(--light-accent);
-    margin-right: 0.5rem;
+    flex-shrink: 0;
 }
 
-.pill{
+.pill {
     display: flex;
     justify-content: flex-start;
-    padding: 1rem 0.45rem ;
-    width: fit-content;
-    text-align:center;
-    font-size: 1rem;
+    gap: 0.5rem;
+    padding: 1rem 0.45rem;
+    width: 100%; /* 💡 Make it take full width */
+    font-size: clamp(0.775rem, 1vw, 0.8rem);
     background-color: rgba(245, 245, 245, 0.256);
     border: 1px solid rgba(245, 245, 245, 0.256);
     border-radius: 0.8rem;
-}
+    box-sizing: border-box; /* 🧠 Ensure padding doesn't overflow the width */
+  }

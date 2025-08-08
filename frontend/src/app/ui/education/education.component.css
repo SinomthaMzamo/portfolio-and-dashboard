@@ -1,33 +1,30 @@
 .section{
     background-color: var(--light-accent);
-    height: 80vh;
+    height: 100vh;
 }
+
+.container{
+    /* border: 2px solid greenyellow; */
+    /* height: 200vh; */
+}
+
 
 .section-title{
     color: var(--dark-accent);
 }
 
-.education{
-    background-color: var(--white);
-    padding: 1em;
-    margin: 1em 0;
-    box-shadow: 0 4px 6px rgba(0.2, 0, 0, 0.2);
+.education-content{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); /* wraps */
+    gap: 1rem; /* both row and column gap */
+    align-items: stretch; /* ensures items stretch to equal row height */
 }
 
-.info span{
-    font-size: 1em;
+
+.education-content > * {
+    flex-grow: 1;
 }
 
-h1, h2, h3, h4, h5, h6, p{
-    margin: 0;
-}
 
-.skills-wrapper small {
-    font-weight: 700;
-}
-
-.skills{
-    justify-content: flex-start;
-    gap: 0.3em;
-}
 

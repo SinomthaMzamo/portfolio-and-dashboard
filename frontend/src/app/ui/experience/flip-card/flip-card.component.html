@@ -1,0 +1,48 @@
+<div class="flip-card" [class.flipped]="flipped" (mouseenter)="toggleFlip(true)"
+(mouseleave)="toggleFlip(false)">
+    <div class="flip-card-inner">
+  
+      <!-- Front side -->
+      <div class="flip-card-front">
+        <div class="experience front">
+            <div class="front-wrapper">
+                <div class="company">{{header.roleDetails.company}}</div>
+                <div class="exp-role">{{header.roleDetails.role}}</div>
+                <div class="bottom row">
+                    <div class="duration-mode">
+                        <div class="duration">{{duration.start}} - {{duration.end}}</div>
+                        <div class="mode">{{header.mode}}</div>
+                    </div>
+                    <i class="material-icons icon">subdirectory_arrow_right</i>
+                </div>
+            </div>          
+        </div>
+      </div>
+  
+      <!-- Back side -->
+      <div class="flip-card-back">
+        <div class="experience back">
+            <h2 class="role"><strong>{{header.role}}</strong>, {{header.location}}</h2>
+            <h5>{{ duration.start }} - {{ duration.end }} ({{ header.mode }})</h5>
+          <div class="card-wrapper">
+            <div class="tabs">
+              @for (tabTitle of tabTitles; track $index; let i = $index) {
+                <app-tabs
+                  [category]="tabTitle"
+                  [class]="i === selectedTabIndex ? 'selected' : 'default'"
+                  (click)="onTabSelected(i)">
+                </app-tabs>
+              }
+            </div>
+            <div class="pills-wrapper">
+              @for (pill of selectedTabOutcomes; track $index) {
+                <app-pills [text]="pill"></app-pills>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

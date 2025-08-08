@@ -1,12 +1,12 @@
-<section class="section">
+<section id="projects" class="section">
     <div class="container">
         <div class="section-title">
             Projects
         </div>
         <main class="projects-content">
-            <app-cards></app-cards>
-            <app-cards></app-cards>
-            <app-cards></app-cards>
+            @for (item of allProjects; track $index) {
+                <app-cards [projectInfo]="item"></app-cards>
+            }        
         </main>
     </div>
 </section>

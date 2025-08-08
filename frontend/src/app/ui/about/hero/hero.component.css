@@ -47,7 +47,7 @@
     height:100px;
     width:100px;
     border-radius:100%;
-    background: rgb(249, 249, 249);
+    background: var(--white);
     background-image: url('./assets/java-icon.svg');
     background-size: 95%; /* Ensures the image covers the entire div */
     background-position: center; /* Centers the image */
@@ -62,11 +62,81 @@
     width:100px;
     border-radius:100%;
     background: transparent;
-    background-image: url('./assets/sqlite-icon.svg');
+    background-image: url('./assets/postgresql-icon.svg');
     background-size: 85%; /* Ensures the image covers the entire div */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents tiling of the image */
     animation: orbit infinite ease-in-out 5s;
+  }
+  .angular-logo{
+    position: absolute;
+    top:15%;
+    left: 50%;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    background: transparent;
+    background-image: url('./assets/angular-svgrepo-com.svg');
+    background-size: 70%; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    animation: orbit infinite ease-in-out 7s;
+  }
+  .ts-logo{
+    position: absolute;
+    top:45%;
+    left: 50%;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    background: transparent;
+    background-image: url('./assets/typescript-official-svgrepo-com.svg');
+    background-size: 90%; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    animation: orbit infinite ease-in-out 4s;
+  }
+  .aws-logo{
+    position: absolute;
+    top:70%;
+    left: 50%;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    background: var(--white);
+    background-image: url('./assets/aws-svgrepo-com.svg');
+    background-size: 85%; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    animation: orbit infinite ease-in-out 6s;
+  }
+  .figma-logo{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    background: transparent;
+    background-image: url('./assets/figma-svgrepo-com.svg');
+    background-size: 75%; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    animation: orbit infinite ease-in-out 9s;
+  }
+  .node-logo{
+    position: absolute;
+    top:50%;
+    left: 30%;
+    height:100px;
+    width:100px;
+    border-radius:100%;
+    background: var(--white);
+    background-image: url('./assets/node-js-svgrepo-com.svg');
+    background-size: 90%; /* Ensures the image covers the entire div */
+    background-position: center; /* Centers the image */
+    background-repeat: no-repeat; /* Prevents tiling of the image */
+    animation: orbit infinite ease-in-out 4.5s;
   }
   .avatar{
     position: absolute;
