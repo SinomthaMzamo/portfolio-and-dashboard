@@ -43,27 +43,39 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
         };
         
         if(method === "GET"){
-            if(path.endsWith("experiences/")){
+            if(path.endsWith("/experiences")){
                 // retrienve all work experience entries from dynamodb
                 response = await getRequestHandler(path, EXPERIENCES_TABLE_NAME, response as Response);
-            } else if(path.endsWith("education/")){
+            } else if(path.endsWith("/education")){
                 response = await getRequestHandler(path, EDUCATION_TABLE_NAME, response as Response);
-            } else if(path.endsWith("projects/")){
+            } else if(path.endsWith("/projects")){
                 response = await getRequestHandler(path, PROJECTS_TABLE_NAME, response as Response);
-            } else if(path.endsWith("blogs/")){
+            } else if(path.endsWith("/blogs")){
                 response = await getRequestHandler(path, BLOGS_TABLE_NAME, response as Response);
-            } 
-        } else if (method === "POST" && path.endsWith("experiences/") || path.endsWith("education/") || path.endsWith("projects/") || path.endsWith("blogs/")){
-            if(path.endsWith("experiences/")){
+            } else if(path.endsWith('/core')){
+                // get all data
+                const allData: any = {}
+                const tableNames:string[] = ["experiences", "education", "projects", "blogs"];
+                for(const tableName of tableNames){
+                    allData[tableName] = await getAllItems(tableName)
+                }
+                const responseBody = {
+                    message: "Core data retrieved successfully",
+                    data: allData
+                }
+                response.body = JSON.stringify(responseBody);
+                }
+        } else if (method === "POST" && path.endsWith("/experiences") || path.endsWith("/education") || path.endsWith("/projects") || path.endsWith("/blogs")){
+            if(path.endsWith("/experiences")){
                 // add a new work experience entry to dynamodb table
                 response = await postRequestHandler(path, EXPERIENCES_TABLE_NAME, response as Response, requestBody);
-            } else if(path.endsWith("education/")){
+            } else if(path.endsWith("/education")){
                 response = await postRequestHandler(path, EDUCATION_TABLE_NAME, response as Response, requestBody);
-            } else if(path.endsWith("projects")){
+            } else if(path.endsWith("/projects")){
                 response = await postRequestHandler(path, PROJECTS_TABLE_NAME, response as Response, requestBody);
-            } else if(path.endsWith("blogs/")){
+            } else if(path.endsWith("/blogs")){
                 response = await postRequestHandler(path, BLOGS_TABLE_NAME, response as Response, requestBody);
-            }
+            } 
         } else if (method === "POST" && path === "/experiences/batch" || path.endsWith("/education/batch") || path.endsWith("/projects/batch") || path.endsWith("/blogs/batch")){
             const endpoint:string = path.split("/")[1]
             if(endpoint === "experiences"){
@@ -124,5 +136,4 @@ export async function batchPostRequestHandler(path:string, tableName: "experienc
         response.statusCode = 201;
     }return response;
 }
-
 

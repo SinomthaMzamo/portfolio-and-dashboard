@@ -14,16 +14,16 @@
 </div> 
 <!-- section separator ends -->
 <!-- <div style="height: 60px; background: linear-gradient(to top, #5E0E08, transparent);"></div> -->
-<app-experience id="experience"></app-experience>
+<app-experience id="experience" [allWorkExperience]="siteData().experiences"></app-experience>
 <div style="height: 120px; overflow: hidden; background-color: var(--light-accent);">
     <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="width:100%; height:100px;">
         <path d="M0,40 C360,100 1080,0 1440,60 L1440,100 L0,100 Z" fill="var(--light-accent)"/>
         <path d="M0,0 C360,60 1080,-40 1440,20 L1440,60 L0,40 Z" fill="var(--dark-accent)"/>
     </svg>
 </div>
-<app-education ></app-education>
+<app-education [allEducation]="siteData().education"></app-education>
 
-<app-projects ></app-projects>
+<app-projects [allProjects]="siteData().projects" ></app-projects>
 
 <!-- section separator after projects section -->
 <div style="height: 100px; overflow: hidden;">
@@ -33,7 +33,7 @@
   </div> 
 <!-- section separator ends -->
 
-<app-blog ></app-blog>
+<app-blog [allBlogs]="siteData().blogs"></app-blog>
 
 <!-- section separator after blog section -->
 <div style="height: 100px; overflow: hidden;">

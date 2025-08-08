@@ -11,8 +11,8 @@ export class LandingComponent implements AfterViewInit {
   @ViewChild('skill') skillRef!: ElementRef<HTMLSpanElement>;
 
   skills = ["Python", "Java", "UX/UI Design", "Typescript", "Angular"];
-  typingSpeed = 200;
-  pauseTime = 1500;
+  typingSpeed = 150;
+  pauseTime = 1000;
 
   index = 0;
   charIndex = 0;

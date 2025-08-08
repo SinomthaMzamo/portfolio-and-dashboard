@@ -1,46 +1,82 @@
-
-.nav-bar{
-    /* ensures navbar is always on top and visible */
+.nav-bar {
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
     max-height: 113px;
-
-    /* controls orientation of navbar items */
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1.5em 5%;
-
-    /* navbar dimensions */
     width: 100%;
     box-sizing: border-box;
     border: 2px solid var(--light-accent);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-
     color: var(--dark-accent);
     background-color: var(--light-accent);
-}
-
-
-
-.logo{
-    /* padding: 0.5em; */
-    font-weight:750;
+  }
+  
+  .logo {
+    font-weight: 750;
     font-size: 2em;
-}
-
-.nav-links{
+  }
+  
+  .nav-links {
     display: flex;
-    /* width: 640px; */
-    justify-content: space-between;
+    gap: 1.5em;
     font-size: 1.2rem;
     text-transform: capitalize;
-}
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
+  .btn.dark-btn{
+    white-space: nowrap;
+  }
+  
+  /* Hide hamburger on desktop */
+  .hamburger {
+    display: none;
+    font-size: 2rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
 
-
-.nav-btn{
-    
-}
-
+  .fas{
+    margin: 0 0.5rem;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1270px) {
+    .hamburger {
+      display: block;
+    }
+  
+    .nav-links {
+      display: none; /* hidden by default */
+      position: absolute;
+      top: 99px;
+      left: 0;
+      right: 0;
+      background-color: var(--light-accent);
+      flex-direction: column;
+      padding: 1em 0;
+      border-top: 2px solid var(--light-accent);
+    }
+  
+    /* Show menu when toggled */
+    .nav-links.show {
+      display: flex;
+    }
+  
+    .btn.dark-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1100; /* above navbar */
+        box-shadow: var(--box-shadow-dark-bg);
+      }
+  }
+  

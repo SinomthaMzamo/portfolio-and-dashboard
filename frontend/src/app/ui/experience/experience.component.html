@@ -11,7 +11,7 @@
                 <app-tab-cards [experienceEntry]="item"></app-tab-cards>
             }
             <app-tab-cards [experienceEntry]="workExperience[0]" ></app-tab-cards>
-            @for (item of experiences().slice(5); track $index) {
+            @for (item of allWorkExperience; track $index) {
                 <app-flip-card [experienceEntry]="item"></app-flip-card>
             }
         </main>

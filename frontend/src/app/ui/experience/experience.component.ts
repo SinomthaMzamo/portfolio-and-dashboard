@@ -1,4 +1,4 @@
-import { Component, inject, Signal, signal, WritableSignal } from '@angular/core';
+import { Component, inject, Input, Signal, signal, WritableSignal } from '@angular/core';
 import { ExperienceEntry } from '../../models/experience.model';
 import { TabCardsComponent } from "./tab-cards/tab-cards.component";
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './experience.component.css'
 })
 export class ExperienceComponent {
+  @Input({required:true}) allWorkExperience!:ExperienceEntry[];
+  
+  // for local testing and development purposes
   noWorkExperience: ExperienceEntry[] = [];
   workExperience: ExperienceEntry[] = 
   [
@@ -205,29 +208,5 @@ export class ExperienceComponent {
   safetyIO = this.workExperience[0];
   outlierAI = this.workExperience[1];
   tutoring = this.workExperience[2];
-  private http = inject(HttpClient);
-
-  // Signal to store experience data
-  // ✅ Use WritableSignal instead of Signal
-experiences: WritableSignal<ExperienceEntry[]> = signal([]);
-
-
-  constructor() {
-    this.loadExperiences();
-  }
-
-  loadExperiences() {
-    const url = 'https://vif576si5j.execute-api.af-south-1.amazonaws.com/Prod/experiences/';
-
-    this.http.get<any>(url).subscribe({
-      next: (res) => {
-        if (res.data) {
-          this.experiences.set(res.data);
-        }
-      },
-      error: (err) => {
-        console.error('API error:', err);
-      }
-    });
-  }
+  
 }

@@ -1,19 +1,17 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { BadgeComponent } from "../../shared/badge/badge.component";
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { Education } from '../../models/education.model';
 import { CommonModule } from '@angular/common';
-import { TileComponent } from "./tile/tile.component";
 import { FlipTileComponent } from "./flip-tile/flip-tile.component";
-import { ExperienceEntry } from '../../models/experience.model';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-education',
-  imports: [CommonModule, BadgeComponent, TileComponent, FlipTileComponent],
+  imports: [CommonModule,FlipTileComponent],
   templateUrl: './education.component.html',
   styleUrl: './education.component.css'
 })
 export class EducationComponent {
+  @Input({required:true}) allEducation!:Education[];
   educationHistory: Education[] = [
     {
       institution: "WeThinkCode_",
@@ -70,28 +68,4 @@ export class EducationComponent {
       imgSrc: 'wghs-resized.png'
     },
   ]
-  private http = inject(HttpClient);
-  // Signal to store experience data
-  // ✅ Use WritableSignal instead of Signal
-  education: WritableSignal<Education[]> = signal([]);
-
-
-  constructor() {
-    this.loadExperiences();
-  }
-
-  loadExperiences() {
-    const url = 'https://vif576si5j.execute-api.af-south-1.amazonaws.com/Prod/education/';
-
-    this.http.get<any>(url).subscribe({
-      next: (res) => {
-        if (res.data) {
-          this.education.set(res.data);
-        }
-      },
-      error: (err) => {
-        console.error('API error:', err);
-      }
-    });
-  }
 }

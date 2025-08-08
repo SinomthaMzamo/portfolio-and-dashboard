@@ -4,39 +4,19 @@
             Blog
         </div>
         <div class="blog-contents">
-            @for (item of blogs(); track $index) {
+            @for (item of allBlogs; track $index) {
                 <app-card [blogPost]="item"></app-card>
             }
         </div>
-        <div class="title-card-wrapper box p-0">
-            <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
-            <div class="blog-meta-data">
-                3 months ago | 5 min read
-            </div>
-            <div class="light-btn btn right">Read more</div>
-        </div>
-        <div class="img-title-wrapper horizontal box p-0">
-            <img src="kmp.png" alt="kotlin multi platform">
-            <div class="title-card-wrapper">
+        <div #masonry class="masonry">
+            <div #masonryItems class="item1 title-card-wrapper box p-0">
                 <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
                 <div class="blog-meta-data">
                     3 months ago | 5 min read
                 </div>
                 <div class="light-btn btn right">Read more</div>
             </div>
-        </div>
-        <div class="img-title-wrapper vertical box p-0">
-            <img src="kmp.png" alt="kotlin multi platform">
-            <div class="title-card-wrapper">
-                <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
-                <div class="blog-meta-data">
-                    3 months ago | 5 min read
-                </div>
-                <div class="light-btn btn right">Read more</div>
-            </div>
-        </div>
-        <div class="full-form-wrapper horizontal box p-0">
-            <div class="img-title-wrapper">
+            <div #masonryItems class="item2 img-title-wrapper horizontal box p-0">
                 <img src="kmp.png" alt="kotlin multi platform">
                 <div class="title-card-wrapper">
                     <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
@@ -46,11 +26,33 @@
                     <div class="light-btn btn right">Read more</div>
                 </div>
             </div>
-            <hr>
-            <p class="blog-descr">app.ts                  experiences.json        package.json            tsconfig.json
-                blogs.json              jest.config.ts          projects.json           types.ts
-                dynamoDBClient.ts       node_modules            sample.json
-                education.json          package-lock.json       tests</p>
-        </div>
+            <div #masonryItems class="item3 img-title-wrapper vertical box p-0">
+                <img src="kmp.png" alt="kotlin multi platform">
+                <div class="title-card-wrapper">
+                    <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
+                    <div class="blog-meta-data">
+                        3 months ago | 5 min read
+                    </div>
+                    <div class="light-btn btn right">Read more</div>
+                </div>
+            </div>
+            <div #masonryItems class="item4 full-form-wrapper horizontal box p-0">
+                <div class="img-title-wrapper">
+                    <img src="kmp.png" alt="kotlin multi platform">
+                    <div class="title-card-wrapper">
+                        <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
+                        <div class="blog-meta-data">
+                            3 months ago | 5 min read
+                        </div>
+                        <div class="light-btn btn right">Read more</div>
+                    </div>
+                </div>
+                <hr>
+                <p class="blog-descr">app.ts                  experiences.json        package.json            tsconfig.json
+                    blogs.json              jest.config.ts          projects.json           types.ts
+                    dynamoDBClient.ts       node_modules            sample.json
+                    education.json          package-lock.json       tests</p>
+            </div>
+        </div>       
     </div>
 </section>

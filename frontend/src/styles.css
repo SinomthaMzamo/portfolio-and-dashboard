@@ -30,7 +30,9 @@
     --timeline-width: calc(2 * var(--entry-width) + var(--mid-section-gap));
     --blog-min-width:335.04px;
     --blog-max-width: calc(2 * var(--blog-min-width));
+    --blog-max-height: 465.422px;
     --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --box-shadow-dark-bg: 0 0 10px rgba(255, 255, 255, 0.2);
 
 }
 
@@ -89,7 +91,7 @@ img{
 }
 
 .section-title{
-    font-size: 80px; 
+    font-size: clamp(2.5rem, 6vw, 4rem);
     /* padding: 32px; */
 }
 
@@ -164,4 +166,8 @@ img{
 
 .p-0{
     padding: 0.5rem;
+}
+
+.m-r-0{
+    margin-right: 0.5rem ;
 }

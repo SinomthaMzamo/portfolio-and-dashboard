@@ -11,7 +11,7 @@
             }
         </main> -->
         <main class="education-content">
-            @for (item of educationHistory; track $index) {
+            @for (item of allEducation; track $index) {
                 <app-flip-tile [education]="item" ></app-flip-tile>
             }
         </main>

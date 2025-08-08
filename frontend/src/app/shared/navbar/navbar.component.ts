@@ -8,6 +8,13 @@ import { ItemComponent } from "./item/item.component";
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
+
   downloadCV() {
     window.open('CV.pdf', '_blank');
   }

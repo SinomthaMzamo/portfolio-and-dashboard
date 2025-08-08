@@ -1,4 +1,4 @@
-import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
 import { CardComponent } from "./card/card.component";
 import { BlogPost } from '../../models/blog.model';
 import { CommonModule } from '@angular/common';
@@ -12,6 +12,7 @@ import { ExperienceEntry } from '../../models/experience.model';
   styleUrl: './blog.component.css'
 })
 export class BlogComponent {
+  @Input({required:true}) allBlogs!:BlogPost[];
   blogPosts:BlogPost[] = [
     {
       title: "Why I Still Love the CLI",
@@ -67,29 +68,29 @@ export class BlogComponent {
     }
   ];
 
-  private http = inject(HttpClient);
-  // Signal to store experience data
-  // ✅ Use WritableSignal instead of Signal
-  blogs: WritableSignal<BlogPost[]> = signal([]);
-
-
-  constructor() {
-    this.loadExperiences();
-  }
-
-  loadExperiences() {
-    const url = 'https://vif576si5j.execute-api.af-south-1.amazonaws.com/Prod/blogs/';
-
-    this.http.get<any>(url).subscribe({
-      next: (res) => {
-        if (res.data) {
-          this.blogs.set(res.data);
-        }
-      },
-      error: (err) => {
-        console.error('API error:', err);
-      }
-    });
+  timeAgo(dateString: string): string {
+    const inputDate = new Date(dateString);
+    const now = new Date();
+    const diffInMs = now.getTime() - inputDate.getTime();
+    const diffInDays = Math.floor(diffInMs / (1000 * 60 * 60 * 24));
+  
+    if (diffInDays < 14) {
+      return `${diffInDays} day${diffInDays !== 1 ? 's' : ''} ago`;
+    }
+  
+    const diffInWeeks = Math.floor(diffInDays / 7);
+    if (diffInWeeks < 4) {
+      return `${diffInWeeks} week${diffInWeeks !== 1 ? 's' : ''} ago`;
+    }
+  
+    const diffInMonths = Math.floor(diffInDays / 30);
+    if (diffInMonths < 12) {
+      return `${diffInMonths} month${diffInMonths !== 1 ? 's' : ''} ago`;
+    }
+  
+    const diffInYears = Math.floor(diffInMonths / 12);
+    return `${diffInYears} year${diffInYears !== 1 ? 's' : ''} ago`;
   }
   
+
 }
