@@ -3,56 +3,74 @@
         <div class="section-title">
             Blog
         </div>
-        <div class="blog-contents">
-            @for (item of allBlogs; track $index) {
+        <!-- <div class="blog-contents">
+            @for (item of blogPosts; track $index) {
                 <app-card [blogPost]="item"></app-card>
             }
-        </div>
-        <div #masonry class="masonry">
-            <div #masonryItems class="item1 title-card-wrapper box p-0">
-                <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
-                <div class="blog-meta-data">
-                    3 months ago | 5 min read
-                </div>
-                <div class="light-btn btn right">Read more</div>
-            </div>
-            <div #masonryItems class="item2 img-title-wrapper horizontal box p-0">
-                <img src="kmp.png" alt="kotlin multi platform">
-                <div class="title-card-wrapper">
-                    <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
+        </div> -->
+        <div class="centred">
+            <div #masonry class="masonry">
+                <div #masonryItems class="item2 title-card-wrapper box p-0 space">
+                    <h3 class="blog-title-new">Why I ditched equations for executables — Turning curiosity into a career in full-stack development</h3>
                     <div class="blog-meta-data">
                         3 months ago | 5 min read
                     </div>
-                    <div class="light-btn btn right">Read more</div>
+                    <div class="dark-btn btn right p-0">Read more</div>
                 </div>
-            </div>
-            <div #masonryItems class="item3 img-title-wrapper vertical box p-0">
-                <img src="kmp.png" alt="kotlin multi platform">
-                <div class="title-card-wrapper">
-                    <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
-                    <div class="blog-meta-data">
-                        3 months ago | 5 min read
-                    </div>
-                    <div class="light-btn btn right">Read more</div>
-                </div>
-            </div>
-            <div #masonryItems class="item4 full-form-wrapper horizontal box p-0">
-                <div class="img-title-wrapper">
+                <div #masonryItems class="item1 img-title-wrapper horizontal box p-0">
                     <img src="kmp.png" alt="kotlin multi platform">
-                    <div class="title-card-wrapper">
-                        <h3 class="blog-title-new">Possibly long blog title, should wrap when pretty long</h3>
+                    <div class="title-card-wrapper space-between">
+                        <h3 class="blog-title-new">Kotlin Multiplatform: Why I Gave It a Shot</h3>
                         <div class="blog-meta-data">
                             3 months ago | 5 min read
                         </div>
                         <div class="light-btn btn right">Read more</div>
                     </div>
                 </div>
-                <hr>
-                <p class="blog-descr">app.ts                  experiences.json        package.json            tsconfig.json
-                    blogs.json              jest.config.ts          projects.json           types.ts
-                    dynamoDBClient.ts       node_modules            sample.json
-                    education.json          package-lock.json       tests</p>
+                <div #masonryItems class="item2 img-title-wrapper vertical box p-0">
+                    <img src="cli-2.webp" alt="kotlin multi platform">
+                    <div class="title-card-wrapper">
+                        <h3 class="blog-title-new">Why I Still Love the CLI</h3>
+                        <div class="blog-meta-data">
+                            3 months ago | 5 min read
+                        </div>
+                        <div class="dark-btn btn right p-0">Read more</div>
+                    </div>
+                </div>
+                <div #masonryItems class="item1 title-card-wrapper box p-0 space">
+                    <h3 class="blog-title-new">From Concept to Combat: A Journey Through the Robot Worlds Project</h3>
+                    <div class="blog-meta-data">
+                        3 months ago | 5 min read
+                    </div>
+                    <div class="light-btn btn right">Read more</div>
+                </div>
+        
+                <div #masonryItems class="item2 full-form-wrapper horizontal box p-0">
+                    <div class="img-title-wrapper">
+                        <img src="layered-1.webp" alt="kotlin multi platform">
+                        <div class="title-card-wrapper">
+                            <h3 class="blog-title-new">From Folders to Layers: My Shift to Clean Architecture</h3>
+                            <div class="blog-meta-data">
+                                3 months ago | 5 min read
+                            </div>
+                            <div class="dark-btn btn right p-0">Read more</div>
+                        </div>
+                    </div>
+                    <hr>
+                    <p class="blog-descr">I used to organise code like everyone else does at first: 
+                        folders for “scripts,” “utils,” and maybe a few random helpers. 
+                        Then came MVC. Then, finally, I started thinking in layers — separating concerns with repositories, 
+                        services, and API endpoints</p>
+                </div>
+                <div #masonryItems class="item1 title-card-wrapper box p-0 space">
+                    <h3 class="blog-title-new">From Peer-to-Peer to Chain-of-Command: My Corporate Learning Curve</h3>
+                    <div class="blog-meta-data">
+                        3 months ago | 5 min read
+                    </div>
+                    <div class="light-btn btn right">Read more</div>
+                </div>
             </div>
-        </div>       
+        </div>
+               
     </div>
 </section>

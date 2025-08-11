@@ -10,10 +10,12 @@ import { BlogComponent } from "./ui/blog/blog.component";
 import { ContactComponent } from "./ui/contact/contact.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 import { BlogPost } from './models/blog.model';
 import { Education } from './models/education.model';
 import { ExperienceEntry } from './models/experience.model';
 import { Project } from './models/project.model';
+import { WorkExperienceComponent } from "./ui/work-experience/work-experience.component";
 
 export type SiteLoadData = {
   blogs:BlogPost[], projects:Project[], education:Education[], experiences:ExperienceEntry[]
@@ -21,7 +23,7 @@ export type SiteLoadData = {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, AboutComponent, LandingComponent, ExperienceComponent, EducationComponent, ProjectsComponent, BlogComponent, ContactComponent, FooterComponent],
+  imports: [RouterOutlet, NavbarComponent, AboutComponent, LandingComponent, ExperienceComponent, EducationComponent, ProjectsComponent, BlogComponent, ContactComponent, FooterComponent, WorkExperienceComponent, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

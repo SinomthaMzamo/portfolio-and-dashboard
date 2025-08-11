@@ -1,5 +1,9 @@
 .section{
-    background-color: white;
+    background-color: var(--new-accent-white);
+}
+
+.container{
+    /* box-sizing: border-box; */
 }
 
 .section-title{
@@ -11,9 +15,25 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .projects-content {
+    margin: 0 auto;
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 2rem;
-    margin: 3em 0;
-    padding-bottom: 4rem;
+    /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
+    grid-template-columns: repeat(3, 520px);
+    gap: 1rem; /* both row and column gap */
+    align-items: stretch; /* ensures items stretch to equal row height */
+    margin-top: 4rem;
 }
+
+@media (max-width: 800px){
+    .projects-content{
+        grid-template-columns: 360px;
+    }
+}
+
+@media (min-width: 801px) and (max-width: 1780px){
+    .projects-content{
+        grid-template-columns: repeat(2, 400px);
+    }
+}
+

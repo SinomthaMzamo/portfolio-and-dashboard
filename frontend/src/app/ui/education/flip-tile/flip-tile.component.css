@@ -1,3 +1,9 @@
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block; 
+}
 .education{
     background-color: var(--white);
     width: 100%;
@@ -21,12 +27,209 @@ h1, h2, h3, h4, h5, h6, p{
     justify-content: flex-start;
     gap: 0.3em;
 }
-
+.flip-card-front:hover{
+  transform: scale(1.03);
+  box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.775);  
+}
+/* Add the flipped class for 180deg rotation */
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+/* NEW FLIP CARD STYLES */
 .flip-card {
+  perspective: 1000px;
+  display: inline-block; /* shrink to content */
+  position: relative;
+}
+
+.flip-card-inner {
+  position: relative;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Remove absolute positioning so cards size naturally */
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
+
+}
+
+/* Back side is rotated */
+.flip-card-back {
+  transform: rotateY(180deg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* optional styling */
+  background-color: var(--new-accent-dark);
+  color: white;
+}
+
+/* Front side relative positioning so it takes up space */
+.flip-card-front {
+  position: relative;
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.item{
+  background-color: var(--new-accent-dark);
+  padding: 0.5rem;
+  border: 8px solid var(--new-accent-dark);
+  border-radius: 2rem;
+}
+.img{
+    width: 100%;
+    border: 2px solid var(--new-accent-dark);
+    border-radius: 2rem;
+    overflow: hidden;
+    height: min-content;
+}
+.right{
+    align-self: flex-end;
+    width: max-content;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.title{
+    font-size: 1.3rem;
+    /* white-space: no-wrap; */
+}
+.subtitle{
+    font-size: 1rem;
+}
+.duration{
+    color: var(--new-accent-white);
+    padding: 2rem 1rem 0;
+}
+/* text effects */
+.shadow{
+    text-shadow: 1px 1px 1px rgb(5, 165, 72);
+}
+.glow{
+    text-shadow: 0 0 8px #252a27;
+}
+.stroke{
+    color: transparent;
+    -webkit-text-stroke: 1px rgb(19, 48, 152);
+}
+.backlight{
+    background-color: yellow;
+    padding: 0 0.2em;
+}
+.icon{
+    font-size: 2rem;
+}
+.bottom{
+    background-color: var(--new-accent-white);
+    border: solid var(--new-accent-white);
+    border-radius: 2rem;
+    padding: 1rem;
+    color: var(--new-accent-dark);
+
+}
+.img{
+  width: 100%;
+  border: 2px solid var(--new-accent-dark);
+  border-radius: 2rem;
+  overflow: hidden;
+  height: min-content;
+}
+.col{
+  display: flex;
+  flex-direction: column;
+}
+.light{
+  background-color: var(--new-accent-white);
+  color: var(--new-accent-dark);
+}
+.dark{
+  background-color: var(--new-accent-dark);
+  color: var(--new-accent-white);
+}
+.gap-0{
+  gap: 0.5rem;
+}
+.gap-1{
+  gap: 1rem;
+}
+.gap-1-0{
+  gap: 1.5rem;
+}
+.gap-2{
+  gap: 2rem;
+}
+.p-0{
+  padding: 0.5rem;
+}
+.p-1{
+  padding: 1rem;
+}
+.p-1-0{
+  padding: 1.5rem;
+}
+.light-border{
+  border-color: var(--new-accent-white);
+}
+.bullet{
+  width: 32px;
+  height: 32px;
+  border: 4px solid var(--new-accent-white);
+  background-color: var(--new-accent-dark);
+  border-radius: 50%;
+  position: absolute;
+  top: -16px;
+  left: 48%;
+  z-index: 1000;
+}
+.bullet-light{
+  border: 4px solid var(--new-accent-white);
+  background-color: var(--red);
+  border-radius: 50%;
+  box-shadow: 2px 8px 2px rgba(118, 115, 115, 0.381);
+}
+.row{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.fill{
+  height: 94%;
+  /* justify-content: unset; */
+}
+.subtitle{
+  font-size: 1.2rem;
+}
+.institution{
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+/* .flip-card {
     background-color: transparent;
     width: 360px;
     height: 470px;
-    perspective: 1000px; /* Add perspective for 3D effect */
+    perspective: 1000px; 
     cursor: pointer;
     color: var(--light-accent);
   }
@@ -44,9 +247,9 @@ h1, h2, h3, h4, h5, h6, p{
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
-  }
+  } */
 
-  .back-wrapper{
+  /* .back-wrapper{
     display: flex;
     flex-direction: column;
     gap: 4rem;
@@ -55,13 +258,10 @@ h1, h2, h3, h4, h5, h6, p{
     width: 360px;
     height: 470px;
     box-sizing: border-box;
-  }
+  } */
 
-  .flip-card-front:hover{
-    transform: scale(1.03);
-    box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.775);  
-  }
-  .institution-img{
+  
+  /* .institution-img{
     height: 50%;
     width: auto;
   }
@@ -69,41 +269,11 @@ h1, h2, h3, h4, h5, h6, p{
   img{
     height: 100%;
     width: 100%;
-  }
+  } */
   
-  /* Add the flipped class for 180deg rotation */
-  .flip-card.flipped .flip-card-inner {
-    transform: rotateY(180deg);
-  }
   
-  /* Front and back faces */
-  .flip-card-front,
-  .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: fit-content;
-    backface-visibility: hidden; /* Hide the back face when not facing the user */
-    -webkit-backface-visibility: hidden;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
   
-  /* Front face */
-  .flip-card-front {
-    background: linear-gradient(135deg, var(--dark-accent-black) 0%, var(--dark-accent) 50%, var(--dark-accent-bright) 100%);
-    height: fit-content;
-  }
   
-  /* Back face */
-  .flip-card-back {
-    background: linear-gradient(135deg, var(--dark-accent-bright) 0%, var(--dark-accent) 50%, var(--dark-accent-black) 100%);
-    transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
   
   
   

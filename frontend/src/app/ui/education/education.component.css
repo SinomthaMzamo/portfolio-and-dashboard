@@ -1,24 +1,26 @@
 .section{
-    background-color: var(--light-accent);
+    background-color: var(--new-accent-dark);
     height: 100vh;
 }
 
 .container{
-    /* border: 2px solid greenyellow; */
-    /* height: 200vh; */
+    /* box-sizing: border-box; */
 }
 
 
 .section-title{
-    color: var(--dark-accent);
+    color: var(--accent-white);
 }
 
 .education-content{
+    margin: 0 auto;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); /* wraps */
+    /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem; /* both row and column gap */
     align-items: stretch; /* ensures items stretch to equal row height */
+    margin-top: 4rem;
 }
 
 

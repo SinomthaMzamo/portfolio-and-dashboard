@@ -1,42 +1,66 @@
-<div class="card-wrapper">
-    <div class="col">
-        <div class="thumbnail">
-            <img [src]="projectInfo.imgSrc" [alt]="projectInfo.name">
+<div class="flip-card" (click)="flipped = !flipped" [class.flipped]="flipped">
+    <div class="flip-card-inner">
+        <div class="bullet"></div>
+        <div class="flip-card-front">
+          <!-- front content -->
+          <div class="item dark item-1 col gap-2">
+            <div class="subtitle duration right shadow dark">
+                Start date - End date
+            </div>
+            <div class="bottom light col gap-1-0">
+                <div class="col gap-0">
+                    <div class="title institution">
+                        {{projectInfo.name}}
+                    </div>
+                    <div class="subtitle">
+                        {{projectInfo.description.split(".")[0]}}
+                    </div>
+                </div>
+                <div class="img dark-border">
+                    <img [src]="projectInfo.imgSrc" [alt]="projectInfo.imgSrc.split('.png')[0]">
+                </div>              
+                <i class="icon fas fa-arrow-right right"></i>
+                <i class="material-icons light icon">expand_more</i>
+                <i class="material-icons less icon">expand_less</i>
+            </div>
+
+            <div class="collapsible less">
+                <div class="links row gap-0">
+                    <button class="btn light-btn">Visit the repo</button>
+                    <button class="btn dark-btn">View live demo</button>
+                </div>
+                
+                <div class="project-stats">
+                    <div class="language-bar">
+                        <div class="lang js" style="width: 40%;" title="JavaScript - 30%"></div>
+                        <div class="lang py" style="width: 30%;" title="Python - 30%"></div>
+                        <div class="lang ts" style="width: 20%;" title="TypeScript - 20%"></div>
+                        <div class="lang html" style="width: 10%;" title="HTML - 10%"></div>
+                        <div class="lang sqlite" style="width: 10%;" title="SQLite - 10%"></div>
+                    </div>
+                </div>
+            </div>
+          </div>
         </div>
-        <div class="tags-wrapper">
-            <small>tags</small>
+        <div class="flip-card-back">
+          <!-- back content -->
+          <div class="fill item dark col gap-2 p-1-0">
+            <div class="project-description">
+              {{projectInfo.description}}
+            </div>
             
-            <div class="tags row">
-                @for (item of projectInfo.tags; track $index) {
-                    <app-badge [class]="item.colour" [text]="item.tag"></app-badge>
-                }
+            <div class="tags-wrapper">
+                <small>tags</small>
+                
+                <div class="tags row gap-0">
+                    @for (item of projectInfo.tags; track $index) {
+                        <app-badge [class]="item.colour" [text]="item.tag"></app-badge>
+                    }
+                </div>
             </div>
+          </div>
+           
         </div>
     </div>
-    
-    <div class="project-details">
-        <h3 class="project-name">{{projectInfo.name}}</h3>
-        <p class="project-description">{{projectInfo.description}}</p>
-    </div>
-
-    <i class="material-icons  icon">expand_more</i>
-    <i class="material-icons less icon">expand_less</i>
-
-    <div class="collapsible less">
-        <div class="links row">
-            <button class="btn light-btn">Visit the repo</button>
-            <button class="btn dark-btn">View live demo</button>
-        </div>
-        
-        <div class="project-stats">
-            <div class="language-bar">
-                <div class="lang js" style="width: 40%;" title="JavaScript - 30%"></div>
-                <div class="lang py" style="width: 30%;" title="Python - 30%"></div>
-                <div class="lang ts" style="width: 20%;" title="TypeScript - 20%"></div>
-                <div class="lang html" style="width: 10%;" title="HTML - 10%"></div>
-                <div class="lang sqlite" style="width: 10%;" title="SQLite - 10%"></div>
-            </div>
-        </div>
-    </div>
-    
-</div>
+  </div>
+  

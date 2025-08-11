@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>experience tabs</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <style>
+    :root {
+      --accent-white: #d7e4c9;
+      --accent-dark: #0b2c13;
+    }
+    body {
+      font-family: "Poppins", Verdana, sans-serif;
+      margin: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+    }
+    .tabs-row {
+      display: flex;
+      gap: 0;
+      width: 100%;
+    }
+    .tabs-row > * {
+      flex-grow: 1;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.5rem 1rem;
+      border-bottom: 2px solid var(--accent-dark);
+      text-align: center;
+      background: white;
+      transition: background-color 0.3s ease;
+    }
+    .tabs-row > *.selected {
+      border-bottom: 2px solid var(--accent-white);
+      background-color: var(--accent-white);
+      font-weight: 600;
+    }
+    .tab-card {
+      border: 2px solid var(--accent-white);
+      margin-bottom: 2rem;
+    }
+    .col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .info-pill {
+      border: 2px solid var(--accent-white);
+      border-radius: 1rem;
+      padding: 0.5rem;
+      background: #f0f6e9;
+    }
+    .details {
+      padding: 0.5rem 0.2rem;
+    }
+    .g-00 {
+      gap: 0;
+    }
+    .hidden {
+      display: none;
+    }
+    .shown {
+      display: block;
+    }
+    .tabs-column {
+      display: none;
+      width: 100%;
+    }
+    .tabs-column .tab {
+      cursor: pointer;
+      user-select: none;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--accent-dark);
+      border-bottom: none;
+      background: white;
+      font-weight: 500;
+      transition: background-color 0.3s ease;
+    }
+    .tabs-column .tab.selected {
+      background-color: var(--accent-white);
+      font-weight: 700;
+      border-color: var(--accent-white);
+    }
+    .tabs-column .details {
+      border: 2px solid var(--accent-white);
+      padding: 0.5rem 1rem;
+      background: #f0f6e9;
+      /* margin-bottom: 1rem; */
+    }
+    #mobile-tabs.tab-card {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .tabs-row {
+        display: none;
+      }
+      .tabs-column {
+        display: flex;
+        flex-direction: column;
+      }
+      #desktop-tabs.tab-card {
+        display: none;
+      }
+      #mobile-tabs.tab-card {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <!-- desktop layout of card -->
+    <div class="tab-card" id="desktop-tabs">
+      <div class="tabs-row">
+        <div class="tab selected" data-tab="1">category 1</div>
+        <div class="tab" data-tab="2">category 2</div>
+        <div class="tab" data-tab="3">category 3</div>
+        <div class="tab" data-tab="4">category 4</div>
+      </div>
+      <div class="details col">
+        <div class="info-pill tab-content tab-1">This is what I achieved because I am the coolest kid in africa.</div>
+        <div class="info-pill tab-content tab-2 hidden">-t2-This is what I achieved because I am the coolest kid in africa.</div>
+        <div class="info-pill tab-content tab-3 hidden">This is what I achieved because I am the coolest kid in africa.</div>
+        <div class="info-pill tab-content tab-4 hidden">This is what I achieved because I am the coolest kid in africa.</div>
+      </div>
+    </div>
+
+    <!-- mobile layout of card -->
+    <div class="tab-card" id="mobile-tabs">
+      <div class="tabs-column col g-00">
+        <div class="tab" data-tab="1" tabindex="1">category 1</div>
+        <div id="tab-1-data" class="details hidden">
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+        </div>
+
+        <div class="tab" data-tab="2" tabindex="2">category 2</div>
+        <div id="tab-2-data" class="details hidden">
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> -t2-This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+        </div>
+
+        <div class="tab" data-tab="3" tabindex="3">category 3</div>
+        <div id="tab-3-data" class="details hidden">
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+        </div>
+
+        <div class="tab" data-tab="4" tabindex="4">category 4</div>
+        <div id="tab-4-data" class="details hidden">
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+          <div class="info-pill">
+            <i class="fas fa-chevron-circle-right"></i> This is what I achieved because I am the coolest kid in africa.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Desktop tab switching
+    const desktopTabs = document.querySelectorAll("#desktop-tabs .tab");
+    const desktopContents = document.querySelectorAll("#desktop-tabs .tab-content");
+
+    // Initialize: hide all except tab 1 content on load (in case it isn't hidden properly)
+    desktopContents.forEach(content => {
+      if (!content.classList.contains('tab-1')) {
+        content.classList.add('hidden');
+      } else {
+        content.classList.remove('hidden');
+      }
+    });
+
+    desktopTabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        // Remove selected class from all tabs
+        desktopTabs.forEach((t) => t.classList.remove("selected"));
+        // Hide all content
+        desktopContents.forEach((content) => content.classList.add("hidden"));
+
+        // Add selected class to clicked tab
+        tab.classList.add("selected");
+
+        // Show content for clicked tab
+        const tabNumber = tab.getAttribute("data-tab");
+        const activeContent = document.querySelector(`#desktop-tabs .tab-${tabNumber}`);
+        if (activeContent) {
+          activeContent.classList.remove("hidden");
+        }
+      });
+    });
+
+    // Mobile tab switching
+    const mobileTabs = document.querySelectorAll("#mobile-tabs .tab");
+
+    // On page load: select first tab and show its details by removing 'hidden'
+    mobileTabs[0].classList.add('selected');
+    const firstTabDetails = document.getElementById(`tab-1-data`);
+    firstTabDetails.classList.remove("hidden");
+
+    mobileTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            const tabNumber = tab.getAttribute("data-tab");
+            const detailDiv = document.getElementById(`tab-${tabNumber}-data`);
+
+            if (tab.classList.contains("selected")) {
+            return; // do nothing if already selected
+            }
+
+            // Remove 'selected' from all tabs and hide all detail divs
+            mobileTabs.forEach(t => t.classList.remove("selected"));
+            document.querySelectorAll("#mobile-tabs .details").forEach(d => d.classList.add("hidden"));
+
+            // Add 'selected' to clicked tab and show its details (remove 'hidden')
+            tab.classList.add("selected");
+            detailDiv.classList.remove("hidden");
+        });
+    });
+  </script>
+</body>
+</html>

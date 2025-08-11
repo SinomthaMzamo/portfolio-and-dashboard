@@ -11,4 +11,5 @@ import { CommonModule } from '@angular/common';
 })
 export class CardsComponent {
   @Input({required:true}) projectInfo!:Project;
+  flipped:boolean = false;
 }

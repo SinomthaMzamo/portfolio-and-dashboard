@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>experience tabs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root{
+            --accent-white: #D7E4C9;
+            --accent-dark: #0B2C13;
+        }
+        body{
+            font-family: 'Poppins', Verdana, sans-serif;
+            margin: 2rem;
+        }
+        .grid{
+            grid-template-rows: repeat(3, 1fr);
+        }
+        .tabs-row{
+            display: flex;
+            gap: 0;
+            width: 100%;
+        }
+        .tabs-row > *{
+            flex-grow: 1;
+        }
+        .tab{
+            border: 2px solid var(--accent-dark);
+            border: none;
+            border-bottom: 2px solid #0B2C13;
+            padding: 0 1rem;
+            text-align: center;
+        }
+        .selected{
+            border: 2px solid var(--accent-dark);
+            border-bottom: 2px solid var(--accent-white);
+            background-color: var(--accent-white);
+        }
+        .tab-card{
+            /* padding: 0.5rem; */
+            border: 2px solid var(--accent-white);
+        }
+        .col{
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+
+        }
+        .info-pill{
+            border: 2px solid var(--accent-white);
+            border-radius: 1rem;
+            padding: 0.5rem;
+        }
+        .details{
+            padding: 0.5rem 0.2rem;
+        }
+        .g-00{
+            gap: 0;
+        }
+        .hidden{
+            display: none;
+        }
+        .shown{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="grid">
+        <!-- desktop layout of card -->
+        <div class="tab-card">
+            <div class="tabs-row">
+                <div class="tab selected">category 1</div>
+                <div class="tab default">category 2</div>
+                <div class="tab default">category 3</div>
+                <div class="tab default">category 4</div>
+            </div>
+            <div class="details col">
+                <div class="info-pill">
+                    <i class="fas fa-chevron-circle-right"></i>
+                    This is what I achieved because I am the coolest kid in africa.
+                </div>
+                <div class="info-pill">
+                    <i class="fas fa-chevron-circle-right"></i>
+                    This is what I achieved because I am the coolest kid in africa.
+                </div>
+                <div class="info-pill">
+                    <i class="fas fa-chevron-circle-right"></i>
+                    This is what I achieved because I am the coolest kid in africa.
+                </div>
+                <div class="info-pill">
+                    <i class="fas fa-chevron-circle-right"></i>
+                    This is what I achieved because I am the coolest kid in africa.
+                </div>
+            </div>
+        </div>
+        <!-- mobile layout of card -->
+        <div class="tab-card">
+            <div class="tabs-column col g-00">
+                
+                <div class="tab selected" tabindex="1">category 1</div>
+                <div id="tab-1-data" >
+                    <div class="details col hidden">
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab default" tabindex="2">category 2</div>
+                <div id="tab-2-data">
+                    <div class="details col">
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            -t2-This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab default" tabindex="3">category 3</div>
+                <div id="tab-3-data">
+                    <div class="details col hidden">
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab default" tabindex="4">category 4</div>
+                <div id="tab-4-data">
+                    <div class="details col hidden">
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                        <div class="info-pill">
+                            <i class="fas fa-chevron-circle-right"></i>
+                            This is what I achieved because I am the coolest kid in africa.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+    
+</body>
+</html>

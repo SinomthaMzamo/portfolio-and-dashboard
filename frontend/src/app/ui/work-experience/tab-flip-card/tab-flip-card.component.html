@@ -1,0 +1,74 @@
+<div class="flip-card" [class.flipped]="flipped" (mouseenter)="toggleFlip(true)"
+(mouseleave)="toggleFlip(false)">
+    <div class="flip-card-inner">
+  
+      <!-- Front side -->
+      <div class="flip-card-front">
+        <div class="experience front">
+            <div class="front-wrapper">
+                <div class="company">{{header.roleDetails.company}}</div>
+                <div class="exp-role">{{header.roleDetails.role}}</div>
+                <div class="bottom row">
+                    <div class="duration-mode">
+                        <div class="duration">{{duration.start}} - {{duration.end}}</div>
+                        <div class="mode">{{header.mode}}</div>
+                    </div>
+                    <i class="material-icons icon">subdirectory_arrow_right</i>
+                </div>
+            </div>          
+        </div>
+      </div>
+  
+      <!-- Back side -->
+      <div class="flip-card-back">
+        <div class="experience back">
+          <div class="card-wrapper">
+            <!-- desktop layout of card -->
+            <div class="tab-card" id="desktop-tabs">
+                <div class="tabs-row">
+                <div
+                    *ngFor="let tabTitle of tabTitles; let i = index"
+                    class="tab"
+                    [ngClass]="{ selected: i === selectedTabIndex }"
+                    (click)="onTabSelected(i)">
+                    {{ tabTitle }}
+                </div>
+                </div>
+            
+                <div class="details col">
+                <div
+                    *ngFor="let pill of selectedTabOutcomes"
+                    class="info-pill">
+                    {{ pill }}
+                </div>
+                </div>
+            </div>
+            
+            <!-- mobile layout of card -->
+            <div class="tab-card" id="mobile-tabs">
+                <div class="tabs-column col g-00">
+                <ng-container *ngFor="let tab of experienceEntry.tabs; let i = index">
+                    <div
+                    class="tab"
+                    [ngClass]="{ selected: i === selectedTabIndex }"
+                    (click)="onTabSelected(i)">
+                    {{ tab.name }}
+                    </div>
+                    <div
+                    class="details"
+                    *ngIf="i === selectedTabIndex">
+                    <div class="info-pill" *ngFor="let pill of tab.notableOutcomes">
+                        <i class="fas fa-chevron-circle-right"></i> {{ pill }}
+                    </div>
+                    </div>
+                </ng-container>
+                </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

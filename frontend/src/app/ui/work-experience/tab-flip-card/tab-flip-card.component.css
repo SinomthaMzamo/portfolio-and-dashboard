@@ -1,0 +1,239 @@
+
+body {
+  font-family: "Poppins", Verdana, sans-serif;
+  margin: 2rem;
+}
+.grid {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+.tabs{
+    display: flex;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.tabs > * {
+    flex: 1;              /* All items grow equally */
+    margin: 0;            /* No spacing between items */
+    padding: 0;           /* Optional: remove inner spacing */
+}
+.tabs-row {
+  display: flex;
+  gap: 0;
+  width: 100%;
+}
+.tabs-row > * {
+  flex-grow: 1;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.5rem 1rem;
+  border-bottom: 2px solid var(--new-accent-dark);
+  text-align: center;
+  background: white;
+  transition: background-color 0.3s ease;
+}
+.tabs-row > *.selected {
+  border-bottom: 2px solid var(--new-accent-white);
+  background-color: var(--new-accent-white);
+  font-weight: 600;
+}
+.tab-card {
+  border: 2px solid var(--new-accent-white);
+}
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.info-pill {
+  border: 2px solid var(--new-accent-white);
+  border-radius: 1rem;
+  padding: 0.5rem;
+  background: #f0f6e9;
+}
+.details {
+  padding: 0.5rem 0.2rem;
+}
+.g-00 {
+  gap: 0;
+}
+.hidden {
+  display: none;
+}
+.shown {
+  display: block;
+}
+.tabs-column {
+  display: none;
+  width: 100%;
+}
+.tabs-column .tab {
+  cursor: pointer;
+  user-select: none;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--new-accent-dark);
+  border-bottom: none;
+  background: white;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+.tabs-column .tab.selected {
+  background-color: var(--new-accent-white);
+  font-weight: 700;
+  border-color: var(--new-accent-white);
+}
+.tabs-column .details {
+  border: 2px solid var(--new-accent-white);
+  padding: 0.5rem 1rem;
+  background: #f0f6e9;
+  /* margin-bottom: 1rem; */
+}
+#mobile-tabs.tab-card {
+  display: none;
+}
+@media (max-width: 768px) {
+  .tabs-row {
+    display: none;
+  }
+  .tabs-column {
+    display: flex;
+    flex-direction: column;
+  }
+  #desktop-tabs.tab-card {
+    display: none;
+  }
+  #mobile-tabs.tab-card {
+    display: block;
+  }
+}
+/* Flip card styles */
+.flip-card:hover .flip-card-inner,
+.flip-card.flipped .flip-card-inner {
+transform: rotateY(180deg);
+}
+
+.flip-card {
+    perspective: 1000px;
+    display: inline-block; /* shrink to content */
+    position: relative;
+    width: 100%;
+    /* padding: 2rem; */
+    
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+  }
+  
+  .flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  /* Remove absolute positioning so cards size naturally */
+  .flip-card-front,
+  .flip-card-back {
+    backface-visibility: hidden;
+    /* border-radius: 2rem; */
+    overflow: hidden;
+  }
+  
+  /* Back side is rotated */
+  .flip-card-back {
+    transform: rotateY(180deg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    /* optional styling */
+    background-color: var(--new-accent-dark);
+    color: var(--new-accent-dark);
+  }
+  
+  /* Front side relative positioning so it takes up space */
+  .flip-card-front {
+    position: relative;
+    background-color: #bbb;
+    color: black;
+    height: 406px;
+  }
+
+
+  /* new layout */
+  .front-wrapper{
+    display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-between; /* Now it works vertically! */
+  height: 100%; /* Required to make space distribution meaningful */
+  padding: 1rem;
+  padding-top: 0;
+  color: var(--white);
+  background-color: var(--new-accent-dark);
+  position: relative;
+  box-sizing: border-box;
+  }
+
+  /* Optional: Give consistent height to .experience if needed */
+  .experience.front, .experience.back {
+    height: 100%;
+    /* padding: 2rem; */
+  }
+
+  .company{
+    font-size: 2rem;
+    letter-spacing: 0.18em;
+    text-transform: lowercase;
+    font-weight: 200;
+  }
+
+  .exp-role{
+    font-size: 3rem;
+    letter-spacing: 0.18em;
+    font-weight: 600;
+    letter-spacing: normal;
+  }
+
+  .duration{
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: normal;
+  }
+
+  .mode{
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: normal;
+    font-style: italic;
+  }
+
+  .duration-mode{
+    display: flex;
+    flex-direction: column;
+    color: var(--gray-muted-light);
+  }
+
+  .icon{
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0;
+    margin: 0;
+    font-size: 3em;
+  }
+
+  
+  @media (max-width: 768px) {
+    
+    .flip-card-front{
+        height: 700px;
+    }
+    .flip-card{
+        height: 700px;
+    }
+  }

@@ -1,0 +1,53 @@
+.section{
+    background-color: var(--accent-white);
+}
+.section-title{
+    color: var(--new-accent-dark);
+}
+.container{
+    /* box-sizing: border-box; */
+}
+
+.experience-content {
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Always two equal columns */
+    gap: 2rem; /* row + column gap */
+    align-items: stretch; /* make all items in a row match the tallest */
+    margin-top: 4rem;
+  }
+  
+/* Default: small screens (phones) */
+.experience-content {
+    grid-template-columns: 1fr;
+  }
+  .experience-content > * {
+    min-height: 600px;
+  }
+  .flip-card-front,
+  .flip-card {
+    height: 600px;
+  }
+  
+  /* Medium screens: 2 columns */
+  @media (min-width: 1216px) and (max-width: 1818px) {
+    .experience-content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Large screens: 3 columns */
+  @media  (min-width: 1819px) {
+    .experience-content {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .experience-content > * {
+      min-height: 300px;
+    }
+    .flip-card-front,
+    .flip-card {
+      height: 300px;
+    }
+  }
+  

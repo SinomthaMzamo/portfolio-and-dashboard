@@ -2,6 +2,7 @@ import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { v4 as uuidv4 } from 'uuid';
 import { createNewItem, getAllItems, batchWriteItems, Entry } from './dynamoDBClient';
 import { Experience } from './types';
+import { handler } from './contact';
 
 const EXPERIENCES_TABLE_NAME = "experiences";
 const EDUCATION_TABLE_NAME = "education";
@@ -64,8 +65,9 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
                     data: allData
                 }
                 response.body = JSON.stringify(responseBody);
-                }
-        } else if (method === "POST" && path.endsWith("/experiences") || path.endsWith("/education") || path.endsWith("/projects") || path.endsWith("/blogs")){
+            }
+            
+        } else if (method === "POST" && path.endsWith("/experiences") || path.endsWith("/education") || path.endsWith("/projects") || path.endsWith("/blogs") || path.endsWith){
             if(path.endsWith("/experiences")){
                 // add a new work experience entry to dynamodb table
                 response = await postRequestHandler(path, EXPERIENCES_TABLE_NAME, response as Response, requestBody);

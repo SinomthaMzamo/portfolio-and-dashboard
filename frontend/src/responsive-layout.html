@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive layouts</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root{
+            --accent-white: #D7E4C9;
+            --accent-dark: #0B2C13;
+        }
+        body{
+            font-family: 'Poppins', Verdana, sans-serif;
+            margin: 0;
+        }
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block; 
+        }
+
+        .container{
+            margin: 5vw;
+            border: 2px groove thistle;
+        }
+        .grid{
+            padding: 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-auto-rows: auto;
+            gap: clamp(1rem, 2vh, 3rem);
+        }
+
+        .item{
+            background-color: var(--accent-white);
+            padding: 1.5rem;
+        }
+
+        .img{
+            width: 100%;
+            border: 2px solid var(--accent-dark);
+            border-radius: 2rem;
+            overflow: hidden;
+            height: min-content;
+        }
+        .right{
+            align-self: flex-end;
+            width: max-content;
+        }
+        .col{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .title{
+            font-size: 1.3rem;
+            /* white-space: no-wrap; */
+        }
+        .subtitle{
+            font-size: 1rem;
+        }
+        .duration{
+            color: var(--accent-white);
+            padding: 2rem 1rem 0;
+        }
+        /* text effects */
+        .shadow{
+            text-shadow: 1px 1px 1px rgb(5, 165, 72);
+        }
+        .glow{
+            text-shadow: 0 0 8px #252a27;
+        }
+        .stroke{
+            color: transparent;
+            -webkit-text-stroke: 1px rgb(19, 48, 152);
+        }
+        .backlight{
+            background-color: yellow;
+            padding: 0 0.2em;
+        }
+        .icon{
+            font-size: 2rem;
+        }
+        .bottom{
+            background-color: var(--accent-white);
+            border: solid var(--accent-white);
+            border-radius: 2rem;
+            padding: 1rem;
+            color: var(--accent-dark);
+
+        }
+        .gap-0{
+            gap: 0.5rem;
+        }
+        .gap-1{
+            gap: 1rem;
+        }
+        .gap-1-0{
+            gap: 1.5rem;
+        }
+        .gap-2{
+            gap: 2rem;
+        }
+        .item-1{
+            background-color: var(--accent-dark);
+            border: solid 4px var(--accent-dark);
+            border-radius: 2rem;
+            padding: 0;
+            
+        }
+         .item1{
+            color: var(--accent-dark);
+        }
+        /*.item2{
+            grid-column: 2 / span 2;
+            grid-row: 1 / span 1;
+        }
+        .item3{
+            grid-column: 2 / span 1;
+            grid-row: 2 / span 2;
+        }
+        .item4{
+        }
+        .item5{
+            grid-column: 1 / span 1;
+            grid-row:3 / span 1;
+        }
+        .item6{} */
+        /* media queries */
+        /* Tablet and above */
+        @media (min-width: 737px) {
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto;
+            gap: clamp(0.5rem,1vw, 2rem);
+        }
+        }
+        @media (min-width: 1088px) {
+        .grid {
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: auto;
+            gap: clamp(0.5rem,1vw, 2rem);
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="grid">
+            <div class="item item-1 col gap-2">
+                <div class="subtitle duration right shadow">
+                    SEP 2023 - DEC 2024
+                </div>
+                <div class="bottom col gap-1-0">
+                    <div class="col gap-0">
+                        <div class="title institution">
+                            WeThinkCode_
+                        </div>
+                        <div class="subtitle">
+                            Systems Development NQF 5
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="../public/b-a-r.jpg" alt="">
+                    </div>
+                    
+                    <i class="icon fas fa-arrow-right right"></i>
+                </div>
+                
+            </div>
+            <div class="item item-1 col gap-2">
+                <div class="subtitle duration right shadow">
+                    SEP 2023 - DEC 2024
+                </div>
+                <div class="bottom col gap-1-0">
+                    <div class="col gap-0">
+                        <div class="title institution">
+                            WeThinkCode_
+                        </div>
+                        <div class="subtitle">
+                            Systems Development NQF 5
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="../public/b-a-r.jpg" alt="">
+                    </div>
+                    
+                    <i class="icon fas fa-arrow-right right"></i>
+                </div>
+                
+            </div>
+            <div class="item item-1 col gap-2">
+                <div class="subtitle duration right shadow">
+                    SEP 2023 - DEC 2024
+                </div>
+                <div class="bottom col gap-1-0">
+                    <div class="col gap-0">
+                        <div class="title institution">
+                            WeThinkCode_
+                        </div>
+                        <div class="subtitle">
+                            Systems Development NQF 5
+                        </div>
+                    </div>
+                    <div class="img">
+                        <img src="../public/b-a-r.jpg" alt="">
+                    </div>
+                    
+                    <i class="icon fas fa-arrow-right right"></i>
+                </div>
+                
+            </div>
+            <div class="item item1 col">
+                <div class="subtitle duration right shadow">
+                    SEP 2023 - DEC 2024
+                </div>
+                <div class="img">
+                    <img src="../public/wtc-logo-ww.png" alt="">
+                </div>
+                <div class="title institution">
+                    WeThinkCode_
+                </div>
+                <div class="subtitle">
+                    Systems Development NQF 5
+                </div>
+                <i class="icon fas fa-arrow-right right"></i>
+            </div>
+            <div class="item item2 col gap-2">
+                <div class="subtitle duration right shadow">
+                    JAN 2020 - MAY 2022
+                </div>
+                <div class="institution-logo col gap-0">
+                    <div class="img">
+                        <img src="../public/ufs-logo-plain.png" alt="">
+                    </div>
+                    <div class="title institution">
+                        University of the Free State
+                    </div>
+                    <div class="subtitle">
+                        BSc Physics & Astrophysics
+                    </div>
+                </div>
+                <i class="icon fas fa-arrow-right right"></i>
+            </div>
+            <div class="item item3 col">
+                <div class="subtitle duration right shadow ">
+                    JAN 2012 - DEC 2016
+                </div>
+                <div class="img">
+                    <img src="../public/wghs-logo-1.png" alt="burn after reading logo">
+                </div>
+                <div class="title institution">
+                    Wynberg Girls' High School
+                </div>
+                <div class="subtitle">
+                    National Senior Certificate
+                </div>
+                <i class="icon fas fa-arrow-right right"></i>
+            </div>
+            <div class="item item4 col">
+                <div class="img">
+                    <img src="../public/b-a-r.jpg" alt="burn after reading logo">
+                </div>
+                <div class="title">
+                    Burn After Reading what if it were longer?
+                </div>
+                <button class="right">Read more</button>
+            </div>
+            <div class="item item5 col">
+                <div class="img">
+                    <img src="../public/b-a-r.jpg" alt="burn after reading logo">
+                </div>
+                <div class="title">
+                    Burn After Reading what if it were longer?
+                </div>
+                <button class="right">Read more</button>
+            </div>
+            <div class="item item6 col">
+                <div class="img">
+                    <img src="../public/b-a-r.jpg" alt="burn after reading logo">
+                </div>
+                <div class="title">
+                    Burn After Reading what if it were longer?
+                </div>
+                <button class="right">Read more</button>
+            </div>
+            <div class="item item1 col">
+                <div class="subtitle duration stroke glow">
+                    SEP 2023 - DEC 2024
+                </div>
+                <div class="img">
+                    <img src="../public/wtc-logo-ww.png" alt="">
+                </div>
+                <div class="title institution">
+                    WeThinkCode_
+                </div>
+                <div class="subtitle">
+                    Systems Development NQF 5
+                </div>
+                <i class="icon fas fa-arrow-right right"></i>
+            </div>
+            <div class="item item2 col gap-1">
+                <div class="subtitle duration backlight">
+                    JAN 2020 - MAY 2022
+                </div>
+                <div class="institution-logo col gap-0">
+                    <div class="img">
+                        <img src="../public/ufs-logo-plain.png" alt="">
+                    </div>
+                    <div class="title institution">
+                        University of the Free State
+                    </div>
+                    <div class="subtitle">
+                        BSc Physics & Astrophysics
+                    </div>
+                </div>
+                <i class="icon fas fa-arrow-right right"></i>
+            </div>
+            <div class="item item3 col">
+                <div class="subtitle duration ">
+                    JAN 2012 - DEC 2016
+                </div>
+                <div class="img">
+                    <img src="../public/wghs-logo-1.png" alt="burn after reading logo">
+                </div>
+                <div class="title institution">
+                    Wynberg Girls' High School
+                </div>
+                <div class="subtitle">
+                    National Senior Certificate
+                </div>
+                <i class="icon fas fa-arrow-right right"></i>
+            </div>
+        </div>
+    </div>
+    
+    
+</body>
+</html>

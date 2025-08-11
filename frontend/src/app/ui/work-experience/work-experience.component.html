@@ -1,0 +1,13 @@
+<section class="section">
+    <div class="container">
+        <div class="section-title">
+            Experience
+        </div>
+        <main class="experience-content">
+            @for (item of allWorkExperience; track $index) {
+                <app-tab-flip-card [experienceEntry]="item"></app-tab-flip-card>
+            }
+            
+        </main>
+    </div>
+</section>

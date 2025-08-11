@@ -1,21 +1,36 @@
 <div class="flip-card" (click)="flipped = !flipped" [class.flipped]="flipped">
     <div class="flip-card-inner">
-      <!-- Front of card -->
-      <div class="flip-card-front">
-        <div class="front-wrapper">
-            <div class="institution-img"><img [src]="education.imgSrc" [alt]="education.imgSrc.split('.png')[0]"></div>
-            <div class="education-info">
-                <div class="institution-name">{{education.institution}}</div>
-                <div class="program-duration">{{education.duration.start}} - {{education.duration.end}}</div>
+        <div class="bullet bullet-light"></div>
+        <div class="flip-card-front">
+          <!-- front content -->
+          <div class="item light item-1 col gap-2">
+            <div class="subtitle duration right shadow light">
+                {{education.duration.start}} - {{education.duration.end}}
             </div>
-            <i class="material-icons">subdirectory_right_arrow</i>
-        </div>      
-      </div>
-
-  
-      <!-- Back of card -->
-      <div class="flip-card-back">
-        <div class="back-wrapper">
+            <div class="bottom dark col gap-1-0">
+                <div class="col gap-0">
+                    <div class="title institution">
+                        {{education.institution}}
+                    </div>
+                    <div class="subtitle">
+                        {{education.qualification}}
+                    </div>
+                </div>
+                <div class="img light-border">
+                    <img [src]="education.imgSrc" [alt]="education.imgSrc.split('.png')[0]">
+                </div>              
+                <i class="icon fas fa-arrow-right right"></i>
+            </div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <!-- back content -->
+          <div class="fill item light col gap-2 p-1-0">
+            <div class="project-description">
+              Messages are password-protected and self-destruct after a single view. 
+              Hosted using AWS Elastic Beanstalk and S3 static hosting. 
+              Focused on privacy, simplicity, and cloud deployment.
+            </div>
             <div class="qualification-info">
                 <div class="qualification">{{education.qualification}}</div>
                 <div class="grade">{{education.grade}}</div>
@@ -28,8 +43,9 @@
                     }
                 </div>
             </div>
-        </div>       
-      </div>
+          </div>
+           
+        </div>
     </div>
   </div>
   

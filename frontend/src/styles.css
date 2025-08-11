@@ -1,5 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root{
+    --new-accent-white: #D7E4C9;
+    --new-accent-dark: #0B2C13;
     --dark-accent: #072e11;
     --dark-transparent: #072e11a0;
     --dark-more-transparent: #072e1173;
@@ -23,6 +25,7 @@
     --gray-muted-light: rgb(212, 209, 209);
     --orange: orange;
     --orange-transparent: rgba(255, 166, 0, 0.417);
+    --red: rgb(172, 18, 18);
     /* Timeline variables */
     --navbar-offset: 113px;
     --mid-section-gap: 60px;
