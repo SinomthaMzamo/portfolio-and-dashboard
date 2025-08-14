@@ -1,0 +1,274 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: portfolio-v2
+Transform:
+- AWS::Serverless-2016-10-31
+Resources:
+  PortfolioBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: sinomtha-portfolio
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      OwnershipControls:
+        Rules:
+        - ObjectOwnership: BucketOwnerEnforced
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: false
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: false
+    DeletionPolicy: Retain
+  PortfolioBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket:
+        Ref: PortfolioBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: PublicRead
+          Effect: Allow
+          Principal: '*'
+          Action: s3:GetObject
+          Resource:
+            Fn::Sub: ${PortfolioBucket.Arn}/*
+  ExperiencesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName:
+        Fn::Sub: ${AWS::StackName}-experiences
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+  EducationTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName:
+        Fn::Sub: ${AWS::StackName}-education
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+  ProjectsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName:
+        Fn::Sub: ${AWS::StackName}-projects
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+  BlogsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName:
+        Fn::Sub: ${AWS::StackName}-blogs
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: contact.handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      Policies:
+      - AmazonSESFullAccess
+      Events:
+        ContactApi:
+          Type: Api
+          Properties:
+            Path: /contact
+            Method: post
+      CodeUri: ContactFunction
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        Bundle: true
+        EntryPoints:
+        - ./src/handlers/contact.ts
+        Minify: false
+        Target: es2020
+      SamResourceId: ContactFunction
+  ExperiencesFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Events:
+        GetAllCoreData:
+          Type: Api
+          Properties:
+            Path: /core
+            Method: get
+        GetAllExperiences:
+          Type: Api
+          Properties:
+            Path: /experiences
+            Method: get
+        AddExperiences:
+          Type: Api
+          Properties:
+            Path: /experiences
+            Method: post
+        BatchAddExperiences:
+          Type: Api
+          Properties:
+            Path: /experiences/batch
+            Method: post
+        UpdateExperience:
+          Type: Api
+          Properties:
+            Path: /experiences/{id}
+            Method: put
+        GetAllEducation:
+          Type: Api
+          Properties:
+            Path: /education
+            Method: get
+        AddEducation:
+          Type: Api
+          Properties:
+            Path: /education
+            Method: post
+        BatchAddEducation:
+          Type: Api
+          Properties:
+            Path: /education/batch
+            Method: post
+        UpdateEducation:
+          Type: Api
+          Properties:
+            Path: /education/{id}
+            Method: put
+        GetAllProjects:
+          Type: Api
+          Properties:
+            Path: /projects
+            Method: get
+        AddProjects:
+          Type: Api
+          Properties:
+            Path: /projects
+            Method: post
+        BatchAddProjects:
+          Type: Api
+          Properties:
+            Path: /projects/batch
+            Method: post
+        UpdateProjects:
+          Type: Api
+          Properties:
+            Path: /projects/{id}
+            Method: put
+        GetAllBlogs:
+          Type: Api
+          Properties:
+            Path: /blogs
+            Method: get
+        AddBlogs:
+          Type: Api
+          Properties:
+            Path: /blogs
+            Method: post
+        BatchAddBlogs:
+          Type: Api
+          Properties:
+            Path: /blogs/batch
+            Method: post
+        UpdateBlogs:
+          Type: Api
+          Properties:
+            Path: /blogs/{id}
+            Method: put
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: ExperiencesTable
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: EducationTable
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: ProjectsTable
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: BlogsTable
+      CodeUri: ExperiencesFunction
+      Environment:
+        Variables:
+          NODE_OPTIONS: ' --enable-source-maps'
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        EntryPoints:
+        - ./src/handlers/app.ts
+        Minify: true
+        Sourcemap: true
+        Target: es2020
+      SamResourceId: ExperiencesFunction
+Outputs:
+  ExperiencesApi:
+    Description: API Gateway endpoint URL for Prod stage for Experiences function
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/experiences/
+  ExperiencesFunction:
+    Description: Experiences Lambda Function ARN
+    Value:
+      Fn::GetAtt:
+      - ExperiencesFunction
+      - Arn
+  ExperiencesFunctionIamRole:
+    Description: Implicit IAM Role created for Experiences function
+    Value:
+      Fn::GetAtt:
+      - ExperiencesFunctionRole
+      - Arn
+  ExperiencesTableName:
+    Description: DynamoDB Table Name for work experience records
+    Value:
+      Ref: ExperiencesTable
+  EducationTableName:
+    Description: DynamoDB Table Name for education history records
+    Value:
+      Ref: EducationTable
+  ProjectsTableName:
+    Description: DynamoDB Table Name for project collection records
+    Value:
+      Ref: ProjectsTable
+  BlogsTableName:
+    Description: DynamoDB Table Name for blog posts
+    Value:
+      Ref: BlogsTable
+  WebsiteURL:
+    Description: URL of my portfolio site
+    Value:
+      Fn::GetAtt:
+      - PortfolioBucket
+      - WebsiteURL
+  BucketName:
+    Description: S3 bucket name
+    Value:
+      Ref: PortfolioBucket
+Globals:
+  Function:
+    LoggingConfig:
+      LogFormat: JSON

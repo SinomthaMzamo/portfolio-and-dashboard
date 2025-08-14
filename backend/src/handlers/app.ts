@@ -1,0 +1,153 @@
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
+import { v4 as uuidv4 } from 'uuid';
+import { createNewItem, getAllItems, batchWriteItems, Entry } from './dynamoDBClient';
+
+const STACK_NAME = "portfolio";
+
+export enum TableName {
+  EXPERIENCES = `${STACK_NAME}-experiences`,
+  EDUCATION = `${STACK_NAME}-education`,
+  PROJECTS = `${STACK_NAME}-projects`,
+  BLOGS = `${STACK_NAME}-blogs`,
+}
+
+export type Response = {
+    statusCode: number,
+    headers: {
+        "Access-Control-Allow-Origin": "*", // ✅ CORS header
+        "Access-Control-Allow-Headers": "*", // optional, useful if you're sending custom headers
+        "Access-Control-Allow-Methods": "GET,POST,OPTIONS", // optional, helps with preflight
+    },
+    body: string
+};
+
+export type GetAllResponseBody = {
+    message:string,
+    data?:any[]
+}
+
+
+
+
+export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+        
+    try {
+        const method = event.httpMethod;
+        const path = event.path;
+        const requestBody = event.body ? JSON.parse(event.body) : {};
+        let response = {
+            statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "*", // ✅ CORS header
+                "Access-Control-Allow-Headers": "*", // optional, useful if you're sending custom headers
+                "Access-Control-Allow-Methods": "GET,POST,OPTIONS", // optional, helps with preflight
+            },
+            body: JSON.stringify({
+                message: 'No work experience yet.'+path,
+            })
+        };
+        
+        if(method === "GET"){
+            if(path.endsWith("/experiences")){
+                // retrienve all work experience entries from dynamodb
+                response = await getRequestHandler(path, TableName.EXPERIENCES, response as Response);
+            } else if(path.endsWith("/education")){
+                response = await getRequestHandler(path, TableName.EDUCATION, response as Response);
+            } else if(path.endsWith("/projects")){
+                response = await getRequestHandler(path, TableName.PROJECTS, response as Response);
+            } else if(path.endsWith("/blogs")){
+                response = await getRequestHandler(path, TableName.BLOGS, response as Response);
+            } else if(path.endsWith('/core')){
+                // get all data
+                const allData: any = {}
+                const tableNames = [TableName.EXPERIENCES, TableName.EDUCATION, TableName.PROJECTS, TableName.BLOGS];
+                for(const tableName of tableNames){
+                    allData[tableName.split("-")[lastIndex(tableName, "-")]] = await getAllItems(tableName)
+                }
+                const responseBody = {
+                    message: "Core data retrieved successfully",
+                    data: allData
+                }
+                response.body = JSON.stringify(responseBody);
+            }
+            
+        } else if (method ==="POST"){
+            if (path.endsWith("/batch")){
+                const endpoint:string = path.split("/")[1];
+                if(endpoint === "experiences"){
+                    // add a new work experience entry to dynamodb table
+                    response = await batchPostRequestHandler(path, TableName.EXPERIENCES, response as Response, requestBody as Entry[]);
+                } else if(endpoint === "education"){
+                    response = await batchPostRequestHandler(path, TableName.EDUCATION, response as Response, requestBody as Entry[]);
+                } else if(endpoint === "projects"){
+                    response = await batchPostRequestHandler(path, TableName.PROJECTS, response as Response, requestBody as Entry[]);
+                } else if(endpoint === "blogs"){
+                    response = await batchPostRequestHandler(path, TableName.BLOGS, response as Response, requestBody as Entry[]);
+                }
+            } else if (path.endsWith("/experiences") || path.endsWith("/education") || path.endsWith("/projects") || path.endsWith("/blogs")){
+                if(path.endsWith("/experiences")){
+                    // add a new work experience entry to dynamodb table
+                    response = await postRequestHandler(path, TableName.EXPERIENCES, response as Response, requestBody);
+                } else if(path.endsWith("/education")){
+                    response = await postRequestHandler(path, TableName.EDUCATION, response as Response, requestBody);
+                } else if(path.endsWith("/projects")){
+                    response = await postRequestHandler(path, TableName.PROJECTS, response as Response, requestBody);
+                } else if(path.endsWith("/blogs")){
+                    response = await postRequestHandler(path, TableName.BLOGS, response as Response, requestBody);
+                }
+            }
+        }
+
+        return response;
+    } catch (err) {
+        console.log(err);
+        return {
+            statusCode: 500,
+            headers: {
+                "Access-Control-Allow-Origin": "*", // ✅ CORS header
+                "Access-Control-Allow-Headers": "*", // optional, useful if you're sending custom headers
+                "Access-Control-Allow-Methods": "GET,POST,OPTIONS", // optional, helps with preflight
+            },
+            body: JSON.stringify({
+                message: `some error happened: ${err}`,
+            }),
+        };
+    }
+};
+
+export async function getRequestHandler(path:string, tableName:TableName, response:Response):Promise<Response>{
+    const allRecords = await getAllItems(tableName)
+    if (allRecords && allRecords.length > 0){
+        const responseBody = {
+            message: "Work experiences retrieved successfully",
+            data: allRecords
+        }
+        response.body = JSON.stringify(responseBody);
+    } return response
+};
+
+const lastIndex = (stringToSplit: string, splitChar:string):number => {
+    return stringToSplit.split(splitChar).length - 1;
+}
+
+export async function postRequestHandler(path:string, tableName:TableName, response:Response, request:any):Promise<Response> {
+    request.id = `${tableName.split("-")[lastIndex(tableName, "-")].substring(0,3)}-${0}-${uuidv4().slice(0, 8)}`;
+    await createNewItem(tableName, request)
+    response.body = JSON.stringify({message:`New ${tableName.split('s')[0]} added successfully`});
+    response.statusCode = 201;
+    return response;
+};
+    
+export async function batchPostRequestHandler(path:string, tableName:TableName, response:Response, request:Entry[]):Promise<Response> {
+    // response.body = JSON.stringify({data: request});
+    // return response;
+    if (Array.isArray(request)){
+        (request).forEach((entry, index) => {
+            entry.id = `${tableName.split("-")[lastIndex(tableName, "-")].substring(0,3)}-${index}-${uuidv4().slice(0, 8)}`;
+        });
+        await batchWriteItems(tableName, request);
+        response.body = JSON.stringify({message:`New ${tableName} batch added successfully`, data:request, });
+        response.statusCode = 201;
+    }return response;
+}
+

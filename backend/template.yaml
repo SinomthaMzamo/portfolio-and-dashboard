@@ -1,0 +1,257 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  portfolio-v2
+Transform:
+- AWS::Serverless-2016-10-31
+
+Resources:
+  PortfolioBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: sinomtha-portfolio
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: false
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: false
+    DeletionPolicy: Retain
+
+  PortfolioBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref PortfolioBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: PublicRead
+            Effect: Allow
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "${PortfolioBucket.Arn}/*"
+
+  ExperiencesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-experiences"
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  EducationTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-education"
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  ProjectsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-projects"
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  BlogsTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: !Sub "${AWS::StackName}-blogs"
+      AttributeDefinitions:
+        - AttributeName: id
+          AttributeType: S
+      KeySchema:
+        - AttributeName: id
+          KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
+
+  ContactFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: ./src/handlers/contact.handler
+      Runtime: nodejs18.x
+      MemorySize: 128
+      Timeout: 10
+      Policies:
+        - AmazonSESFullAccess  # Or a scoped down SES policy (recommended for prod)
+      Events:
+        ContactApi:
+          Type: Api
+          Properties:
+            Path: /contact
+            Method: post
+    Metadata:
+      BuildMethod: esbuild
+      BuildProperties:
+        EntryPoints:
+          - ./src/handlers/contact.ts
+        Minify: false
+        Target: es2020
+        Bundle: true        # <-- important to bundle dependencies
+
+  ExperiencesFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      Handler: ./src/handlers/app.lambdaHandler
+      Runtime: nodejs18.x
+      Architectures:
+      - x86_64
+      Events:
+        GetAllCoreData:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /core
+            Method: get
+        GetAllExperiences:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /experiences
+            Method: get
+        AddExperiences:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /experiences
+            Method: post
+        BatchAddExperiences:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /experiences/batch
+            Method: post
+        UpdateExperience:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /experiences/{id}
+            Method: put
+        GetAllEducation:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /education
+            Method: get
+        AddEducation:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /education
+            Method: post
+        BatchAddEducation:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /education/batch
+            Method: post
+        UpdateEducation:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /education/{id}
+            Method: put
+        GetAllProjects:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /projects
+            Method: get
+        AddProjects:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /projects
+            Method: post
+        BatchAddProjects:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /projects/batch
+            Method: post
+        UpdateProjects:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /projects/{id}
+            Method: put
+        GetAllBlogs:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /blogs
+            Method: get
+        AddBlogs:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /blogs
+            Method: post
+        BatchAddBlogs:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /blogs/batch
+            Method: post
+        UpdateBlogs:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /blogs/{id}
+            Method: put
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ExperiencesTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref EducationTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ProjectsTable
+        - DynamoDBCrudPolicy:
+            TableName: !Ref BlogsTable
+    Metadata: # Manage esbuild properties
+      BuildMethod: esbuild
+      BuildProperties:
+        Minify: true
+        Target: es2020
+        Sourcemap: true
+        EntryPoints:
+        - ./src/handlers/app.ts
+
+  
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  ExperiencesApi:
+    Description: API Gateway endpoint URL for Prod stage for Experiences function
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/experiences/"
+  ExperiencesFunction:
+    Description: Experiences Lambda Function ARN
+    Value: !GetAtt ExperiencesFunction.Arn
+  ExperiencesFunctionIamRole:
+    Description: Implicit IAM Role created for Experiences function
+    Value: !GetAtt ExperiencesFunctionRole.Arn
+  ExperiencesTableName:
+    Description: DynamoDB Table Name for work experience records
+    Value: !Ref ExperiencesTable
+  EducationTableName:
+    Description: DynamoDB Table Name for education history records
+    Value: !Ref EducationTable
+  ProjectsTableName:
+    Description: DynamoDB Table Name for project collection records
+    Value: !Ref ProjectsTable
+  BlogsTableName:
+    Description: DynamoDB Table Name for blog posts
+    Value: !Ref BlogsTable
+  WebsiteURL:
+    Description: "URL of my portfolio site"
+    Value: !GetAtt PortfolioBucket.WebsiteURL
+  BucketName:
+    Description: "S3 bucket name"
+    Value: !Ref PortfolioBucket
+
+Globals:
+  Function:
+    LoggingConfig:
+      LogFormat: JSON
