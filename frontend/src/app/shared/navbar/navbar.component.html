@@ -11,13 +11,13 @@
     </button>
   
     <ul class="nav-links" [class.show]="isMenuOpen">
-      <app-item [sectionID]="'home'"></app-item>
-      <app-item [sectionID]="'about'"></app-item>
-      <app-item [sectionID]="'experience'"></app-item>
-      <app-item [sectionID]="'education'"></app-item>
-      <app-item [sectionID]="'projects'"></app-item>
-      <app-item [sectionID]="'blog'"></app-item>
-      <app-item [sectionID]="'contact'"></app-item>
+      <app-item [sectionID]="'home'" (itemClicked)="onItemClicked()"></app-item>
+      <app-item [sectionID]="'about'" (itemClicked)="onItemClicked()"></app-item>
+      <app-item [sectionID]="'experience'" (itemClicked)="onItemClicked()"></app-item>
+      <app-item [sectionID]="'education'" (itemClicked)="onItemClicked()"></app-item>
+      <app-item [sectionID]="'projects'" (itemClicked)="onItemClicked()"></app-item>
+      <app-item [sectionID]="'blog'" (itemClicked)="onItemClicked()"></app-item>
+      <app-item [sectionID]="'contact'" (itemClicked)="onItemClicked()"></app-item>
     </ul>
   
     <button class="btn dark-btn" (click)="downloadCV()"><i class="fas fa-download"></i>Download CV</button>

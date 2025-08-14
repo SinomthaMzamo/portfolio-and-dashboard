@@ -19,4 +19,10 @@ export class NavbarComponent {
     window.open('CV.pdf', '_blank');
   }
 
+  onItemClicked() {
+    if (window.innerWidth <= 1270) { // adjust breakpoint as needed
+      this.toggleMenu();
+    }
+  }
+
 }
