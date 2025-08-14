@@ -15,17 +15,17 @@ h1, h2, h3, h4, h5, h6, p{
 }
 
 .projects-content {
-    margin: 0 auto;
+    /* margin: 0 auto;
     width: 100%;
-    display: grid;
+    display: grid; */
     /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
-    grid-template-columns: repeat(3, 520px);
-    gap: 1rem; /* both row and column gap */
-    align-items: stretch; /* ensures items stretch to equal row height */
-    margin-top: 4rem;
+    /* grid-template-columns: repeat(3, 520px);
+    gap: 1rem; 
+    align-items: stretch;
+    margin-top: 4rem; */
 }
 
-@media (max-width: 800px){
+/* @media (max-width: 800px){
     .projects-content{
         grid-template-columns: 360px;
     }
@@ -35,5 +35,41 @@ h1, h2, h3, h4, h5, h6, p{
     .projects-content{
         grid-template-columns: repeat(2, 400px);
     }
-}
+} */
 
+.projects-content {
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr; /* Always two equal columns */
+    gap: 1.5rem; /* row + column gap */
+    /* row-gap: 3rem; */
+    align-items: stretch; /* make all items in a row match the tallest */
+    margin-top: 4rem;
+  }
+  
+  .projects-content > * {
+    height: 540px;
+  }
+  
+  /* Medium screens: 2 columns */
+  @media (min-width: 1216px) and (max-width: 1818px) {
+    .projects-content {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Large screens: 3 columns */
+  @media  (min-width: 1819px) {
+    .projects-content {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .projects-content > * {
+      min-height: 300px;
+    }
+    .flip-card-front,
+    .flip-card {
+      height: 300px;
+    }
+  }
+  

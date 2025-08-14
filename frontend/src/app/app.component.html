@@ -1,20 +1,20 @@
 <app-navbar></app-navbar>
 <app-landing id="home"></app-landing>
-<div style="height: 120px; overflow: hidden; background-color: #ffffff;">
+<div id="about" style="height: 120px; overflow: hidden; background-color: #ffffff;">
     <svg viewBox="0 0 1440 100" style="display: block; width: 100%; height: 100px;" preserveAspectRatio="none">
         <polygon points="0,0 1440,100 1440,0" fill="var(--dark-accent)"></polygon>
       </svg>     
   </div>
-<app-about id="about"></app-about>
+<app-about></app-about>
 <!-- section separator after about section -->
-<div style="height: 100px; overflow: hidden;">
+<div id="experience"style="height: 100px; overflow: hidden;">
   <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%; background-color:#ffffff">
     <path d="M0.00,49.98 C150.00,150.00 349.98,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: var(--dark-accent);"></path>
   </svg>
 </div> 
 <!-- section separator ends -->
 <!-- <div style="height: 60px; background: linear-gradient(to top, #5E0E08, transparent);"></div> -->
-<app-work-experience id="experience" [allWorkExperience]="siteData().experiences" ></app-work-experience>
+<app-work-experience [allWorkExperience]="siteData().experiences" ></app-work-experience>
 <div style="height: 120px; overflow: hidden; background-color: var(--accent-white);">
     <svg viewBox="0 0 1440 100" preserveAspectRatio="none" style="width:100%; height:100px;">
         <path d="M0,40 C360,100 1080,0 1440,60 L1440,100 L0,100 Z" fill="var(--new-accent-white)"/>
@@ -37,7 +37,7 @@
 
 
 <!-- section separator after blog section -->
-<div style="height: 100px; overflow: hidden;">
+<div  id="contact" style="height: 100px; overflow: hidden;">
     <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
       <path d="M0.00,49.98 C150.00,150.00 349.98,-50.00 500.00,49.98 L500.00,150.00 L0.00,150.00 Z" style="stroke: none; fill: var(--dark-accent);"></path>
     </svg>

@@ -48,6 +48,8 @@ body {
   gap: 0.5rem;
 }
 .info-pill {
+  display: flex;
+  gap: 0.5rem;
   border: 2px solid var(--new-accent-white);
   border-radius: 1rem;
   padding: 0.5rem;
@@ -225,6 +227,10 @@ transform: rotateY(180deg);
     padding: 0;
     margin: 0;
     font-size: 3em;
+  }
+
+  .fa-bolt{
+    margin-top: 0.5rem;
   }
 
   

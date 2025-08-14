@@ -36,11 +36,12 @@
                 </div>
             
                 <div class="details col">
-                <div
-                    *ngFor="let pill of selectedTabOutcomes"
-                    class="info-pill">
-                    {{ pill }}
-                </div>
+                  @for (item of selectedTabOutcomes; track $index) {
+                    <div class="info-pill">
+                      <i class="fas fa-bolt"></i>
+                      {{item}}
+                    </div>
+                  }
                 </div>
             </div>
             
@@ -58,7 +59,7 @@
                     class="details"
                     *ngIf="i === selectedTabIndex">
                     <div class="info-pill" *ngFor="let pill of tab.notableOutcomes">
-                        <i class="fas fa-chevron-circle-right"></i> {{ pill }}
+                        <i class="fas fa-bolt"></i> {{ pill }}
                     </div>
                     </div>
                 </ng-container>

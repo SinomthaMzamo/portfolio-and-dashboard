@@ -12,21 +12,35 @@
     color: var(--accent-white);
 }
 
-.education-content{
+.education-content {
     margin: 0 auto;
     width: 100%;
     display: grid;
-    /* grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); */
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1rem; /* both row and column gap */
-    align-items: stretch; /* ensures items stretch to equal row height */
+    grid-template-columns: 1fr; /* Always two equal columns */
+    gap: 0.5rem; /* row + column gap */
+    /* row-gap: 3rem; */
+    align-items: stretch; /* make all items in a row match the tallest */
     margin-top: 4rem;
-}
-
-
-.education-content > * {
-    flex-grow: 1;
-}
-
-
-
+  }
+  
+  .education-content > * {
+    height: 540px;
+  }
+  
+  /* Medium screens: 2 columns */
+  @media (min-width: 1216px) and (max-width: 1818px) {
+    .education-content {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Large screens: 3 columns */
+  @media  (min-width: 1819px) {
+    .education-content {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .education-content > * {
+      min-height: 300px;
+    }
+  }
+  

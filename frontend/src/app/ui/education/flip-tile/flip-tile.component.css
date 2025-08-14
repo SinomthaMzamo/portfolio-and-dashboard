@@ -111,11 +111,11 @@ h1, h2, h3, h4, h5, h6, p{
     justify-content: space-between;
 }
 .title{
-    font-size: 1.3rem;
+    font-size: 0.8rem;
     /* white-space: no-wrap; */
 }
 .subtitle{
-    font-size: 1rem;
+    font-size: 0.6rem;
 }
 .duration{
     color: var(--new-accent-white);
@@ -219,10 +219,10 @@ h1, h2, h3, h4, h5, h6, p{
   /* justify-content: unset; */
 }
 .subtitle{
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 .institution{
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: 500;
 }
 

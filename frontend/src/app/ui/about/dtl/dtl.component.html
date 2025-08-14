@@ -1,0 +1,10 @@
+<!-- &darr; -->
+  
+  <div class="timeline">
+    <ul>
+        @for (item of events; track $index) {
+            <li app-item [year]="item.year" [text]="item.text" [title]="item.title"></li>
+          }
+    </ul>
+  </div>
+  

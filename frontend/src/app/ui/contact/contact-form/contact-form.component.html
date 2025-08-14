@@ -18,6 +18,14 @@
         <textarea name="message" id="message" rows="20" ngModel required></textarea>
     </div>
     <button class="btn light-btn stretch">Send message</button>
+    <app-modal [visible]="showModal()" title="Email sent successfully!" (close)="onModalClose()">
+        <p><strong>Your email:</strong> {{data().email}}</p>
+        <p><strong>Your name:</strong> {{data().name}}</p>
+        <div>
+            <p><strong>Your message:</strong></p>
+            <p>"{{data().message}}"</p>
+        </div>
+    </app-modal>
 </form>
 
   
