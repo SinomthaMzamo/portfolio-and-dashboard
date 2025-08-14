@@ -28,6 +28,7 @@
     --red: rgb(172, 18, 18);
     /* Timeline variables */
     --navbar-offset: 113px;
+    --mobile-nav-offset: 99.5px;
     --mid-section-gap: 60px;
     --entry-width: 750px;
     --timeline-width: calc(2 * var(--entry-width) + var(--mid-section-gap));
@@ -445,3 +446,14 @@ time {
     background-color: var(--accent-white);
 }
 
+
+@media (max-width: 1270px) {
+    body{
+        padding-top: var(--mobile-nav-offset);
+    }
+    
+    .section{
+        scroll-margin: var(--mobile-nav-offset);
+    }
+    
+}
