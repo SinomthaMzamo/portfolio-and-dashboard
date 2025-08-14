@@ -36,11 +36,11 @@ export class AppComponent {
 
 
   constructor() {
-    this.loadExperiences();
+    this.loadCoreResources();
   }
-
-  loadExperiences() {
-    const url = 'https://vif576si5j.execute-api.af-south-1.amazonaws.com/Prod/core';
+  
+  loadCoreResources() {
+    const url = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/core';
 
     this.http.get<any>(url).subscribe({
       next: (res) => {

@@ -19,15 +19,19 @@ export class ContactFormComponent {
         subject: form.value.subject,
         message: form.value.message,
       };
+      console.log("this is the email request body", body);
 
-      const apiUrl = 'https://vif576si5j.execute-api.af-south-1.amazonaws.com/Prod/contact';
+      const apiUrl = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/contact';
 
       this.http.post(apiUrl, body, {
         headers: {
           'Content-Type': 'application/json'
         }
       }).subscribe({
-        next: () => alert('Message sent!'),
+        next: () => {
+          console.log(body);
+          alert('Message sent!');
+        },
         error: (err) => alert('Error sending message: ' + err.message)
       });
     } else {
