@@ -1,0 +1,5 @@
+<div class="masonry gap-1-0">
+    @for (item of blogPosts; track $index) {
+        <app-blog-card [variant]="layout[$index]" [blogData]="item" [class]="'thing'+($index+1)"></app-blog-card>
+    }
+</div>

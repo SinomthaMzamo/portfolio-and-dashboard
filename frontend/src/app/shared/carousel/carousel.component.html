@@ -1,0 +1,9 @@
+<div class="carousel" *ngIf="images.length > 0">
+    <div class="slides" [style.transform]="'translateX(-' + index * 100 + '%)'">
+      <img *ngFor="let img of images" [src]="img" alt="Slide">
+    </div>
+  
+    <button *ngIf="showControls" class="prev" (click)="prevSlide()">&#10094;</button>
+    <button *ngIf="showControls" class="next" (click)="nextSlide()">&#10095;</button>
+  </div>
+  

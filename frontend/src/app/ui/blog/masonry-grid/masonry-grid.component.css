@@ -1,0 +1,63 @@
+.masonry{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 2rem;
+}
+.gap-1-0{
+    gap: 2rem;
+}
+.thing1{
+  grid-column: 1 /span 1;
+  grid-row: 1 / span 1;
+  /* background-color: var(--accent-white); */
+}
+.thing2{
+  grid-column: 2 /span 2;
+  grid-row: 1 / span 1;
+}
+.thing3{
+  grid-column: 1 /span 2;
+  grid-row: 2 / span 2;
+}
+.thing4{
+  grid-column: 3 / span 1;
+  grid-row: 2 / span 2;
+}
+.thing5{
+  grid-column: 1 / span 1;
+  grid-row: 4 / span 1;
+}
+.thing6{
+  grid-column: 2 / span 2;
+  grid-row: 4 / span 1;
+}
+
+:host ::ng-deep app-blog-card:nth-child(3n+1) .card {
+  background-color: var(--new-accent-white);
+  box-shadow: var(--box-shadow);
+}
+
+:host ::ng-deep app-blog-card:nth-child(3n+2) .card {
+  background-color: var(--accent-white);
+  box-shadow: var(--box-shadow);
+}
+
+:host ::ng-deep app-blog-card:nth-child(3n) .card {
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+}
+
+/* Tablet and below (≤1024px) */
+@media (max-width: 1024px) {
+    /* Styles for tablets and smaller */
+  }
+  
+  /* Mobile landscape and below (≤768px) */
+  @media (max-width: 768px) {
+    /* Styles for mobile landscape and smaller */
+  }
+  
+  /* Mobile portrait and below (≤480px) */
+  @media (max-width: 480px) {
+    /* Styles for small mobile screens */
+  }

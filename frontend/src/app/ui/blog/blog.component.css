@@ -186,3 +186,15 @@ h3{
 .space{
     justify-content: space-between;
 }
+
+
+/* new masonry styles */
+.grid-new{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.masonry-new{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 2rem;
+}

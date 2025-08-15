@@ -4,10 +4,11 @@ import { BlogPost } from '../../models/blog.model';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ExperienceEntry } from '../../models/experience.model';
+import { MasonryGridComponent } from "./masonry-grid/masonry-grid.component";
 
 @Component({
   selector: 'app-blog',
-  imports: [CommonModule, CardComponent],
+  imports: [CommonModule, CardComponent, MasonryGridComponent],
   templateUrl: './blog.component.html',
   styleUrl: './blog.component.css'
 })
@@ -39,6 +40,32 @@ export class BlogComponent {
       readTime: 5,
       datePublished: new Date("2025-07-20"),
       imgSrc: 'layered-1.webp'
+    },
+    {
+      title: "My Flask API Starter Kit",
+      introduction: "Every new project felt like reinventing the wheel — until I created my own Flask API boilerplate. It's simple but solid: includes CORS setup, JSON schema validation, and tests baked in from the start.",
+      tags: [
+        { tag: "Flask", colour: "blue" },
+        { tag: "REST API", colour: "dark" },
+        { tag: "JSON", colour: "green" },
+        { tag: "Testing", colour: "mustard" }
+      ],
+      readTime: 3,
+      datePublished: new Date("2025-07-25"),
+      imgSrc: 'flask.png'
+    },
+    {
+      title: "Kotlin Multiplatform: Why I Gave It a Shot",
+      introduction: "I never thought I'd touch mobile development — but Kotlin Multiplatform made it too tempting to ignore. I started exploring it as part of a hackathon project, and I’ve been slowly learning how to share code between frontend and backend.",
+      tags: [
+        { tag: "KMP", colour: "dark" },
+        { tag: "Kotlin", colour: "pink" },
+        { tag: "Mobile", colour: "green" },
+        { tag: "Backend", colour: "blue" }
+      ],
+      readTime: 4,
+      datePublished: new Date("2025-07-30"),
+      imgSrc: 'kmp.png'
     },
     {
       title: "My Flask API Starter Kit",

@@ -1,0 +1,75 @@
+<ng-container [ngSwitch]="variant">
+    <ng-container *ngSwitchCase="'title'">
+      <!-- title-card layout -->
+      <div class="text-card card col gap-1 full-height">
+        <div class="blog-title">
+            {{blogData.title}}
+        </div>
+        <div class="blog-meta-data">
+            {{timeAgo(blogData.datePublished)}} | {{blogData.readTime}} min read
+        </div>
+        <button class="blog-btn right">Read more</button>
+      </div>
+    </ng-container>
+  
+    <ng-container *ngSwitchCase="'vertical-image'">
+      <!-- vertical layout -->
+      <div class="card col gap-0 full-height">
+        <div class="img half-height">
+            <img [src]="blogData.imgSrc" alt="KMP">
+        </div>
+        <div class="text-card col gap-1 half-height">
+            <div class="blog-title">
+                {{blogData.title}}
+            </div>
+            <div class="blog-meta-data">
+                {{timeAgo(blogData.datePublished)}} | {{blogData.readTime}} min read
+            </div>
+            <button class="blog-btn right">Read more</button>
+        </div>
+    </div>
+    </ng-container>
+  
+    <ng-container *ngSwitchCase="'horizontal-image'">
+      <!-- horizontal layout -->
+      <div class="card h-card gap-0 full-height">
+        <div class="img half-width">
+            <img [src]="blogData.imgSrc">
+        </div>
+        <div class="text-card col gap-1 half-width">
+            <div class="blog-title">
+                {{blogData.title}}
+            </div>
+            <div class="blog-meta-data">
+                {{timeAgo(blogData.datePublished)}} | {{blogData.readTime}} min read
+            </div>
+            <button class="blog-btn right">Read more</button>
+        </div>
+    </div>
+    </ng-container>
+  
+    <ng-container *ngSwitchCase="'full'">
+      <!-- full form layout -->
+      <div class="card col gap-00 p-0 full-height">
+        <div class="h-card gap-0">
+            <div class="img half-width">
+                <img [src]="blogData.imgSrc">
+            </div>
+            <div class="text-card col gap-1 half-width">
+                <div class="blog-title">
+                    {{blogData.title}}
+                </div>
+                <div class="blog-meta-data">
+                    {{timeAgo(blogData.datePublished)}} | {{blogData.readTime}} min read
+                </div>
+                <button class="blog-btn right">Read more</button>
+            </div>
+        </div>
+        <hr>
+        <div class="description p-0">
+            {{blogData.introduction}}
+        </div>
+    </div>
+    </ng-container>
+</ng-container>
+  
