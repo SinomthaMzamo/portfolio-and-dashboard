@@ -8,7 +8,8 @@
         <div class="blog-meta-data">
             {{timeAgo(blogData.datePublished)}} | {{blogData.readTime}} min read
         </div>
-        <button class="blog-btn right">Read more</button>
+        <!-- <button class="blog-btn right">Read more</button> -->
+        <a [href]="blogData.url" target="_blank" class="blog-btn right">Read more</a>
       </div>
     </ng-container>
   
@@ -25,7 +26,8 @@
             <div class="blog-meta-data">
                 {{timeAgo(blogData.datePublished)}} | {{blogData.readTime}} min read
             </div>
-            <button class="blog-btn right">Read more</button>
+            <!-- <button class="blog-btn right">Read more</button> -->
+            <a [href]="blogData.url" target="_blank" class="blog-btn right">Read more</a>
         </div>
     </div>
     </ng-container>
@@ -43,7 +45,8 @@
             <div class="blog-meta-data">
                 {{timeAgo(blogData.datePublished)}} | {{blogData.readTime}} min read
             </div>
-            <button class="blog-btn right">Read more</button>
+            <!-- <button class="blog-btn right">Read more</button> -->
+            <a [href]="blogData.url" target="_blank" class="blog-btn right">Read more</a>
         </div>
     </div>
     </ng-container>
@@ -51,7 +54,7 @@
     <ng-container *ngSwitchCase="'full'">
       <!-- full form layout -->
       <div class="card col gap-00 p-0 full-height">
-        <div class="h-card gap-0">
+        <div class="h-card gap-0 bb-dark">
             <div class="img half-width">
                 <img [src]="blogData.imgSrc">
             </div>
@@ -62,11 +65,12 @@
                 <div class="blog-meta-data">
                     {{timeAgo(blogData.datePublished)}} | {{blogData.readTime}} min read
                 </div>
-                <button class="blog-btn right">Read more</button>
+                <!-- <button class="blog-btn right">Read more</button> -->
+                <a [href]="blogData.url" target="_blank" class="blog-btn right">Read more</a>
             </div>
         </div>
-        <hr>
-        <div class="description p-0">
+        <hr class="hr"/>
+        <div class="description p-00">
             {{blogData.introduction}}
         </div>
     </div>

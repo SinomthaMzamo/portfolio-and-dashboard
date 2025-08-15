@@ -94,8 +94,22 @@ img{
     display: flex;
 }
 .blog-btn{
-    padding: 0.5rem;
+    padding: 0.3rem;
     background-color: var(--new-accent-dark);
     color: var(--white);
     font-family: inherit;
+    font-size: 0.68rem;
+}
+.blog-title{
+    font-size: 1.4rem;
+}
+.hr{
+    border: none;            /* remove default border */
+    height: 1px;             /* set the thickness */
+    background-color: var(--new-accent-dark); /* the actual color */
+    margin: 0.2rem 0;          /* optional spacing */
+}
+.blog-meta-data{
+    color: var(--gray);
+    font-size: 0.8rem;
 }

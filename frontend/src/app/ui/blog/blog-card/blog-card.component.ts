@@ -13,6 +13,7 @@ export class BlogCardComponent {
   @Input({required:true}) blogData!:BlogPost;
 
   timeAgo(dateString: string | Date): string {
+    // console.log("blog url:", this.blogData.url);
     let inputDate: string | Date;
     if(typeof dateString === "string"){
       inputDate = new Date(dateString);

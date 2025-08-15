@@ -10,6 +10,7 @@ export type BlogPost = {
     tags: Tag[];
     readTime: number;
     datePublished: Date;
+    url?:string;
 };
 
 export type Education = {
