@@ -1,0 +1,39 @@
+:root{
+    --confused-mint: linear-gradient(
+        135deg, 
+        hsla(164, 58%, 46%, 0.3) 0%,   /* Light shade @30% opacity */
+        rgba(31, 122, 58, 0.3) 100%   /* Dark shade @30% opacity */
+      );
+
+    --pretty-mint: linear-gradient(
+        135deg, 
+        #F9F9F9 0%,   /* Light shade @30% opacity */
+        #DFF6E6 100% );
+    
+    --darker-mint: linear-gradient(
+        135deg, 
+        rgba(165, 255, 152, 0.3) 0%,   /* Light shade @30% opacity */
+        rgba(75, 168, 61, 0.3) 100%   /* Dark shade @30% opacity */
+      );
+}
+
+/* You can add global styles to this file, and also import other style files */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f6f6f6; /* matches the light gray background */
+    font-family: "Poppins", sans-serif;
+}
+
+p{
+    margin: 0;
+}
+
+.container{
+    margin: 1rem 1rem;
+    /* border: 2px solid mediumseagreen; */
+}
+

@@ -1,0 +1,30 @@
+.about{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 10rem;
+    height: 36.5rem;
+    width: 31rem;
+    border: 2px solid gainsboro;
+    border-radius: 1.5rem;
+    background: linear-gradient(
+    135deg, 
+    #F9F9F9 0%,   /* Light shade @30% opacity */
+    #DFF6E6 100%   /* Dark shade @30% opacity */
+  );
+}
+
+.img{
+    height: 15rem;
+    width: 15rem;
+    border: 1px solid mediumaquamarine;
+    border-radius: 50%; /* shortcut for a circle */
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}

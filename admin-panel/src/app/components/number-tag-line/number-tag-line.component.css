@@ -1,0 +1,21 @@
+.number-tag-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5;
+    /* border: 2px solid black; */
+    height: 10rem;
+  }
+  
+  .number {
+    font-size: 6rem;
+    font-weight: 400;
+    padding-bottom: 2rem;
+  }
+  
+  .tagline {
+    font-size: 1.25rem;
+    font-weight: 300;
+    white-space: nowrap;
+    padding-bottom: 8.5rem;
+  }
+  

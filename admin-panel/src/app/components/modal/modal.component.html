@@ -1,0 +1,8 @@
+<div class="modal" *ngIf="visible">
+    <div class="modal-content">
+      <span class="closeBtn" (click)="onClose()">&times;</span>
+      <h2 class="modal-title">{{ title }}</h2>
+      <ng-content class="centred"></ng-content>
+    </div>
+  </div>
+  

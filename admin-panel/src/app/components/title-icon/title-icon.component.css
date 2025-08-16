@@ -1,0 +1,13 @@
+.title-icon{
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    width: 100%;
+}
+.title{
+    font-size: 2rem;
+}
+
+i{
+    font-size: 2rem;
+}

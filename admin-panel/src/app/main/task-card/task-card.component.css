@@ -1,0 +1,22 @@
+:host{
+    width: fit-content;
+    height: auto;
+}
+
+.task{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 10rem;
+    height: 16.68rem;
+    width: 14rem;
+    border: 2px solid gainsboro;
+    border-radius: 1.5rem;
+    background: linear-gradient(
+    135deg, 
+    rgba(165, 255, 152, 0.3) 0%,   /* Light shade @30% opacity */
+    rgba(75, 168, 61, 0.3) 100%   /* Dark shade @30% opacity */
+  );
+    
+}
+

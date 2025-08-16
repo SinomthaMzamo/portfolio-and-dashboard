@@ -1,0 +1,8 @@
+/* 1. card has a border radius of 24px */
+/* 2. card items are centred */
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: space-between;
+}
