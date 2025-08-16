@@ -4,7 +4,7 @@ import AWS from "aws-sdk";
 const ses = new AWS.SES({ region: "af-south-1" });
 
 const SENDER = "mzamo.sinomthaayakhanya@gmail.com";
-const RECIPIENT = "smzamo023@student.wethinkcode.co.za";
+const RECIPIENT = "mzamo.sinomthaayakhanya@gmail.com";
 
 export const handler = async (
   event: APIGatewayProxyEvent
@@ -54,10 +54,10 @@ export const handler = async (
       Source: SENDER,
       Destination: { ToAddresses: [RECIPIENT] },
       Message: {
-        Subject: { Data: `Contact form: ${subject}` },
+        Subject: { Data: "New Message from Your Portfolio Website" },
         Body: {
           Text: {
-            Data: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+            Data: `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\nMessage:\n${message}`,
           },
         },
       },

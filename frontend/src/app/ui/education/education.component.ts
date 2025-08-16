@@ -3,10 +3,11 @@ import { Education } from '../../models/education.model';
 import { CommonModule } from '@angular/common';
 import { FlipTileComponent } from "./flip-tile/flip-tile.component";
 import { HttpClient } from '@angular/common/http';
+import { CarouselComponent } from "../../shared/carousel/carousel.component";
 
 @Component({
   selector: 'app-education',
-  imports: [CommonModule,FlipTileComponent],
+  imports: [CommonModule, FlipTileComponent, CarouselComponent],
   templateUrl: './education.component.html',
   styleUrl: './education.component.css'
 })

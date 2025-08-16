@@ -1,12 +1,18 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { FlipTileComponent } from "../../ui/education/flip-tile/flip-tile.component";
+import { Education } from '../../models/education.model';
 
 @Component({
   selector: 'app-carousel',
+  imports: [CommonModule, FlipTileComponent],
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.css']
 })
 export class CarouselComponent implements OnInit, OnDestroy {
-  @Input() images: string[] = [];
+  // @Input() images: string[] = [];
+  images:string[] = ["combat.png", "kmp.png", "equations.png", "big-corporate.png"]
+  @Input({required: true})education!:Education[];
   @Input() autoPlay = true;
   @Input() autoPlayInterval = 3000; // ms
   @Input() showControls = true;

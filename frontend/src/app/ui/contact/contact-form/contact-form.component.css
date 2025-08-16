@@ -36,3 +36,10 @@ input, textarea{
 .stretch{
     width: 100%;
 }
+.mail-details{
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 1rem;
+}

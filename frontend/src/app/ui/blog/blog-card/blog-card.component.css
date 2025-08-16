@@ -98,10 +98,10 @@ img{
     background-color: var(--new-accent-dark);
     color: var(--white);
     font-family: inherit;
-    font-size: 0.68rem;
+    font-size: 0.8rem;
 }
 .blog-title{
-    font-size: 1.4rem;
+    font-size: 1.5rem;
 }
 .hr{
     border: none;            /* remove default border */
@@ -111,5 +111,9 @@ img{
 }
 .blog-meta-data{
     color: var(--gray);
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+}
+.full-form{
+    justify-content: center;
+    gap: 1.5rem;
 }
