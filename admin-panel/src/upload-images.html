@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Image Upload — Upload Cloud with Drag & Drop + Previews</title>
+<style>
+  :root{
+    --accent:#10783d;
+    --bg:#f7f9fc;
+    --muted:#6b7280;
+    --danger:#e74c3c;
+    --max-height:260px; /* change the visible upload cloud height here */
+  }
+
+  body{
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background:var(--bg);
+    padding:24px;
+    color:#0f1724;
+  }
+
+  .uploader {
+    max-width:880px;
+    margin:0 auto;
+  }
+
+  .upload-cloud {
+    border:2px dashed rgba(43, 255, 117, 0.25);
+    border-radius:12px;
+    background:linear-gradient(180deg, #ffffff 0%, #f3f8ff 100%);
+    padding:18px;
+    display:flex;
+    gap:16px;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+    min-height: var(--max-height);
+    transition:box-shadow .15s, border-color .15s;
+    position:relative;
+  }
+
+  .upload-cloud.dragover {
+    border-color:var(--accent);
+    box-shadow:0 6px 20px rgba(43,124,255,0.12);
+  }
+
+  .upload-cloud svg{ width:56px; height:56px; opacity:0.95; }
+
+  .upload-cloud .hint {
+    margin-top:8px;
+    color:var(--muted);
+    font-size:14px;
+  }
+
+  .upload-actions {
+    margin-top:10px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+
+  .btn {
+    background:var(--accent);
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:600;
+  }
+  .btn.ghost{
+    background:transparent;
+    color:var(--accent);
+    border:1px solid rgba(43,124,255,0.12);
+    font-weight:600;
+  }
+
+  .meta {
+    font-size:13px;
+    color:var(--muted);
+    margin-top:6px;
+  }
+
+  /* Thumbnails area */
+  .thumbs {
+    margin-top:16px;
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+  }
+  .thumb {
+    width:110px;
+    height:110px;
+    border-radius:8px;
+    overflow:hidden;
+    position:relative;
+    background:#fff;
+    box-shadow:0 4px 10px rgba(14,20,30,0.04);
+    border:1px solid rgba(14,20,30,0.03);
+    cursor:pointer;
+  }
+  .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+
+  .thumb .remove {
+    position:absolute;
+    top:6px;
+    right:6px;
+    background:rgba(0,0,0,0.5);
+    color:white;
+    border:none;
+    width:26px;
+    height:26px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    cursor:pointer;
+  }
+  .thumb .label {
+    position:absolute;
+    bottom:0;
+    left:0;
+    right:0;
+    font-size:11px;
+    color:white;
+    background:linear-gradient(180deg, transparent, rgba(0,0,0,0.45));
+    padding:6px 8px;
+    box-sizing:border-box;
+  }
+
+  /* Preview modal */
+  .modal-backdrop{
+    position:fixed;
+    inset:0;
+    background:rgba(4,10,16,0.6);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:1200;
+    padding:24px;
+  }
+  .modal {
+    max-width:920px;
+    width:100%;
+    border-radius:12px;
+    background:white;
+    overflow:hidden;
+    box-shadow:0 30px 80px rgba(4,10,16,0.45);
+  }
+  .modal img{
+    width:100%;
+    height:auto;
+    display:block;
+    max-height:80vh;
+    object-fit:contain;
+    background:#111;
+  }
+  .modal .modal-bar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:10px 12px;
+    border-bottom:1px solid #eef2f7;
+  }
+  .modal .close {
+    background:transparent;
+    border:0;
+    font-size:20px;
+    cursor:pointer;
+  }
+
+  .error{
+    margin-top:10px;
+    color:var(--danger);
+    font-size:13px;
+  }
+
+  /* small responsive tweaks */
+  @media (max-width:520px){
+    .thumb{ width:86px; height:86px; }
+    .upload-cloud svg{ width:46px; height:46px; }
+  }
+</style>
+</head>
+<body>
+  <div class="uploader" id="uploader">
+    <div
+      id="dropzone"
+      class="upload-cloud"
+      role="button"
+      aria-label="Image upload dropzone. Click or drop files here."
+      tabindex="0"
+    >
+      <!-- Cloud + arrow upload SVG -->
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M7 16a4 4 0 0 1 0-8 5 5 0 0 1 9.9 1.4A3.5 3.5 0 0 1 20 13.5 3.5 3.5 0 0 1 16.5 17H7z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M12 8v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.5 10.5L12 8l2.5 2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+
+      <div style="font-weight:700; font-size:16px; color:#0b1220;">Drop images here or click to upload</div>
+      <div class="hint">Supported: JPG, JPEG, PNG, GIF, WEBP, SVG — max 5 MB each</div>
+
+      <div class="upload-actions">
+        <label for="file-input" class="btn" style="cursor:pointer;">Choose files</label>
+        <button id="clear-all" class="btn ghost" type="button">Clear all</button>
+      </div>
+
+      <div class="meta" id="meta">No files selected</div>
+
+      <input id="file-input" type="file" accept=".png,.jpg,.jpeg,.gif,.webp,.svg" multiple style="display:none;" aria-hidden="true"/>
+    </div>
+
+    <div id="error" class="error" role="alert" aria-live="polite" style="display:none;"></div>
+
+    <div class="thumbs" id="thumbs" aria-live="polite"></div>
+  </div>
+
+  <!-- Modal preview container (in DOM, hidden until used) -->
+  <div id="previewModal" style="display:none;">
+    <div class="modal-backdrop" id="modalBackdrop" tabindex="-1">
+      <div class="modal" role="dialog" aria-modal="true" aria-label="Image preview">
+        <div class="modal-bar">
+          <div id="modalName" style="font-weight:600;"></div>
+          <div>
+            <button class="close" id="modalClose" aria-label="Close preview">&times;</button>
+          </div>
+        </div>
+        <img id="modalImage" alt="Full-size preview" />
+      </div>
+    </div>
+  </div>
+
+<script>
+(function(){
+  // Config
+  const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5 MB
+  const ACCEPTED_TYPES = ['image/png','image/jpeg','image/jpg','image/gif','image/webp','image/svg+xml'];
+
+  // Elements
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('file-input');
+  const thumbs = document.getElementById('thumbs');
+  const meta = document.getElementById('meta');
+  const errorEl = document.getElementById('error');
+  const clearAllBtn = document.getElementById('clear-all');
+
+  // Modal elements
+  const previewModal = document.getElementById('previewModal');
+  const modalBackdrop = document.getElementById('modalBackdrop');
+  const modalImage = document.getElementById('modalImage');
+  const modalName = document.getElementById('modalName');
+  const modalClose = document.getElementById('modalClose');
+
+  // In-memory store of files
+  const store = [];
+
+  function showError(msg){
+    errorEl.style.display = 'block';
+    errorEl.textContent = msg;
+    setTimeout(()=> {
+      // gentle fade-out (just hide)
+      errorEl.style.display = 'none';
+    }, 5000);
+  }
+
+  function updateMeta(){
+    if(store.length === 0){
+      meta.textContent = 'No files selected';
+    } else {
+      meta.textContent = store.length + ' image' + (store.length>1 ? 's' : '') + ' ready';
+    }
+  }
+
+  function isAccepted(file){
+    if(!ACCEPTED_TYPES.includes(file.type)) return false;
+    if(file.size > MAX_FILE_SIZE) {
+      showError(`${file.name} is too large (max 5 MB).`);
+      return false;
+    }
+    return true;
+  }
+
+  function makeThumb(fileObj, idx){
+    const { file, url } = fileObj;
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'thumb';
+    wrapper.setAttribute('data-idx', idx);
+
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = file.name;
+
+    // label (filename)
+    const label = document.createElement('div');
+    label.className = 'label';
+    label.textContent = file.name;
+
+    // remove button
+    const remove = document.createElement('button');
+    remove.type = 'button';
+    remove.className = 'remove';
+    remove.innerHTML = '&times;';
+    remove.title = 'Remove image';
+    remove.addEventListener('click', (ev)=> {
+      ev.stopPropagation();
+      removeImage(idx);
+    });
+
+    wrapper.appendChild(img);
+    wrapper.appendChild(remove);
+    wrapper.appendChild(label);
+
+    // clicking the thumbnail opens the preview
+    wrapper.addEventListener('click', ()=> openPreview(idx));
+
+    return wrapper;
+  }
+
+  function renderThumbs(){
+    thumbs.innerHTML = '';
+    store.forEach((f, i) => {
+      thumbs.appendChild(makeThumb(f, i));
+    });
+    updateMeta();
+  }
+
+  function addFiles(fileList){
+    const arr = Array.from(fileList);
+    let added = 0;
+    for(const f of arr){
+      if(!isAccepted(f)) continue;
+      // create object URL for preview
+      const url = URL.createObjectURL(f);
+      store.push({ file: f, url });
+      added++;
+    }
+    if(added === 0 && arr.length > 0){
+      showError('No valid images to add.');
+    }
+    renderThumbs();
+  }
+
+  // Remove and revoke object URL
+  function removeImage(idx){
+    const item = store[idx];
+    if(item){
+      URL.revokeObjectURL(item.url);
+      store.splice(idx,1);
+      renderThumbs();
+    }
+  }
+
+  function clearAll(){
+    store.forEach(it => URL.revokeObjectURL(it.url));
+    store.length = 0;
+    renderThumbs();
+  }
+
+  // Drop / drag handlers
+  ['dragenter','dragover'].forEach(evt => {
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropzone.classList.add('dragover');
+    });
+  });
+
+  ['dragleave','dragend','drop'].forEach(evt => {
+    dropzone.addEventListener(evt, (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropzone.classList.remove('dragover');
+    });
+  });
+
+  dropzone.addEventListener('drop', (e) => {
+    const dt = e.dataTransfer;
+    if(!dt) return;
+    addFiles(dt.files);
+  });
+
+  // Click to trigger file input
+  dropzone.addEventListener('click', ()=> fileInput.click());
+
+  // Keyboard accessibility: Enter or Space opens file chooser
+  dropzone.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      fileInput.click();
+    }
+  });
+
+  // Regular file selection
+  fileInput.addEventListener('change', (e) => {
+    addFiles(e.target.files);
+    fileInput.value = ''; // reset so same file can be re-picked later
+  });
+
+  // Clear all
+  clearAllBtn.addEventListener('click', (e) => {
+    clearAll();
+  });
+
+  // PREVIEW modal functions
+  function openPreview(idx){
+    const item = store[idx];
+    if(!item) return;
+    modalImage.src = item.url;
+    modalName.textContent = item.file.name;
+    // show modal
+    previewModal.style.display = 'block';
+    modalBackdrop.style.display = 'flex';
+    // focus for accessibility
+    modalClose.focus();
+    // store currently-open index to support potential future features
+    modalBackdrop.dataset.openIdx = idx;
+  }
+
+  function closePreview(){
+    modalImage.src = '';
+    modalName.textContent = '';
+    previewModal.style.display = 'none';
+    modalBackdrop.style.display = 'none';
+    delete modalBackdrop.dataset.openIdx;
+  }
+
+  modalClose.addEventListener('click', closePreview);
+
+  // click outside modal closes
+  modalBackdrop.addEventListener('click', (e) => {
+    if(e.target === modalBackdrop) closePreview();
+  });
+
+  // Esc key to close
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape' && previewModal.style.display !== 'none') {
+      closePreview();
+    }
+  });
+
+  // Tidy up object URLs when window unloads
+  window.addEventListener('beforeunload', () => {
+    store.forEach(it => URL.revokeObjectURL(it.url));
+  });
+
+  // Accessibility: inform about accepted formats / size
+  meta.textContent = 'No files selected';
+})();
+</script>
+</body>
+</html>

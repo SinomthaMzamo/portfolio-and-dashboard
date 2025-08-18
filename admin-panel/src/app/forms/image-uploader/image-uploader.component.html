@@ -1,0 +1,53 @@
+<div class="uploader">
+    <div
+      class="upload-cloud"
+      [class.dragover]="isDragOver"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <!-- SVG cloud -->
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M7 16a4 4 0 0 1 0-8 5 5 0 0 1 9.9 1.4A3.5 3.5 0 0 1 20 13.5 3.5 3.5 0 0 1 16.5 17H7z"
+              stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 8v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M9.5 10.5L12 8l2.5 2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+  
+      <div style="font-weight:700; font-size:16px; color:#0b1220;">Drop images here or click to upload</div>
+      <div class="hint">Supported: JPG, JPEG, PNG, GIF, WEBP, SVG — max 5 MB each</div>
+  
+      <div class="upload-actions">
+        <label for="file-input" class="btn" style="cursor:pointer;">Choose files</label>
+        <button class="btn ghost" type="button" (click)="clearAll()">Clear all</button>
+      </div>
+  
+      <div class="meta">{{ metaText }}</div>
+  
+      <input id="file-input" type="file"
+       accept=".png,.jpg,.jpeg,.gif,.webp,.svg"
+       multiple hidden
+       (change)="onFileChange($event)" />
+
+    <div *ngIf="errorMsg" class="error">{{ errorMsg }}</div>
+  
+    <div class="thumbs">
+      <div class="thumb" *ngFor="let item of store; let i = index" (click)="openPreview(item)">
+        <img [src]="item.url" [alt]="item.file.name">
+        <button class="remove" type="button" (click)="removeImage(i); $event.stopPropagation()">&times;</button>
+        <div class="label">{{ item.file.name }}</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Preview modal -->
+  <div class="modal-backdrop" *ngIf="showPreview" (click)="closePreview()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-bar">
+        <div>{{ previewItem!.file.name }}</div>
+        <button class="close" (click)="closePreview()">&times;</button>
+      </div>
+      <img [src]="previewItem?.url" [alt]="previewItem!.file.name" />
+    </div>
+  </div>
+  

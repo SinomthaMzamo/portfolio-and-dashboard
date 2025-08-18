@@ -5,10 +5,15 @@ import { TaskCardComponent, TaskData } from "./main/task-card/task-card.componen
 import { CommonModule } from '@angular/common';
 import { MessagesTabComponent } from "./main/messages-tab/messages-tab.component";
 import { AboutComponent } from "./main/about/about.component";
+import { ImageUploaderComponent } from "./forms/image-uploader/image-uploader.component";
+import { SimpleFormComponent } from './forms/simple-form/simple-form.component';
+import { AddProjectFormComponent } from "./forms/add-project-form/add-project-form.component";
+import { AddBlogFormComponent } from "./forms/add-blog-form/add-blog-form.component";
+import { AddEducationFormComponent } from "./forms/add-education-form/add-education-form.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NumberTagLineComponent, TaskCardComponent, CommonModule, MessagesTabComponent, AboutComponent],
+  imports: [RouterOutlet, NumberTagLineComponent, TaskCardComponent, CommonModule, MessagesTabComponent, AboutComponent, SimpleFormComponent, AddProjectFormComponent, AddBlogFormComponent, AddEducationFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

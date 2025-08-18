@@ -1,0 +1,6 @@
+<!-- row group of start and end date fields -->
+<div class="date-group">
+    @for (item of dateRange; track $index) {
+        <app-date-input [label]="item.label" [id]="item.id" [name]="item.name" [placeholder]="item.placeholder" [type]="item.type"/>
+    } 
+</div>

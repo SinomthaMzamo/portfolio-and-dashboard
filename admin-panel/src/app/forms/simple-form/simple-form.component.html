@@ -1,0 +1,29 @@
+<div class="form-wrapper">
+    <div class="scroll-inner">
+        <div class="title">Form Title</div>
+        <form class="form">
+            <!-- text field form group -->
+            <app-text-input [label]="'Project Name'" [id]="'1'" [name]="'project-name'" [placeholder]="'Enter the project name'" [type]="'text'" />
+            <!-- textarea field form group -->
+             <app-textarea [label]="'Project Description'" [id]="'2'" [name]="'project-description'" [placeholder]="'Enter your project description'" [type]="''"/>
+            <!-- row group of start and end date fields -->
+            <app-date-range/>
+            
+            <!-- single date input -->
+            <app-date-input [label]="'Date of Issue'" [id]="'date-of-issue'" [name]="'date-of-issue'" [type]="'date'" />
+            
+            <!-- image uploader -->
+            <div class="f-group">
+                <label for="image">Upload project cover image</label>
+                <app-image-uploader></app-image-uploader>
+            </div>
+            <!-- tag inputs -->
+            <app-tag-input [label]="'Enter tags, comma separated'"></app-tag-input>
+             <!-- password input -->
+            <app-password-input [label]="'Enter your password'" [id]="'password'" [name]="'password'" [type]="'password'" [placeholder]="'**************'" />
+            <button type="submit" class="form-btn">Release project</button>
+        </form>
+    </div>
+    
+    
+</div>

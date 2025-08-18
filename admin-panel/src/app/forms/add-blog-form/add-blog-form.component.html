@@ -1,0 +1,23 @@
+<div class="form-wrapper">
+    <div class="scroll-inner">
+        <div class="title">Publish a new blog</div>
+        <form class="form">
+            <!-- text field form group -->
+            <app-text-input [label]="'Blog Title'" [id]="'blog-title'" [name]="'blog-title'" [placeholder]="'Enter the blog title'" [type]="'text'" />
+            <!-- textarea field form group -->
+             <app-textarea [label]="'Blog Introduction'" [id]="'blog-intro'" [name]="'blog-intro'" [placeholder]="'Enter an excerpt or introduction'" [type]="''"/>
+            <!-- row group of start and end date fields -->
+            <app-date-range/>
+            
+            <!-- image uploader -->
+            <div class="f-group">
+                <label for="image">Upload blog cover image</label>
+                <app-image-uploader></app-image-uploader>
+            </div>
+            <!-- tag inputs -->
+            <app-tag-input [label]="'Enter tags, comma separated'"></app-tag-input>
+             <!-- password input -->
+            <button type="submit" class="form-btn">Publish blog</button>
+        </form>
+    </div>    
+</div>
