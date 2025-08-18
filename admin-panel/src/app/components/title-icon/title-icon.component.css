@@ -11,3 +11,8 @@
 i{
     font-size: 2rem;
 }
+
+i:hover{
+    transform: scale(1.2);
+    cursor: pointer;
+}

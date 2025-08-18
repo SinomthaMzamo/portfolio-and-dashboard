@@ -16,8 +16,14 @@
     color: var(--new-accent-dark);
     padding: 20px;
     border-radius: 8px;
-    width: 80%;
-    width: 500px;
+    min-width: 500px;     /* never smaller than 500px */
+    /* min-height: 500px;     */
+    width: fit-content;   /* expand horizontally to fit content */
+    height: fit-content;  /* expand vertically to fit content */
+    
+    max-width: 90vw;      /* optional: don’t exceed viewport width */
+    max-height: 90vh;     /* optional: don’t exceed viewport height */
+    overflow: auto;
     animation: fadeIn 0.3s ease;
     position: relative;
   }

@@ -1,9 +1,8 @@
-import { Component, Input, signal } from '@angular/core';
-import { ModalComponent } from "../modal/modal.component";
+import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
 
 @Component({
   selector: 'app-title-icon',
-  imports: [ModalComponent],
+  imports: [],
   templateUrl: './title-icon.component.html',
   styleUrl: './title-icon.component.css'
 })
@@ -13,6 +12,13 @@ openModal() {
 }
   @Input({required:true}) title!:string;
   @Input({required:true}) icon!:string;
+  @Output() iconClick = new EventEmitter<boolean>();
+  
+  onIconClick() {
+    this.openModal();
+    this.iconClick.emit(this.showModal());
+  }
+
   showModal = signal<boolean>(false);
 
   onModalClose() {

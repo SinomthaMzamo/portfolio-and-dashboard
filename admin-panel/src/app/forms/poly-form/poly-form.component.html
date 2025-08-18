@@ -1,0 +1,29 @@
+<ng-container [ngSwitch]="variant">
+    <ng-container *ngSwitchCase="'experience'">
+      <!-- add experience form -->
+      <app-add-experience-form/>
+    </ng-container>
+  
+    <ng-container *ngSwitchCase="'education'">
+      <!-- add education form -->
+      <app-add-education-form/>
+    </ng-container>
+  
+    <ng-container *ngSwitchCase="'project'">
+      <!-- add project form -->
+        <app-add-project-form/>
+    </ng-container>
+  
+    <ng-container *ngSwitchCase="'blog'">
+      <!-- add blog form -->
+       <app-add-blog-form/>
+      
+    </ng-container>
+
+    <!-- fallback -->
+    <ng-container *ngSwitchDefault>
+        <p>No form available</p>
+      </ng-container>
+      
+</ng-container>
+  

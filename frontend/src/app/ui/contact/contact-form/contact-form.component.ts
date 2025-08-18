@@ -24,6 +24,7 @@ data = signal<{ name: string; email: string; subject: string; message: string }>
   onModalClose() {
     console.log('Modal closed!');
   }
+  
 
   onSubmit(form: any) {
     if (form.valid) {

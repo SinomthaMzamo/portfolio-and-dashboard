@@ -1,6 +1,6 @@
 :host{
     display: block;
-    width: clamp(20rem,80%, 40rem);
+    width: clamp(20rem, 100%, 40rem);
     margin: 0 auto;
     font-family: 'Poppins', sans-serif;
 }

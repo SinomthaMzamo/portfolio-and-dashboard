@@ -12,6 +12,10 @@ import { AddBlogFormComponent } from "./forms/add-blog-form/add-blog-form.compon
 import { AddEducationFormComponent } from "./forms/add-education-form/add-education-form.component";
 import { AddExperienceFormComponent } from "./forms/add-experience-form/add-experience-form.component";
 
+export type FormConfig = {
+
+}
+
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, NumberTagLineComponent, TaskCardComponent, CommonModule, MessagesTabComponent, AboutComponent, SimpleFormComponent, AddProjectFormComponent, AddBlogFormComponent, AddEducationFormComponent, AddExperienceFormComponent],
@@ -26,28 +30,33 @@ export class AppComponent {
         number: 3,
         tagline: 'career milestones'
       },
-      title: 'Experience'
+      title: 'Experience',
+      formVariant: 'experience'
     },
     {
       numberTagLine: {
         number: 4,
         tagline: 'study highlights'
       },
-      title: 'Education'
+      title: 'Education',
+      formVariant:'education'
     },
     {
       numberTagLine: {
         number: 3,
         tagline: 'live projects'
       },
-      title: 'Projects'
+      title: 'Projects',
+      formVariant: 'project'
     },
     {
       numberTagLine: {
         number: 6,
         tagline: 'published works'
       },
-      title: 'Blogs'
+      title: 'Blogs',
+      formVariant: 'blog'
     }
   ]
+
 }
