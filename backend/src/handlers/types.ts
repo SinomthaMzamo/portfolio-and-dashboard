@@ -1,3 +1,5 @@
+import { STACK_NAME } from "./constants.ts";
+
 export type Tag = {
     tag: string;
     colour: "blue" | "dark" | "pink" | "green" | "mustard";
@@ -56,3 +58,21 @@ export type Project = {
     tags: {tag:string, colour: "dark" | "green" | "mustard" | "blue" | "pink" | "orange"}[],
     imgSrc: string
 }
+
+export enum TableName {
+  EXPERIENCES = `${STACK_NAME}-experiences`,
+  EDUCATION = `${STACK_NAME}-education`,
+  PROJECTS = `${STACK_NAME}-projects`,
+  BLOGS = `${STACK_NAME}-blogs`,
+  MESSAGES = `${STACK_NAME}-messages`
+}
+
+export type Response = {
+    statusCode: number,
+    headers: {
+        "Access-Control-Allow-Origin": "*", // ✅ CORS header
+        "Access-Control-Allow-Headers": "*", // optional, useful if you're sending custom headers
+        "Access-Control-Allow-Methods": "GET,POST,OPTIONS", // optional, helps with preflight
+    },
+    body: string
+};

@@ -1,6 +1,6 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { BatchWriteCommand, DynamoDBDocumentClient, PutCommand, ScanCommand } from "@aws-sdk/lib-dynamodb";
-import { BlogPost, Education, ExperienceEntry, Project } from "./types";
+import { BlogPost, Education, ExperienceEntry, Project } from "./types.ts";
 
 const client = new DynamoDBClient({}); // Uses Lambda's IAM role permissions
 const repository = DynamoDBDocumentClient.from(client);

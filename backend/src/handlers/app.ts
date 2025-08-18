@@ -1,25 +1,12 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
 import { v4 as uuidv4 } from 'uuid';
-import { createNewItem, getAllItems, batchWriteItems, Entry } from './dynamoDBClient';
+import { createNewItem, getAllItems, batchWriteItems, Entry } from './dynamoDBClient.ts';
+import { STACK_NAME } from './constants.ts';
+import { TableName, Response } from './types.ts';
 
-const STACK_NAME = "portfolio";
 
-export enum TableName {
-  EXPERIENCES = `${STACK_NAME}-experiences`,
-  EDUCATION = `${STACK_NAME}-education`,
-  PROJECTS = `${STACK_NAME}-projects`,
-  BLOGS = `${STACK_NAME}-blogs`,
-}
 
-export type Response = {
-    statusCode: number,
-    headers: {
-        "Access-Control-Allow-Origin": "*", // ✅ CORS header
-        "Access-Control-Allow-Headers": "*", // optional, useful if you're sending custom headers
-        "Access-Control-Allow-Methods": "GET,POST,OPTIONS", // optional, helps with preflight
-    },
-    body: string
-};
+
 
 export type GetAllResponseBody = {
     message:string,
@@ -133,7 +120,7 @@ const lastIndex = (stringToSplit: string, splitChar:string):number => {
 export async function postRequestHandler(path:string, tableName:TableName, response:Response, request:any):Promise<Response> {
     request.id = `${tableName.split("-")[lastIndex(tableName, "-")].substring(0,3)}-${0}-${uuidv4().slice(0, 8)}`;
     await createNewItem(tableName, request)
-    response.body = JSON.stringify({message:`New ${tableName.split('s')[0]} added successfully`});
+    response.body = JSON.stringify({message:`New ${tableName} entry added successfully`});
     response.statusCode = 201;
     return response;
 };

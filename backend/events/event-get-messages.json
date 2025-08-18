@@ -1,0 +1,5 @@
+{
+    "httpMethod": "POST",
+    "path": "/contact",
+    "body": "{\"name\":\"John Doe\",\"email\":\"john@example.com\",\"subject\":\"Hello\",\"message\":\"Test message\"}"
+  }

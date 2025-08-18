@@ -33,6 +33,24 @@ Resources:
           Action: s3:GetObject
           Resource:
             Fn::Sub: ${PortfolioBucket.Arn}/*
+  GmailApiSecret:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Name:
+        Fn::Sub: ${AWS::StackName}-gmail-secret
+      Description: Secret for Gmail API
+  MessagesTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName:
+        Fn::Sub: ${AWS::StackName}-messages
+      AttributeDefinitions:
+      - AttributeName: id
+        AttributeType: S
+      KeySchema:
+      - AttributeName: id
+        KeyType: HASH
+      BillingMode: PAY_PER_REQUEST
   ExperiencesTable:
     Type: AWS::DynamoDB::Table
     Properties:
@@ -86,15 +104,28 @@ Resources:
     Properties:
       Handler: contact.handler
       Runtime: nodejs18.x
-      MemorySize: 128
+      MemorySize: 256
       Timeout: 10
+      Environment:
+        Variables:
+          SECRET_ARN:
+            Ref: GmailApiSecret
       Policies:
       - AmazonSESFullAccess
+      - SecretsManagerReadWrite
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: MessagesTable
       Events:
-        ContactApi:
+        UserSend:
           Type: Api
           Properties:
             Path: /contact
+            Method: post
+        AdminReply:
+          Type: Api
+          Properties:
+            Path: /contact/reply
             Method: post
       CodeUri: ContactFunction
     Metadata:
@@ -242,6 +273,10 @@ Outputs:
       Fn::GetAtt:
       - ExperiencesFunctionRole
       - Arn
+  MessagesTableName:
+    Description: DynamoDB Table Name for messages
+    Value:
+      Ref: MessagesTable
   ExperiencesTableName:
     Description: DynamoDB Table Name for work experience records
     Value:
@@ -268,6 +303,10 @@ Outputs:
     Description: S3 bucket name
     Value:
       Ref: PortfolioBucket
+  GmailApiSecretName:
+    Description: Gmail API secret name
+    Value:
+      Ref: GmailApiSecret
 Globals:
   Function:
     LoggingConfig:
