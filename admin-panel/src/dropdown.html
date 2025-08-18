@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Custom Styled Dropdown</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+
+  .dropdown {
+    font-family: 'Poppins', sans-serif;
+    width: 100%;         
+    padding: 10px;        
+    border: 1px solid #ccc; 
+    border-radius: 5px;   
+    font-size: 16px;      
+    box-sizing: border-box; 
+    resize: vertical;     
+    outline: none;
+    position: relative;
+}
+
+  .dropdown-toggle {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .dropdown-toggle::after {
+    content: '▼';
+    font-size: 0.8em;
+    margin-left: 10px;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 10;
+  }
+
+  .dropdown-menu div {
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .dropdown-menu div:hover {
+    background-color: #f0f0f0;
+  }
+
+  /* Custom styles for specific items */
+  .developer { color: #1E90FF; font-weight: bold; }
+  .designer { color: #FF69B4; font-style: italic; }
+  .manager { color: #32CD32; text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<div class="dropdown">
+  <div class="dropdown-toggle" id="dropdownToggle">Select Job Title</div>
+  <div class="dropdown-menu" id="dropdownMenu">
+    <div class="developer">Junior Software Developer</div>
+    <div class="developer">Frontend Developer</div>
+    <div class="developer">Backend Developer</div>
+    <div class="developer">Full-Stack Developer</div>
+    <div class="designer">UX/UI Designer</div>
+    <div class="developer">Data Analyst</div>
+    <div class="manager">Project Manager</div>
+    <div class="other">Other</div>
+  </div>
+</div>
+
+<div id="custom-role" style="margin-top:10px; display:none;">
+  <input type="text" placeholder="Type your role here" style="padding:8px; width:250px; border-radius:5px; border:1px solid #ccc;">
+</div>
+
+<script>
+const dropdownToggle = document.getElementById("dropdownToggle");
+const dropdownMenu = document.getElementById("dropdownMenu");
+const customRole = document.getElementById("custom-role");
+
+// Toggle dropdown
+dropdownToggle.addEventListener("click", () => {
+  dropdownMenu.style.display = dropdownMenu.style.display === "block" ? "none" : "block";
+});
+
+// Select item
+dropdownMenu.querySelectorAll("div").forEach(item => {
+  item.addEventListener("click", () => {
+    dropdownToggle.textContent = item.textContent;
+    dropdownMenu.style.display = "none";
+    customRole.style.display = item.classList.contains("other") ? "block" : "none";
+  });
+});
+
+// Close dropdown if clicked outside
+document.addEventListener("click", function(e) {
+  if (!dropdownToggle.contains(e.target) && !dropdownMenu.contains(e.target)) {
+    dropdownMenu.style.display = "none";
+  }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<div class="form-wrapper">
+    <div class="scroll-inner">
+        <div class="title">Add a new career milestone</div>
+        <form class="form">
+            <div class="form-section">
+                <h3>Professional role</h3>
+                <div class="row-group">
+                    <app-text-input [label]="'Job Title'" [id]="'role'" [name]="'role'" [placeholder]="'Enter the job/position title you held'" [type]="'text'" />
+                    <app-text-input [label]="'Company'" [id]="'company'" [name]="'company'" [placeholder]="'Enter the company name at which you held this position'" [type]="'text'" />
+                </div>
+                <div class="row-group">
+                    <app-text-input [label]="'Job Location'" [id]="'location'" [name]="'location'" [placeholder]="'Enter the city in which you held this position'" [type]="'text'" />
+                    <app-dropdown></app-dropdown>
+                </div>
+                <app-date-range/>
+            </div>
+            <div class="form-section">
+                <h3>Skills & contributions</h3>
+                <div id="skills-container"></div>
+                <div *ngFor="let skill of skills; let i = index" class="skill-block">
+                    <label>
+                      Skill/Expertise:
+                      <input type="text" [(ngModel)]="skill.name" name="skill{{i}}">
+                    </label><br><br>
+                
+                    <div class="tasks-container">
+                      <div *ngFor="let task of skill.tasks; let j = index">
+                        <label>
+                          Task:
+                          <input type="text" [(ngModel)]="skill.tasks[j]" name="task{{i}}-{{j}}">
+                        </label>
+                        <button class="rounded-tag atomic-margin right" type="button" (click)="removeTask(i, j)">- Remove Task</button>
+                      </div>
+                    </div>
+                
+                    <button class="rounded-tag atomic-margin" type="button" (click)="addTask(i)">+ Add Task</button>
+                    <button class="rounded-tag atomic-margin" type="button" (click)="removeSkill(i)"> - Remove Skill</button>
+                  </div>
+                
+                  <button class="rounded-tag atomic-margin" type="button" (click)="addSkill()">+ Add Skill</button>
+            </div>
+            <button type="submit" class="form-btn">Post milestone</button>
+        </form>
+    </div>    
+</div>

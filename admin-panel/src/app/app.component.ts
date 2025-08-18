@@ -10,10 +10,11 @@ import { SimpleFormComponent } from './forms/simple-form/simple-form.component';
 import { AddProjectFormComponent } from "./forms/add-project-form/add-project-form.component";
 import { AddBlogFormComponent } from "./forms/add-blog-form/add-blog-form.component";
 import { AddEducationFormComponent } from "./forms/add-education-form/add-education-form.component";
+import { AddExperienceFormComponent } from "./forms/add-experience-form/add-experience-form.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NumberTagLineComponent, TaskCardComponent, CommonModule, MessagesTabComponent, AboutComponent, SimpleFormComponent, AddProjectFormComponent, AddBlogFormComponent, AddEducationFormComponent],
+  imports: [RouterOutlet, NumberTagLineComponent, TaskCardComponent, CommonModule, MessagesTabComponent, AboutComponent, SimpleFormComponent, AddProjectFormComponent, AddBlogFormComponent, AddEducationFormComponent, AddExperienceFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

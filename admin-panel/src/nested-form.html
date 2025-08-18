@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Work Experience Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .form-section { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; }
+    .form-section h3 { margin-top: 0; }
+    .skill-block { border: 1px dashed #aaa; padding: 10px; margin-top: 10px; border-radius: 6px; }
+    button { margin-top: 5px; }
+  </style>
+</head>
+<body>
+
+  <h2>Work Experience Entry</h2>
+
+  <!-- Header Section -->
+  <div class="form-section">
+    <h3>Professional role</h3>
+    <label>Location: <input type="text" name="location"></label><br><br>
+
+    <label>Role: <input type="text" name="role"></label><br><br>
+    <label>Company: <input type="text" name="company"></label><br><br>
+
+    <label>Start Date: <input type="date" name="start"></label>
+    <label>End Date: <input type="date" name="end"></label>
+    <label><input type="checkbox" name="present"> Present</label><br><br>
+
+    <label>Mode:
+      <select name="mode">
+        <option>On-site</option>
+        <option>Remote</option>
+        <option>Hybrid</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- Details Section -->
+  <div class="form-section" id="skills-section">
+    <h3>Details</h3>
+    <div id="skills-container"></div>
+    <button type="button" onclick="addSkill()">+ Add Skill</button>
+  </div>
+
+  <button type="submit">Submit</button>
+
+  <script>
+    function addSkill() {
+      const container = document.getElementById("skills-container");
+
+      const skillBlock = document.createElement("div");
+      skillBlock.className = "skill-block";
+
+      skillBlock.innerHTML = `
+        <label>Skill/Expertise: <input type="text" name="skill[]"></label><br><br>
+        <div class="tasks-container">
+          <label>Task: <input type="text" name="task[0][]"></label>
+        </div>
+        <button type="button" onclick="addTask(this)">+ Add Task</button>
+      `;
+
+      container.appendChild(skillBlock);
+    }
+
+    function addTask(button) {
+      const taskContainer = button.previousElementSibling;
+      const taskInput = document.createElement("div");
+      taskInput.innerHTML = `<label>Task: <input type="text" name="task[0][]"></label>`;
+      taskContainer.appendChild(taskInput);
+    }
+  </script>
+
+</body>
+</html>

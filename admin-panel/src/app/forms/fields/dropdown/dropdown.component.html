@@ -1,0 +1,21 @@
+<div class="f-group">
+    Mode
+    <div class="dropdown">
+        <div class="dropdown-toggle" (click)="toggleDropdown()">
+          {{ selectedRole }}
+        </div>
+      
+        <div class="dropdown-menu" *ngIf="dropdownOpen">
+          <div *ngFor="let job of jobTitles"
+               [ngClass]="job.type"
+               (click)="selectRole(job)">
+            {{ job.name }}
+          </div>
+        </div>
+    
+      
+        <div *ngIf="showCustomRole" id="custom-role" style="margin-top:10px;">
+            <input type="text" placeholder="Type your role here">
+        </div>
+    </div>
+</div>

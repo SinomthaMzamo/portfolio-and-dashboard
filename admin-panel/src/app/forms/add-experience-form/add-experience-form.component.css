@@ -1,0 +1,21 @@
+:host{
+    display: block;
+    width: clamp(20rem,80%, 40rem);
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+:host > * {
+    scroll-margin-top: 2rem
+}
+
+.form-section { 
+    border: 1px solid whitesmoke; padding: 1.5rem; border-radius: 2rem;
+    display: flex; flex-direction: column; gap: 1rem; 
+}
+.form-section > * {
+    flex: 0;
+}
+    .form-section h3 { margin-top: 0; }
+    .skill-block { border: 1px dashed white; padding: 1rem; margin-top: 10px; border-radius: 2rem; }
+    button { margin-top: 5px; }
