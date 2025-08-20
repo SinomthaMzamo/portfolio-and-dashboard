@@ -26,14 +26,14 @@ export type TaskData = {
 })
 export class TaskCardComponent {
   @Input({required:true}) taskData!:TaskData;
-  showModal = signal<boolean>(false);
+  showModal = signal(false);  // parent signal
 
-  openModal(value: boolean) {
-    this.showModal.set(value); // true if child emitted
+  openModal(event: boolean) {
+    this.showModal.set(true); // open modal when icon clicked
   }
 
   closeModal() {
-    this.showModal.set(false);
+    this.showModal.set(false); // close modal
   }
 
   onSubmit(form:any){

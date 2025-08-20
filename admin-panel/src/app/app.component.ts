@@ -1,62 +1,125 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NumberTagLineComponent } from "./components/number-tag-line/number-tag-line.component";
+import { Component, computed, inject, signal, WritableSignal } from '@angular/core';
 import { TaskCardComponent, TaskData } from "./main/task-card/task-card.component";
 import { CommonModule } from '@angular/common';
 import { MessagesTabComponent } from "./main/messages-tab/messages-tab.component";
 import { AboutComponent } from "./main/about/about.component";
-import { ImageUploaderComponent } from "./forms/image-uploader/image-uploader.component";
-import { SimpleFormComponent } from './forms/simple-form/simple-form.component';
-import { AddProjectFormComponent } from "./forms/add-project-form/add-project-form.component";
-import { AddBlogFormComponent } from "./forms/add-blog-form/add-blog-form.component";
-import { AddEducationFormComponent } from "./forms/add-education-form/add-education-form.component";
-import { AddExperienceFormComponent } from "./forms/add-experience-form/add-experience-form.component";
+import { HttpClient } from '@angular/common/http';
+import { BlogPost } from './models/blog.model';
+import { Education } from './models/education.model';
+import { ExperienceEntry } from './models/experience.model';
+import { Project } from './models/project.model';
+// {"subject":"GREEN","message":"the colour green is a beautiful colour","id":"mes-0-b6aa4cac","email":"sitholekarabo0@gmail.com","name":"Karabo"}
+export type MessagesData = {
+  subject:string;
+  message:string;
+  id:string;
+  email:string;
+  name:string;
+  createdAt: string;
+  hasReplied:boolean;
+}
 
-export type FormConfig = {
-
+export type SiteLoadData = {
+  blogs:BlogPost[], projects:Project[], education:Education[], experiences:ExperienceEntry[]
 }
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NumberTagLineComponent, TaskCardComponent, CommonModule, MessagesTabComponent, AboutComponent, SimpleFormComponent, AddProjectFormComponent, AddBlogFormComponent, AddEducationFormComponent, AddExperienceFormComponent],
+  imports: [TaskCardComponent, CommonModule, MessagesTabComponent, AboutComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'admin-panel';
-  taskData: TaskData[] = [
-    {
-      numberTagLine: {
-        number: 3,
-        tagline: 'career milestones'
+  private http = inject(HttpClient);
+  // Signal to store experience data
+  // ✅ Use WritableSignal instead of Signal
+  messagesData: WritableSignal<MessagesData[]> = signal([]);
+  siteData: WritableSignal<SiteLoadData> = signal({blogs: [], projects: [], education: [], experiences: []});
+  taskData: WritableSignal<TaskData[]> = signal([]);
+  totals = computed(() => ({
+    experiences: this.siteData().experiences.length,
+    projects: this.siteData().projects.length,
+    education: this.siteData().education.length,
+    blogs: this.siteData().blogs.length,
+  }));
+  
+  constructor() {
+    this.loadMessageData();
+    this.loadCoreResources();
+  }
+
+  loadCoreResources() {
+    const url = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/core';
+
+    this.http.get<any>(url).subscribe({
+      next: (res) => {
+        if (res.data) {
+          this.siteData.set(res.data);
+          console.log("✅SITE DATA LOADED: ", res.data);
+          this.loadTaskCardFaces();
+        }
       },
-      title: 'Experience',
-      formVariant: 'experience'
-    },
-    {
-      numberTagLine: {
-        number: 4,
-        tagline: 'study highlights'
+      error: (err) => {
+        console.error('API error:', err);
+        
+      }
+    });
+  }
+  
+  loadMessageData() {
+    const url = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/contact';
+
+    this.http.get<any>(url).subscribe({
+      next: (res) => {
+        if (res.data) {
+          this.messagesData.set(res.data);
+        }
       },
-      title: 'Education',
-      formVariant:'education'
-    },
-    {
-      numberTagLine: {
-        number: 3,
-        tagline: 'live projects'
+      error: (err) => {
+        console.error('API error:', err);
+      }
+    });
+  }
+
+  loadTaskCardFaces(){
+
+    this.taskData.set([
+      {
+        numberTagLine: {
+          number: this.totals().experiences,
+          tagline: 'career milestones'
+        },
+        title: 'Experience',
+        formVariant: 'experience'
       },
-      title: 'Projects',
-      formVariant: 'project'
-    },
-    {
-      numberTagLine: {
-        number: 6,
-        tagline: 'published works'
+      {
+        numberTagLine: {
+          number: this.totals().education,
+          tagline: 'study highlights'
+        },
+        title: 'Education',
+        formVariant:'education'
       },
-      title: 'Blogs',
-      formVariant: 'blog'
-    }
-  ]
+      {
+        numberTagLine: {
+          number: this.totals().projects,
+          tagline: 'live projects'
+        },
+        title: 'Projects',
+        formVariant: 'project'
+      },
+      {
+        numberTagLine: {
+          number: this.totals().blogs,
+          tagline: 'published works'
+        },
+        title: 'Blogs',
+        formVariant: 'blog'
+      }
+    ]);
+    console.log("✅ Task data loaded:", this.taskData());
+  }
+  
 
 }

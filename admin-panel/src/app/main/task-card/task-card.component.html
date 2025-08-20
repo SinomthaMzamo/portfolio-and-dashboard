@@ -1,13 +1,11 @@
 <app-card class="task">
     <app-title-icon [title]="taskData.title" [icon]="'fas fa-plus-circle'" (iconClick)="openModal($event)"></app-title-icon>
     <app-number-tag-line [number]="taskData.numberTagLine.number" [tagline]="taskData.numberTagLine.tagline" ></app-number-tag-line>
-    <app-modal [visible]="showModal()" [title]="'Add new '+taskData.formVariant+' form modal'" >
+    <app-modal 
+      [visible]="showModal()" 
+      [title]="'Add new '+taskData.formVariant+' form modal'" 
+      (close)="closeModal()">
       <app-poly-form [variant]="taskData.formVariant!" />
-  </app-modal>
+    </app-modal>
 </app-card>
 
-<!-- showModal = signal<boolean>(false);
-
-    onModalClose() {
-      console.log('Modal closed!');
-    } -->

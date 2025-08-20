@@ -1,62 +1,67 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ColumnComponent } from "../../components/column/column.component";
+import { MessagesData } from '../../app.component';
+import { TextFieldModule } from '@angular/cdk/text-field';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { MessageComponent } from "./message/message.component";
 
-export type Message = {
-  name:string;
-  subject:string;
-  body:string;
-  internalDate: string;
-}
 
 @Component({
   selector: 'app-messages-tab',
-  imports: [ColumnComponent],
+  imports: [FormsModule, ColumnComponent, TextFieldModule, MessageComponent],
   templateUrl: './messages-tab.component.html',
   styleUrl: './messages-tab.component.css'
 })
 export class MessagesTabComponent {
-  messages:Message[] = [
-    {
-      name: 'Summer',
-      subject: 'This is a stellar effort',
-      body: 'I really liked how the portfolio layout flows — clean and professional.',
-      internalDate: (Date.now() - 1000 * 60 * 5).toString(),
-    },
-    {
-      name: "Manqoba",
-      subject: "Follow-up meeting",
-      body: "Can we schedule a call tomorrow to discuss the next steps?",
-      internalDate: (Date.now() - 1000 * 60 * 60 * 2).toString() // 2 hours ago
-    },
-    {
-      name: "Karabo",
-      subject: "Bug report",
-      body: "I noticed that the contact form doesn’t validate emails correctly.",
-      internalDate: (Date.now() - 1000 * 60 * 60 * 24).toString() // 1 day ago
-    },
-    {
-      name: "Mongezi",
-      subject: "Exciting collaboration",
-      body: "I’d love to collaborate on a project. Let me know if you’re interested!",
-      internalDate: (Date.now() - 1000 * 60 * 60 * 48).toString() // 2 days ago
-    },
-    {
-      name: "Lyrichia",
-      subject: "Job opportunity",
-      body: "We’re impressed with your work — would you be open to a quick chat?",
-      internalDate: (Date.now() - 1000 * 60 * 60 * 72).toString() // 3 days ago
-    }
+  @Input({required: true})messages:MessagesData[] = [
   ];
+  constructor(private http: HttpClient) {}
+
   // Sort newest first
-  get sortedMessages(): Message[] {
-    return [...this.messages].sort(
-      (a, b) => Number(b.internalDate) - Number(a.internalDate)
-    );
+  get sortedMessages(): MessagesData[] {
+    return this.messages
+      .filter(msg => !msg.hasReplied) // ignore replied ones
+      .sort((a, b) => {
+        const tA = a.createdAt ? Date.parse(a.createdAt) : 0;
+        const tB = b.createdAt ? Date.parse(b.createdAt) : 0;
+        const aMs = Number.isNaN(tA) ? 0 : tA;
+        const bMs = Number.isNaN(tB) ? 0 : tB;
+        return bMs - aMs; // newest first
+      }).slice(0, 4);
   }
 
   // Helper to format the Gmail timestamp for display
   formatDate(internalDate: string): string {
     return new Date(Number(internalDate)).toLocaleString();
+  }
+
+  onSubmit(form: any) {
+    if (form.valid) {
+      const body = {
+        name: form.value.name,
+        email: form.value.email,
+        subject: form.value.subject,
+        message: form.value.message,
+      };
+      console.log("this is the email request body", body);
+
+      const apiUrl = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/contact/reply';
+
+      this.http.post(apiUrl, body, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).subscribe({
+        next: () => {
+          console.log(body);
+         
+        },
+        error: (err) => alert('Error sending message: ' + err.message)
+      });
+    } else {
+      alert('Please fill out all required fields.');
+    }
   }
 
 }

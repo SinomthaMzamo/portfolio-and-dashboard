@@ -1,5 +1,7 @@
 <!-- textarea field form group -->
 <div class="f-group">
     <label [for]="">{{label}}</label>
-    <textarea [name]="name" [id]="id" [placeholder]="placeholder"></textarea>
+    <textarea [name]="name" [id]="id" [placeholder]="placeholder" [value]="value"
+    (input)="onInput($event)"
+    (blur)="onTouched()"></textarea>
 </div>

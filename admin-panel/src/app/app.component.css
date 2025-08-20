@@ -46,5 +46,31 @@
     display: grid;
     grid-template-columns: repeat(3, 33rem);
     gap: 1rem;
-    margin: 0 auto;
+    position: absolute;
+    top: 12rem;
+    left: 4rem;
+    /* margin: 12rem 4rem; */
 }
+.logo {
+    font-weight: 750;
+    font-size: 2em;
+    padding-left: 4rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+    color: #042f09;
+
+}
+.welcome{
+    font-size: 3em;
+    font-weight: 300;
+    margin-left: 4rem;
+    text-align: center;
+
+
+}
+.gradient-text {
+    background: linear-gradient(90deg, #5d7765, #0f6547); /* gradient colors */
+    -webkit-background-clip: text;  /* clip background to text */
+    -webkit-text-fill-color: transparent; /* make the text itself transparent */
+    font-weight: bold;
+  }

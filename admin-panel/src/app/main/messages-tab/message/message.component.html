@@ -1,0 +1,36 @@
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)" class="message" >
+    <div class="row msg-tile">
+        <div class="sender-column">
+            <div class="sender-label">from:</div>
+            <div class="sender">{{message.name}}</div>
+        </div>
+        <div class="msg-details">
+            <div class="row subject-row">
+                <span class="label">Subject:</span>
+                <p class="subject">{{message.subject}}</p>
+            </div>
+            <div class="row body-row">
+                <span class="label">Message:</span>
+                <p class="body">{{message.message}}</p>
+            </div>
+        </div>
+    </div>
+    <!-- reply section -->
+    <div class="reply-section row">
+        <textarea
+            name="message"
+            id="typing-section"
+            class="only-bottom"
+            matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            minRows="1"
+            maxRows="10"
+            placeholder="Start typing your reply..."
+            ngModel
+        ></textarea>
+
+        <!-- <textarea class="only-bottom" type="text" placeholder="Start typing your reply"></textarea> -->
+        <button class="reply-btn right"><span><i class="fas fa-reply"></i></span>reply</button>
+    </div>
+</form>

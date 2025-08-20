@@ -1,22 +1,50 @@
 <div class="form-wrapper">
     <div class="scroll-inner">
-        <div class="title">Publish a new blog</div>
-        <form class="form">
+        <div class="form-title">Publish a new blog</div>
+        <form class="form" [formGroup]="blogForm" (ngSubmit)="onSubmit(blogForm.value)">
             <!-- text field form group -->
-            <app-text-input [label]="'Blog Title'" [id]="'blog-title'" [name]="'blog-title'" [placeholder]="'Enter the blog title'" [type]="'text'" />
+            <app-text-input 
+                [label]="'Blog Title'" 
+                [id]="'blog-title'" 
+                [name]="'blog-title'" 
+                [placeholder]="'Enter the blog title'" 
+                [type]="'text'" 
+                formControlName="title"  
+            />
             <!-- textarea field form group -->
-             <app-textarea [label]="'Blog Introduction'" [id]="'blog-intro'" [name]="'blog-intro'" [placeholder]="'Enter an excerpt or introduction'" [type]="''"/>
+            <app-textarea 
+                [label]="'Blog Introduction'" 
+                [id]="'blog-intro'" 
+                [name]="'blog-intro'" 
+                [placeholder]="'Enter an excerpt or introduction'" 
+                [type]="''"
+                formControlName="introduction"
+            />
             <!-- row group of start and end date fields -->
-            <app-date-range/>
-            
+            <app-date-input 
+                [label]="'Date published'" 
+                [id]="'publish-date'" 
+                [name]="'publish-date'" 
+                [type]="'date'"
+                formControlName="datePublished"
+            />            
             <!-- image uploader -->
             <div class="f-group">
                 <label for="image">Upload blog cover image</label>
-                <app-image-uploader></app-image-uploader>
+                <app-image-uploader formControlName="image" [label]="''" [id]="''" [name]="''" [type]="''"   ></app-image-uploader>
             </div>
             <!-- tag inputs -->
-            <app-tag-input [label]="'Enter tags, comma separated'"></app-tag-input>
+            <app-tag-input [label]="'Enter tags, comma separated'" [id]="''" [name]="''" [type]="''"  formControlName="tags"></app-tag-input>
              <!-- password input -->
+                <!-- text field form group -->
+                <app-text-input 
+                    [label]="'Blog URL'" 
+                    [id]="'blog-url'" 
+                    [name]="'blog-url'" 
+                    [placeholder]="'Enter the blog url'" 
+                    [type]="'text'" 
+                    formControlName="url"  
+                />
             <button type="submit" class="form-btn">Publish blog</button>
         </form>
     </div>    

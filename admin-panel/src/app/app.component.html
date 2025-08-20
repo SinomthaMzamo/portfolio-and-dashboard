@@ -20,17 +20,15 @@
   <div class="item2">8</div>
 </div> -->
 <div class="container">
+  <div class="logo">Sinomtha.</div>
+  <div class="welcome gradient-text">Welcome back to your admin panel!</div>
   <div class="dashboard-grid">
     <app-about></app-about>
     <div class="tasks">
-      @for (item of taskData; track $index) {
+      @for (item of taskData(); track $index) {
         <app-task-card [taskData]="item"></app-task-card>
       }
     </div>
-    <app-messages-tab></app-messages-tab>
+    <app-messages-tab [messages]="messagesData()"></app-messages-tab>
   </div>
-  <app-add-project-form/>
-  <app-add-blog-form/>
-  <app-add-education-form/>
-  <app-add-experience-form/>
 </div>

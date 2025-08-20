@@ -13,13 +13,17 @@ openModal() {
   @Input({required:true}) title!:string;
   @Input({required:true}) icon!:string;
   @Output() iconClick = new EventEmitter<boolean>();
+  showModal = signal<boolean>(false);
   
+
   onIconClick() {
     this.openModal();
-    this.iconClick.emit(this.showModal());
+    this.iconClick.emit(true);
+    console.log("Is this thing still on?")
+
   }
 
-  showModal = signal<boolean>(false);
+  
 
   onModalClose() {
     console.log('Modal closed!');

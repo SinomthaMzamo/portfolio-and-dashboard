@@ -1,22 +1,56 @@
 <div class="form-wrapper">
     <div class="scroll-inner">
-        <div class="title">Record a new qualification</div>
-        <form class="form">
+        <div class="form-title">Record a new qualification</div>
+        <form class="form" [formGroup]="educationForm" (ngSubmit)="onSubmit(educationForm.value)">
             <!-- text field form group -->
-            <app-text-input [label]="'Qualification Title'" [id]="'qualification-name'" [name]="'qualification-name'" [placeholder]="'Enter the qualification or certification name/title'" [type]="'text'" />
-            <app-text-input [label]="'Institution Name'" [id]="'institution-name'" [name]="'institution-name'" [placeholder]="'Enter the institution name'" [type]="'text'" />
+            <app-text-input 
+                [label]="'Qualification Title'" 
+                [id]="'qualification-name'" 
+                [name]="'qualification-name'" 
+                [placeholder]="'Enter the qualification or certification name/title'" 
+                [type]="'text'" 
+                formControlName = "qualification"
+            />
+            <app-text-input 
+                [label]="'Institution Name'" 
+                [id]="'institution-name'" 
+                [name]="'institution-name'" 
+                [placeholder]="'Enter the institution name'" 
+                [type]="'text'" 
+                formControlName="institution"
+            />
             <!-- textarea field form group -->
-             <app-textarea [label]="'Key outcomes'" [id]="'qualification-description'" [name]="'qualification-description'" [placeholder]="'Enter a brief description of your training. Eg. skills acquired or course material covered etc'" [type]="''"/>
+             <app-textarea 
+                [label]="'Key outcomes'" 
+                [id]="'qualification-description'" 
+                [name]="'qualification-description'" 
+                [placeholder]="'Enter a brief description of your training. Eg. skills acquired or course material covered etc'" 
+                [type]="''"
+                formControlName="description"
+            />
             <!-- row group of start and end date fields -->
-            <app-date-range/>
-            
+            <app-date-range formControlName="duration"/>
+            <app-text-input 
+                [label]="'Grade obtained'" 
+                [id]="'grade'" 
+                [name]="'grade'" 
+                [placeholder]="'Enter the grade you achieved, use \'Incomplete\' or \'In progress\' for incomplete or qualifications in progress '" 
+                [type]="'text'" 
+                formControlName="grade"
+            />
             <!-- image uploader -->
             <div class="f-group">
                 <label for="image">Upload your institution's logo</label>
-                <app-image-uploader></app-image-uploader>
+                <app-image-uploader formControlName="image" [label]="''" [id]="''" [name]="''" [type]="''"></app-image-uploader>
             </div>
             <!-- tag inputs -->
-            <app-tag-input [label]="'Enter skills gained, comma separated'"></app-tag-input>
+            <app-tag-input 
+                [label]="'Enter skills gained, comma separated'" 
+                [id]="''" 
+                [name]="''" 
+                [type]="''"  
+                formControlName="skills"
+            />
             
              <!-- password input -->
             <button type="submit" class="form-btn">Post milestone</button>

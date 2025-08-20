@@ -1,5 +1,12 @@
 <!-- text field form group -->
 <div class="f-group">
     <label [for]="id">{{label}}</label>
-    <input [name]="name" [id]="id" type="text" [placeholder]="placeholder">
+    <input
+    [id]="id"
+    [type]="type || 'text'"
+    [placeholder]="placeholder"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onTouched()"
+  />
 </div>

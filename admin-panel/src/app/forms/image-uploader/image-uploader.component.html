@@ -18,13 +18,13 @@
       <div class="hint">Supported: JPG, JPEG, PNG, GIF, WEBP, SVG — max 5 MB each</div>
   
       <div class="upload-actions">
-        <label for="file-input" class="btn" style="cursor:pointer;">Choose files</label>
+        <label for="image" class="btn" style="cursor:pointer;">Choose files</label>
         <button class="btn ghost" type="button" (click)="clearAll()">Clear all</button>
       </div>
   
       <div class="meta">{{ metaText }}</div>
   
-      <input id="file-input" type="file"
+      <input id="image" type="file"
        accept=".png,.jpg,.jpeg,.gif,.webp,.svg"
        multiple hidden
        (change)="onFileChange($event)" />

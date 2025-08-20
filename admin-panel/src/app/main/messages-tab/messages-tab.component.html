@@ -2,23 +2,7 @@
     <app-column [title]="'My messages'">
         <div class="col-items-wrapper">
             @for (item of sortedMessages; track $index) {
-                <div class="row msg-tile">
-                    <div class="sender-column">
-                        <div class="sender-label">from:</div>
-                        <div class="sender">{{item.name}}</div>
-                    </div>
-                    <div class="msg-details">
-                        <div class="row subject-row">
-                            <span class="label">Subject:</span>
-                            <p class="subject">{{item.subject}}</p>
-                            <button class="reply-btn">reply</button>
-                        </div>
-                        <div class="row body-row">
-                            <span class="label">Message:</span>
-                            <p class="body">{{item.body}}</p>
-                        </div>
-                    </div>
-                </div>
+                <app-message [message]="item" />
             }
         </div>
         
