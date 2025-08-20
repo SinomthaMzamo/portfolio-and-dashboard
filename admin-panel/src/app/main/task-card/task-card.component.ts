@@ -15,6 +15,7 @@ export type TaskData = {
   numberTagLine: NumberTagline;
   title: "Experience" | "Education" | "Projects" | "Blogs" | "Education & Certifications";
   formVariant?: 'project' | 'education' | 'experience' | 'blog';
+  icon?: "fas fa-briefcase" | "fas fa-file-text" | "fas fa-code" | "fas fa-graduation-cap";
   
 }
 

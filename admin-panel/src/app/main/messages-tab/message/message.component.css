@@ -111,3 +111,7 @@
     border: 1px solid gainsboro;
     border-radius: 0.75rem;
 }
+.message:hover, .message:focus{
+    transform: scale(1.006);
+    outline: 2px solid #4ab56a;
+}

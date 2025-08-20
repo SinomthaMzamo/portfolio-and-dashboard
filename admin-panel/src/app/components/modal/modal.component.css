@@ -29,11 +29,11 @@
   .closeBtn {
     color: #646363;
     /* float: right; */
-    font-size: 28px;
+    font-size: 3rem;
     cursor: pointer;
     position: absolute;
-    top: 0;
-    right: 1rem;
+    top: 2rem;
+    right: 3rem;
   }
   
   .closeBtn:hover {

@@ -91,7 +91,8 @@ export class AppComponent {
           tagline: 'career milestones'
         },
         title: 'Experience',
-        formVariant: 'experience'
+        formVariant: 'experience',
+        icon: 'fas fa-briefcase'
       },
       {
         numberTagLine: {
@@ -99,7 +100,8 @@ export class AppComponent {
           tagline: 'study highlights'
         },
         title: 'Education',
-        formVariant:'education'
+        formVariant:'education',
+        icon: "fas fa-graduation-cap"
       },
       {
         numberTagLine: {
@@ -107,7 +109,8 @@ export class AppComponent {
           tagline: 'live projects'
         },
         title: 'Projects',
-        formVariant: 'project'
+        formVariant: 'project',
+        icon: "fas fa-code"
       },
       {
         numberTagLine: {
@@ -115,7 +118,8 @@ export class AppComponent {
           tagline: 'published works'
         },
         title: 'Blogs',
-        formVariant: 'blog'
+        formVariant: 'blog',
+        icon: "fas fa-file-text"
       }
     ]);
     console.log("✅ Task data loaded:", this.taskData());

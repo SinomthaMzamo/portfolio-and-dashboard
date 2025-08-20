@@ -21,14 +21,32 @@
 </div> -->
 <div class="container">
   <div class="logo">Sinomtha.</div>
-  <div class="welcome gradient-text">Welcome back to your admin panel!</div>
+  <div class="welcome-wrapper">
+    <div class="welcome grad-text">Welcome back to your admin panel!</div>
+  </div>
+  <div class="title-row">
+    <div class="cent">
+      <span><i class="fas fa-long-arrow-down gradient-text"></i></span>
+      <div class="gradient-text">Your inbox, simplified. Never miss a message!</div>
+    </div>
+    <div class="cent">
+      <span><i class="fas fa-long-arrow-down gradient-text"></i></span>
+      <div class="gradient-text">Reflect your growth, update your profile today.</div>
+    </div>
+    <div class="cent">
+      <span><i class="fas fa-long-arrow-down gradient-text"></i></span>
+      <div class="gradient-text">Manage your content with just a few clicks!</div>
+    </div>
+  </div>
+  
   <div class="dashboard-grid">
+    <app-messages-tab [messages]="messagesData()"></app-messages-tab>
     <app-about></app-about>
     <div class="tasks">
       @for (item of taskData(); track $index) {
         <app-task-card [taskData]="item"></app-task-card>
       }
     </div>
-    <app-messages-tab [messages]="messagesData()"></app-messages-tab>
+    
   </div>
 </div>

@@ -8,9 +8,9 @@
     flex-direction: column;
     padding: 1rem;
     gap: 10rem;
-    height: 16.68rem;
-    width: 14rem;
-    border: 1px solid rgb(37, 104, 27);
+    height: 22.52rem;
+    width: 14.5rem;
+    border: 1px solid rgb(183, 206, 188);
     border-radius: 1.5rem;
     background: linear-gradient(
     135deg, 
@@ -20,7 +20,15 @@
   box-shadow: 0 0 8px rgba(33, 33, 33, 0.417); /* soft shadow */
     
 }
-/* .task:hover {
-  box-shadow: 0 8px 25px rgba(11, 121, 41, 0.15);
-  transform: scale(1.1);
-} */
+.task:hover {
+  /* box-shadow: 0 8px 25px rgba(11, 121, 41, 0.15); */
+  outline: 2px solid #4ab56a;
+}
+
+.fas{
+  font-size:xx-large;
+  align-self: flex-end;
+  position: absolute;
+  bottom: 8rem;
+  right: 1rem;
+}

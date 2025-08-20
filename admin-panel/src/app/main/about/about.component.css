@@ -3,21 +3,28 @@
     flex-direction: column;
     padding: 1rem;
     gap: 10rem;
-    height: 36.5rem;
-    width: 31rem;
-    border: 2px solid gainsboro;
+    height: 48rem;
+    width: 34rem;
+    border: 2px solid rgb(239, 239, 239);
     border-radius: 1.5rem;
     background: linear-gradient(
     135deg, 
     #F9F9F9 0%,   /* Light shade @30% opacity */
-    #DFF6E6 100%   /* Dark shade @30% opacity */
+    #edefee 100%   /* Dark shade @30% opacity */
   );
+  box-shadow: 0 0 8px rgba(33, 33, 33, 0.417);
+}
+
+.about:hover{
+    transform: scale(1.005);
+    /* outline: 2px solid #4ab56a; */
 }
 
 .img{
     height: 15rem;
     width: 15rem;
-    border: 1px solid mediumaquamarine;
+    border: 1px solid rgba(102, 205, 171, 0.69);
+    box-shadow: 4px 4px 0px rgba(33, 177, 141, 0.417);
     border-radius: 50%; /* shortcut for a circle */
     overflow: hidden;
     margin: 0 auto;

@@ -44,11 +44,11 @@
 
 .dashboard-grid{
     display: grid;
-    grid-template-columns: repeat(3, 33rem);
+    grid-template-columns: repeat(3, 36rem);
     gap: 1rem;
     position: absolute;
-    top: 12rem;
-    left: 4rem;
+    top: 16rem;
+    left: 2rem;
     /* margin: 12rem 4rem; */
 }
 .logo {
@@ -56,21 +56,79 @@
     font-size: 2em;
     padding-left: 4rem;
     padding-top: 2rem;
-    padding-bottom: 1rem;
-    color: #042f09;
+    /* padding-bottom: 1rem; */
+    color: #18541f;
 
 }
-.welcome{
+/* new */
+.welcome-wrapper {
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+    border-radius: 2.5rem;
+    animation: postTyping 0.5s forwards 3s; /* delayed after typing */
+    background-color: transparent; /* start transparent */
+    padding: 0; 
+    border: none;
+    text-align: center;
+}
+
+.welcome {
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 33ch;
     font-size: 3em;
     font-weight: 300;
-    margin-left: 4rem;
-    text-align: center;
-
-
+    border-right: 3px solid rgba(0,0,0,0.75);
+    animation: typing 3s steps(33) forwards;
 }
+
+/* Typing effect with cursor */
+@keyframes typing {
+    0%   { width: 0; border-right: 3px solid rgba(0,0,0,0.75); }
+    100% { width: 33ch; border-right: none; }
+}
+
+/* Post-typing styling on wrapper */
+@keyframes postTyping {
+    0%   { border: none; padding: 0; background-color: transparent; }
+    100% { border: 2px solid rgb(75, 186, 103); padding: 1rem; background-color: rgba(173, 202, 173, 0.583); }
+}
+
+
 .gradient-text {
-    background: linear-gradient(90deg, #5d7765, #0f6547); /* gradient colors */
+    background: linear-gradient(90deg, #38453c, #0f6547); /* gradient colors */
+    -webkit-background-clip: text;  /* clip background to text */
+    -webkit-text-fill-color: transparent; /* make the text itself transparent */
+    
+  }
+
+  .grad-text {
+    background: linear-gradient(135deg, #118133, #0f6547); /* gradient colors */
     -webkit-background-clip: text;  /* clip background to text */
     -webkit-text-fill-color: transparent; /* make the text itself transparent */
     font-weight: bold;
+  }
+
+  .cent{
+    display: flex;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 2rem;
+    width: 35rem;
+    text-decoration: underline;
+    
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border-radius: 1rem;
+  }
+  .title-row{
+    margin-left: 2rem;
+    margin-right: 2rem;
+    display: flex;
+    white-space: nowrap;
+    justify-content: space-between;
+    /* background-color: rgba(242, 248, 243, 0.381); */
   }
