@@ -23,7 +23,8 @@ export class MasonryGridComponent {
   [
     BlogCardVariants.TITLE, BlogCardVariants.HORIZONTAL,
     BlogCardVariants.FULL, BlogCardVariants.VERTICAL,
-    BlogCardVariants.TITLE, BlogCardVariants.HORIZONTAL
+    BlogCardVariants.TITLE, BlogCardVariants.HORIZONTAL,
+    // BlogCardVariants.VERTICAL
   ]
 
 }

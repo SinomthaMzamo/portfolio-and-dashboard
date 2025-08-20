@@ -5,7 +5,7 @@
           <!-- front content -->
           <div class="item dark item-1 col gap-2">
             <div class="subtitle duration right shadow dark">
-                Start date - End date
+                {{projectInfo.duration.startDate}} - {{projectInfo.duration.endDate}}
             </div>
             <div class="bottom light col gap-1-0">
                 <div class="col gap-0">
@@ -53,9 +53,10 @@
                 <small>tags</small>
                 
                 <div class="tags row gap-0">
-                    @for (item of projectInfo.tags; track $index) {
+                    <!-- FIX THIS LATER! -->
+                    <!-- @for (item of projectInfo.tags; track $index) {
                         <app-badge [class]="item.colour" [text]="item.tag"></app-badge>
-                    }
+                    } -->
                 </div>
             </div>
           </div>

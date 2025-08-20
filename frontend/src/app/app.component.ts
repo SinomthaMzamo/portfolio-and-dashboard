@@ -46,10 +46,12 @@ export class AppComponent {
       next: (res) => {
         if (res.data) {
           this.siteData.set(res.data);
+          console.log(res.data);
         }
       },
       error: (err) => {
         console.error('API error:', err);
+        
       }
     });
   }

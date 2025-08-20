@@ -10,7 +10,7 @@
                 <div class="exp-role">{{header.roleDetails.role}}</div>
                 <div class="bottom row">
                     <div class="duration-mode">
-                        <div class="duration">{{duration.start}} - {{duration.end}}</div>
+                        <div class="duration">{{duration.startDate}} - {{duration.endDate}}</div>
                         <div class="mode">{{header.mode}}</div>
                     </div>
                     <i class="material-icons icon">subdirectory_arrow_right</i>
@@ -23,7 +23,7 @@
       <div class="flip-card-back">
         <div class="experience back">
             <h2 class="role"><strong>{{header.role}}</strong>, {{header.location}}</h2>
-            <h5>{{ duration.start }} - {{ duration.end }} ({{ header.mode }})</h5>
+            <h5>{{ duration.startDate }} - {{ duration.endDate }} ({{ header.mode }})</h5>
           <div class="card-wrapper">
             <div class="tabs">
               @for (tabTitle of tabTitles; track $index; let i = $index) {

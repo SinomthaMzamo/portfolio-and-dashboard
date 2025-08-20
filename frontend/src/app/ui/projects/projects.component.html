@@ -4,7 +4,7 @@
             Projects
         </div>
         <main class="projects-content">
-            @for (item of projectsList; track $index) {
+            @for (item of allProjects; track $index) {
                 <app-cards [projectInfo]="item"></app-cards>
             }        
         </main>

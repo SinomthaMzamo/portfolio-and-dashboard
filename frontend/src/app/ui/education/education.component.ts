@@ -18,8 +18,8 @@ export class EducationComponent {
       institution: "WeThinkCode_",
       qualification: "Systems Development NQF 5",
       duration: {
-        start: "Sep 2023",
-        end: "Dec 2024"
+        startDate: "Sep 2023",
+        endDate: "Dec 2024"
       },
       grade: "A-",
       skills: [
@@ -36,8 +36,8 @@ export class EducationComponent {
       institution: "University of the Free State",
       qualification: "BSc Physics & Astrophysics",
       duration: {
-        start: "Jan 2020",
-        end: "May 2022"
+        startDate: "Jan 2020",
+        endDate: "May 2022"
       },
       grade: "Incomplete",
       skills: [
@@ -54,8 +54,8 @@ export class EducationComponent {
       institution: "Wynberg Girls' High School",
       qualification: "National Senior Certificate",
       duration: {
-        start: "Jan 2012",
-        end: "Dec 2016"
+        startDate: "Jan 2012",
+        endDate: "Dec 2016"
       },
       grade: "A- with 5 distinctions",
       skills: [

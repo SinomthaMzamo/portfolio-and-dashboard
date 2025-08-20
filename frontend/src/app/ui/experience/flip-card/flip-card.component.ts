@@ -20,7 +20,7 @@ export class FlipCardComponent {
 
   flipped = false;
 
-  duration: { start: string, end: string } = { start: '', end: '' };
+  duration: { startDate: string, endDate: string } = { startDate: '', endDate: '' };
   tabTitles: string[] = [];
   selectedTabOutcomes: string[] = [];
 

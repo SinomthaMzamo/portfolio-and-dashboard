@@ -20,7 +20,7 @@ export class ExperienceComponent {
   [
     {
       header: {
-        role: "Software Developer Intern at Safety IO", location: "Cape Town", duration: { start: "Jan 2025", end: "Present" }, mode: "Hybrid",
+        role: "Software Developer Intern at Safety IO", location: "Cape Town", duration: { startDate: "Jan 2025", endDate: "Present" }, mode: "Hybrid",
         roleDetails: {
           company: 'Safety IO',
           role: 'Software Developer Intern'
@@ -68,7 +68,7 @@ export class ExperienceComponent {
     },
     {
       header: {
-        role: "Software Developer Intern at Safety IO", location: "Cape Town", duration: { start: "Jan 2025", end: "Present" }, mode: "Hybrid",
+        role: "Software Developer Intern at Safety IO", location: "Cape Town", duration: { startDate: "Jan 2025", endDate: "Present" }, mode: "Hybrid",
         roleDetails: {
           company: 'Safety IO',
           role: 'Software Developer Intern'
@@ -116,7 +116,7 @@ export class ExperienceComponent {
     },
     {
       header: {
-        role: "Coding Expert at Outlier.ai", location: "Global", duration: { start: "Oct 2024", end: "Jan 2025" }, mode: "Remote",
+        role: "Coding Expert at Outlier.ai", location: "Global", duration: { startDate: "Oct 2024", endDate: "Jan 2025" }, mode: "Remote",
         roleDetails: {
           company: 'outlier.ai',
           role: 'Freelance Software Engineer'
@@ -146,7 +146,7 @@ export class ExperienceComponent {
     },
     {
       header: {
-        role: "Freelancer Private Tutor", location: "King William's Town", duration: { start: "Jan 2017", end: "Nov 2019" }, mode: "Remote",
+        role: "Freelancer Private Tutor", location: "King William's Town", duration: { startDate: "Jan 2017", endDate: "Nov 2019" }, mode: "Remote",
         roleDetails: {
           company: 'freelance',
           role: 'Private Tutor'
@@ -175,7 +175,7 @@ export class ExperienceComponent {
     },
     {
       header: {
-        role: "NSC Marking Assistant", location: "King William's Town", duration: { start: "Nov 2017", end: "Jan 2019" }, mode: "Onsite",
+        role: "NSC Marking Assistant", location: "King William's Town", duration: { startDate: "Nov 2017", endDate: "Jan 2019" }, mode: "Onsite",
         roleDetails: {
           company: 'Department of education',
           role: 'NSC Marking Assistant'

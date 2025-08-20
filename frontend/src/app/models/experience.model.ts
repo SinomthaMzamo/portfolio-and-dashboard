@@ -2,7 +2,7 @@ export type HeaderInfo = {
     role:string,
     roleDetails: {company:string, role:string},
     location: "Cape Town" | "Durban" | "King William's Town" | "Global"
-    duration: {start: string, end: string},
+    duration: {startDate: string, endDate: string},
     mode: "Onsite" | "Hybrid" | "Remote",
 }
 
