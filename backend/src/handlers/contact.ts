@@ -3,9 +3,9 @@ import AWS from "aws-sdk";
 // google api
 import { google } from "googleapis";
 import dotenv from "dotenv";
-import { getRequestHandler, postRequestHandler } from "./app.ts";
 import { Response, TableName } from "./types.ts";
 import { GetSecretValueCommand, SecretsManagerClient } from "@aws-sdk/client-secrets-manager";
+import { getRequestHandler, postRequestHandler, updateBooleanField } from "./dynamoDBClient.ts";
 
 dotenv.config();
 
@@ -69,13 +69,13 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     }
 
     const body = JSON.parse(event.body);
-    const { name, email, subject, message } = body;
+    const { name, email, subject, message, id } = body;
 
     
 
     if(method === "POST"){
       if (event.path === "/contact/reply") {
-        if (!email || !subject || !message) {
+        if (!email || !subject || !message || !id) {
           return {
             headers: {
                 "Access-Control-Allow-Origin": "*", // ✅ CORS header
@@ -86,6 +86,10 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             body: JSON.stringify({ error: "email address, subject and message are required" }),
           };
         }
+        if(!body.hasReplied){
+          body.hasReplied = false;
+        }
+        body.hasReplied = true;
         const secretClientResponse = await client.send(command);
         const secret = JSON.parse(secretClientResponse.SecretString as string);
 
@@ -122,13 +126,16 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
           userId: "me",
           requestBody: { raw: encodedMessage },
         });
+
+        // update email read status in database
+        const changeResult = await updateBooleanField(id, 'hasReplied', true);
   
         return {
           statusCode: 200,
           headers: {
             "Access-Control-Allow-Origin": "*",
           },
-          body: JSON.stringify({ success: true, messageId: response.data.id }),
+          body: JSON.stringify({ success: true, messageId: response.data.id, changes: changeResult }),
         };
       }else {
         if (!name || !email || !subject || !message) {
@@ -165,6 +172,10 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         statusCode: 200,
         body: JSON.stringify({ message: "Message sent successfully!" }),
         };
+
+        // set replied flag to false on initial receipt
+        body.hasReplied = false;
+
         // Save to DB logic here (optional)
         await postRequestHandler("/contact", TableName.MESSAGES, response as Response,body)
         return response;

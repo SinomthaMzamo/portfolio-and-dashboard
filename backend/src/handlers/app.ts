@@ -1,7 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { v4 as uuidv4 } from 'uuid';
-import { createNewItem, getAllItems, batchWriteItems, Entry } from './dynamoDBClient.ts';
-import { STACK_NAME } from './constants.ts';
+import { S3Client } from "@aws-sdk/client-s3";
+import { getAllItems, Entry, batchPostRequestHandler, getRequestHandler, postRequestHandler, lastIndex } from './dynamoDBClient.ts';
 import { TableName, Response } from './types.ts';
 
 
@@ -13,7 +12,8 @@ export type GetAllResponseBody = {
     data?:any[]
 }
 
-
+export const s3 = new S3Client({ region: process.env.AWS_REGION || "af-south-1" });
+export const BUCKET_NAME = process.env.S3_BUCKET_NAME || "sinomtha-portfolio";
 
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
@@ -101,40 +101,4 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
         };
     }
 };
-
-export async function getRequestHandler(path:string, tableName:TableName, response:Response):Promise<Response>{
-    const allRecords = await getAllItems(tableName)
-    if (allRecords && allRecords.length > 0){
-        const responseBody = {
-            message: "Work experiences retrieved successfully",
-            data: allRecords
-        }
-        response.body = JSON.stringify(responseBody);
-    } return response
-};
-
-const lastIndex = (stringToSplit: string, splitChar:string):number => {
-    return stringToSplit.split(splitChar).length - 1;
-}
-
-export async function postRequestHandler(path:string, tableName:TableName, response:Response, request:any):Promise<Response> {
-    request.id = `${tableName.split("-")[lastIndex(tableName, "-")].substring(0,3)}-${0}-${uuidv4().slice(0, 8)}`;
-    await createNewItem(tableName, request)
-    response.body = JSON.stringify({message:`New ${tableName} entry added successfully`});
-    response.statusCode = 201;
-    return response;
-};
-    
-export async function batchPostRequestHandler(path:string, tableName:TableName, response:Response, request:Entry[]):Promise<Response> {
-    // response.body = JSON.stringify({data: request});
-    // return response;
-    if (Array.isArray(request)){
-        (request).forEach((entry, index) => {
-            entry.id = `${tableName.split("-")[lastIndex(tableName, "-")].substring(0,3)}-${index}-${uuidv4().slice(0, 8)}`;
-        });
-        await batchWriteItems(tableName, request);
-        response.body = JSON.stringify({message:`New ${tableName} batch added successfully`, data:request, });
-        response.statusCode = 201;
-    }return response;
-}
 

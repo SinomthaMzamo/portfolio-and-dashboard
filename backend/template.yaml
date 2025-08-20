@@ -9,6 +9,21 @@ Resources:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: sinomtha-portfolio
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - "*"
+            AllowedMethods:
+              - GET
+              - PUT
+              - POST
+            AllowedOrigins:
+              - "http://localhost:4200"
+              - "http://localhost:51107"
+              - "https://yourdomain.com"
+            ExposedHeaders:
+              - ETag
+            MaxAge: 3000
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: index.html
@@ -29,11 +44,19 @@ Resources:
       PolicyDocument:
         Version: "2012-10-17"
         Statement:
+          # Public read access
           - Sid: PublicRead
             Effect: Allow
             Principal: "*"
             Action: "s3:GetObject"
             Resource: !Sub "${PortfolioBucket.Arn}/*"
+          - Sid: PublicReadUploads
+            Effect: Allow
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "${PortfolioBucket.Arn}/uploads/*"
+
+          
 
   GmailApiSecret:
     Type: AWS::SecretsManager::Secret
@@ -128,6 +151,11 @@ Resources:
           Properties:
             Path: /contact/reply
             Method: post
+        GetAllMessages:
+          Type: Api
+          Properties:
+            Path: /contact
+            Method: get
     Metadata:
       BuildMethod: esbuild
       BuildProperties:
@@ -136,6 +164,8 @@ Resources:
         Minify: false
         Target: es2020
         Bundle: true        # <-- important to bundle dependencies
+
+  
 
   ExperiencesFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
@@ -239,6 +269,8 @@ Resources:
             TableName: !Ref ProjectsTable
         - DynamoDBCrudPolicy:
             TableName: !Ref BlogsTable
+        - S3WritePolicy:
+            BucketName: !Ref PortfolioBucket
     Metadata: # Manage esbuild properties
       BuildMethod: esbuild
       BuildProperties:
