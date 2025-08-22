@@ -61,3 +61,27 @@
   @media (max-width: 480px) {
     /* Styles for small mobile screens */
   }
+
+  /* Tablet and smaller - collapse to single column */
+@media (max-width: 1016px) {
+  .masonry {
+    display: block; /* stack items vertically */
+    margin: 1rem;
+  }
+
+  /* Reset individual positioning */
+  .masonry > * {
+    grid-column: auto !important;
+    grid-row: auto !important;
+    width: 100% !important;
+    margin: 1rem 0;
+  }
+  
+  /* Optional: remove fixed height/width from cards */
+  .card {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+  
+}

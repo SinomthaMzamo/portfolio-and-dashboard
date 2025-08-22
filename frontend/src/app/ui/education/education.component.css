@@ -16,7 +16,7 @@
     margin: 0 auto;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr; /* Always two equal columns */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Always two equal columns */
     gap: 0.5rem; /* row + column gap */
     /* row-gap: 3rem; */
     align-items: stretch; /* make all items in a row match the tallest */
@@ -28,14 +28,14 @@
   }
   
   /* Medium screens: 2 columns */
-  @media (min-width: 1216px) and (max-width: 1818px) {
+  /* @media (min-width: 1216px) and (max-width: 1818px) {
     .education-content {
       grid-template-columns: repeat(3, 1fr);
     }
-  }
+  } */
   
   /* Large screens: 3 columns */
-  @media  (min-width: 1819px) {
+  /* @media  (min-width: 1819px) {
     .education-content {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -46,4 +46,4 @@
   
   .carousel-cont{
     background-color: aliceblue;
-}
+} */

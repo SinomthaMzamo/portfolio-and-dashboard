@@ -1,15 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { ColumnComponent } from "../../components/column/column.component";
 import { MessagesData } from '../../app.component';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MessageComponent } from "./message/message.component";
+import { LoadingScreenComponent } from "../../shared/loading-screen/loading-screen.component";
+import { CommonModule } from '@angular/common';
+import { ExpandableTextComponent } from "../../shared/expandable-text/expandable-text.component";
 
 
 @Component({
   selector: 'app-messages-tab',
-  imports: [FormsModule, ColumnComponent, TextFieldModule, MessageComponent],
+  imports: [FormsModule, ColumnComponent, TextFieldModule, MessageComponent, LoadingScreenComponent, CommonModule, ExpandableTextComponent],
   templateUrl: './messages-tab.component.html',
   styleUrl: './messages-tab.component.css'
 })
@@ -17,6 +20,10 @@ export class MessagesTabComponent {
   @Input({required: true})messages:MessagesData[] = [
   ];
   constructor(private http: HttpClient) {}
+  // parent.component.ts
+  longDescription: string = 'Hi I’m Sinomtha, a full-stack developer with a passion for building user-centered, cloud-powered web applications. With hands-on experience across design, frontend, backend, and cloud deployment, I take pride in turning ideas into scalable, well-crafted digital products.';
+
+
 
   // Sort newest first
   get sortedMessages(): MessagesData[] {
@@ -28,7 +35,7 @@ export class MessagesTabComponent {
         const aMs = Number.isNaN(tA) ? 0 : tA;
         const bMs = Number.isNaN(tB) ? 0 : tB;
         return bMs - aMs; // newest first
-      }).slice(0, 4);
+      });
   }
 
   // Helper to format the Gmail timestamp for display
@@ -55,7 +62,6 @@ export class MessagesTabComponent {
       }).subscribe({
         next: () => {
           console.log(body);
-         
         },
         error: (err) => alert('Error sending message: ' + err.message)
       });

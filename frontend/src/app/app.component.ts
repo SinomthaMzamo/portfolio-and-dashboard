@@ -16,6 +16,8 @@ import { Education } from './models/education.model';
 import { ExperienceEntry } from './models/experience.model';
 import { Project } from './models/project.model';
 import { WorkExperienceComponent } from "./ui/work-experience/work-experience.component";
+import { LoadingScreenComponent } from "./shared/loading-screen/loading-screen.component";
+import { CommonModule } from '@angular/common';
 
 export type SiteLoadData = {
   blogs:BlogPost[], projects:Project[], education:Education[], experiences:ExperienceEntry[]
@@ -23,12 +25,12 @@ export type SiteLoadData = {
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, AboutComponent, LandingComponent, ExperienceComponent, EducationComponent, ProjectsComponent, BlogComponent, ContactComponent, FooterComponent, WorkExperienceComponent, FormsModule],
+  imports: [RouterOutlet, NavbarComponent, AboutComponent, LandingComponent, ExperienceComponent, EducationComponent, ProjectsComponent, BlogComponent, ContactComponent, FooterComponent, WorkExperienceComponent, FormsModule, LoadingScreenComponent, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Sinomtha | Full-Stack Developer';
   private http = inject(HttpClient);
   // Signal to store experience data
   // ✅ Use WritableSignal instead of Signal
@@ -38,16 +40,22 @@ export class AppComponent {
   constructor() {
     this.loadCoreResources();
   }
+  isLoading = signal<boolean>(false);
+  showLoadingScreen(){this.isLoading.set(true)};
+  hideLoadingScreen(){this.isLoading.set(false)};
   
   loadCoreResources() {
     const url = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/core';
-
+    this.showLoadingScreen()
     this.http.get<any>(url).subscribe({
       next: (res) => {
-        if (res.data) {
-          this.siteData.set(res.data);
-          console.log(res.data);
-        }
+        setTimeout(() => {
+          this.hideLoadingScreen();
+          if (res.data) {
+            this.siteData.set(res.data);
+            console.log(res.data);
+          }
+        }, 1500);   
       },
       error: (err) => {
         console.error('API error:', err);

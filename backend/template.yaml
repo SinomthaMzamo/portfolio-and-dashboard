@@ -5,6 +5,56 @@ Transform:
 - AWS::Serverless-2016-10-31
 
 Resources:
+  PortfolioAdminBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: sinomtha-portfolio-admin
+      CorsConfiguration:
+        CorsRules:
+          - AllowedHeaders:
+              - "*"
+            AllowedMethods:
+              - GET
+              - PUT
+              - POST
+            AllowedOrigins:
+              - "http://localhost:4200"
+              - "https://d2xeg1i0ncz1qu.cloudfront.net"
+            ExposedHeaders:
+              - ETag
+            MaxAge: 3000
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: index.html
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerEnforced
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: false
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: false
+    DeletionPolicy: Retain
+
+  PortfolioAdminBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref PortfolioAdminBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          # Public read access
+          - Sid: PublicRead
+            Effect: Allow
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "${PortfolioAdminBucket.Arn}/*"
+          - Sid: PublicReadUploads
+            Effect: Allow
+            Principal: "*"
+            Action: "s3:GetObject"
+            Resource: !Sub "${PortfolioAdminBucket.Arn}/uploads/*"
+
   PortfolioBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -19,8 +69,9 @@ Resources:
               - POST
             AllowedOrigins:
               - "http://localhost:4200"
-              - "http://localhost:51107"
-              - "https://yourdomain.com"
+              - "http://localhost:61151"
+              - "https://d2xeg1i0ncz1qu.cloudfront.net"                       # allow admin to access bucket contents
+              - "https://d1yhuwsaiydh6d.cloudfront.net/"                      # allow website to access bucket contents
             ExposedHeaders:
               - ETag
             MaxAge: 3000
@@ -56,7 +107,66 @@ Resources:
             Action: "s3:GetObject"
             Resource: !Sub "${PortfolioBucket.Arn}/uploads/*"
 
-          
+  PortfolioCloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - Id: PortfolioS3Origin
+            DomainName: !GetAtt PortfolioBucket.RegionalDomainName
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+        Enabled: true
+        DefaultCacheBehavior:
+          TargetOriginId: PortfolioS3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          CachedMethods:
+            - GET
+            - HEAD
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: true
+        DefaultRootObject: index.html
+        Comment: CloudFront for sinomtha-portfolio
+        PriceClass: PriceClass_100  
+
+
+  PortfolioAdminCloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - Id: PortfolioS3Origin
+            DomainName: !GetAtt PortfolioAdminBucket.RegionalDomainName
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+        Enabled: true
+        DefaultCacheBehavior:
+          TargetOriginId: PortfolioS3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods:
+            - GET
+            - HEAD
+            - OPTIONS
+          CachedMethods:
+            - GET
+            - HEAD
+          ForwardedValues:
+            QueryString: false
+            Cookies:
+              Forward: none
+        ViewerCertificate:
+          CloudFrontDefaultCertificate: true
+        DefaultRootObject: index.html
+        Comment: CloudFront for sinomtha-portfolio-admin
+        PriceClass: PriceClass_100  
 
   GmailApiSecret:
     Type: AWS::SecretsManager::Secret

@@ -20,10 +20,13 @@
   <div class="item2">8</div>
 </div> -->
 <div class="container">
-  <div class="logo">Sinomtha.</div>
-  <div class="welcome-wrapper">
-    <div class="welcome grad-text">Welcome back to your admin panel!</div>
+  <div class="header">
+    <div class="logo">Sinomtha.</div>
+    <div class="welcome-wrapper">
+      <div class="welcome grad-text">Welcome back to your admin panel!</div>
+    </div>
   </div>
+  
   <div class="title-row">
     <div class="cent">
       <span><i class="fas fa-long-arrow-down gradient-text"></i></span>
@@ -49,4 +52,5 @@
     </div>
     
   </div>
+  <app-loading-screen *ngIf="isLoading()" message="Submitting your data..."></app-loading-screen>
 </div>

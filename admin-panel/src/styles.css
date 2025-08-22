@@ -39,6 +39,8 @@ body {
     #95969532,          /* middle color */
     #8c8e8d36           /* end color */
   );
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: hidden;
     
 }
 

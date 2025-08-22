@@ -41,8 +41,8 @@ h1, h2, h3, h4, h5, h6, p{
     margin: 0 auto;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr; /* Always two equal columns */
-    gap: 1.5rem; /* row + column gap */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1rem; /* row + column gap */
     /* row-gap: 3rem; */
     align-items: stretch; /* make all items in a row match the tallest */
     margin-top: 4rem;
@@ -53,14 +53,25 @@ h1, h2, h3, h4, h5, h6, p{
   }
   
   /* Medium screens: 2 columns */
-  @media (min-width: 1216px) and (max-width: 1818px) {
+  /* @media (min-width: 768px) and (max-width: 1240px) {
     .projects-content {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 502px);
+      column-gap: 1rem;
+      row-gap: 1.5rem;
     }
   }
+
+  @media (min-width: 1241px) and (min-width: 1823px){
+    .projects-content {
+      grid-template-columns: repeat(2, 428px);
+    }
+    .projects-content > * {
+      min-height: 300px;
+    }
+  } */
   
   /* Large screens: 3 columns */
-  @media  (min-width: 1819px) {
+  /* @media (min-width: 1824px) {
     .projects-content {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -71,5 +82,5 @@ h1, h2, h3, h4, h5, h6, p{
     .flip-card {
       height: 300px;
     }
-  }
+  } */
   

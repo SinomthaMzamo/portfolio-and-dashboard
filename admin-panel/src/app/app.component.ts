@@ -8,6 +8,7 @@ import { BlogPost } from './models/blog.model';
 import { Education } from './models/education.model';
 import { ExperienceEntry } from './models/experience.model';
 import { Project } from './models/project.model';
+import { LoadingScreenComponent } from "./shared/loading-screen/loading-screen.component";
 // {"subject":"GREEN","message":"the colour green is a beautiful colour","id":"mes-0-b6aa4cac","email":"sitholekarabo0@gmail.com","name":"Karabo"}
 export type MessagesData = {
   subject:string;
@@ -25,12 +26,12 @@ export type SiteLoadData = {
 
 @Component({
   selector: 'app-root',
-  imports: [TaskCardComponent, CommonModule, MessagesTabComponent, AboutComponent],
+  imports: [TaskCardComponent, CommonModule, MessagesTabComponent, AboutComponent, LoadingScreenComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'admin-panel';
+  title = 'Sinomtha | Portfolio Dashboard';
   private http = inject(HttpClient);
   // Signal to store experience data
   // ✅ Use WritableSignal instead of Signal
@@ -43,10 +44,18 @@ export class AppComponent {
     education: this.siteData().education.length,
     blogs: this.siteData().blogs.length,
   }));
+
+  isLoading = signal(false);
+  showLoadingScreen(){this.isLoading.set(true)};
+  hideLoadingScreen(){this.isLoading.set(false)};
   
   constructor() {
+    this.showLoadingScreen();
     this.loadMessageData();
     this.loadCoreResources();
+    setTimeout(() => {
+      this.hideLoadingScreen();
+    }, 3000);
   }
 
   loadCoreResources() {

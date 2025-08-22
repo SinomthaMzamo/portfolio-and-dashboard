@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { BlogPost } from '../../../models/blog.model';
 import { CommonModule } from '@angular/common';
 import { BlogCardComponent } from "../blog-card/blog-card.component";
@@ -19,12 +19,29 @@ export enum BlogCardVariants {
 export class MasonryGridComponent {
   @Input({required:true}) blogPosts!:BlogPost[];
   // define the masonry default layout as an array
-  layout:BlogCardVariants[] = 
-  [
+  defaultLayout: BlogCardVariants[] = [
     BlogCardVariants.TITLE, BlogCardVariants.HORIZONTAL,
     BlogCardVariants.FULL, BlogCardVariants.VERTICAL,
     BlogCardVariants.TITLE, BlogCardVariants.HORIZONTAL,
-    // BlogCardVariants.VERTICAL
-  ]
+  ];
+
+  layout: BlogCardVariants[] = [...this.defaultLayout];
+
+  ngOnInit() {
+    this.updateLayout(window.innerWidth);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.updateLayout(event.target.innerWidth);
+  }
+
+  private updateLayout(width: number) {
+    if (width < 1016) {
+      this.layout = Array(this.blogPosts.length).fill(BlogCardVariants.TITLE);
+    } else {
+      this.layout = [...this.defaultLayout];
+    }
+  }
 
 }

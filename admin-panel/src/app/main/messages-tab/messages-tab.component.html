@@ -1,10 +1,14 @@
-<div class="messages-tab">
-    <app-column [title]="'My messages'">
-        <div class="col-items-wrapper">
-            @for (item of sortedMessages; track $index) {
-                <app-message [message]="item" />
-            }
-        </div>
-        
-    </app-column>
+<div class="messages-wrapper">
+    <div class="messages-tab">
+        <app-column [title]="'My messages'">
+            <div class="col-items-wrapper">
+                @for (item of sortedMessages; track $index) {
+                    <app-message [message]="item" />
+                }
+            </div>
+            <div class="fixed-width">
+                
+            </div>
+        </app-column>
+    </div>
 </div>

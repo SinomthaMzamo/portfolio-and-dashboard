@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { TextInputComponent } from "../fields/text-input/text-input.component";
 import { TextareaComponent } from "../fields/textarea/textarea.component";
 import { DateRangeComponent } from "../fields/date-range/date-range.component";
@@ -6,6 +6,8 @@ import { ImageUploaderComponent } from "../image-uploader/image-uploader.compone
 import { TagInputComponent } from "../tag-input/tag-input.component";
 import { ReactiveFormsModule, FormsModule, FormControl, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { LoadingScreenComponent } from "../../shared/loading-screen/loading-screen.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-project-form',
@@ -16,7 +18,9 @@ import { HttpClient } from '@angular/common/http';
     ImageUploaderComponent,
     TagInputComponent,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    LoadingScreenComponent,
+    CommonModule
 ],
   templateUrl: './add-project-form.component.html',
   styleUrl: './add-project-form.component.css'
@@ -31,12 +35,16 @@ export class AddProjectFormComponent {
   });
 
   constructor(private http: HttpClient) {}
+  isLoading = signal(false);
+  showLoadingScreen(){this.isLoading.set(true)};
+  hideLoadingScreen(){this.isLoading.set(false)};
 
   onSubmit(formValue:any) {
   if (!this.projectForm.valid) {
     alert('Please fill out all required fields.');
     return;
   }
+  this.showLoadingScreen();
   const fileList:File[] | null = formValue.image as File[] | null;
   const file = fileList![0];
 
@@ -55,7 +63,10 @@ export class AddProjectFormComponent {
     name: formValue.name,
     description: formValue.description,
     duration: formValue.duration,
-    tags: formValue.tags,
+    tags: formValue.tags.map( (str: string) => ({
+      colour: "green",
+      tag: str
+    })),
     ...fileMeta
   };
 
@@ -75,7 +86,9 @@ export class AddProjectFormComponent {
           }).toPromise();
 
           console.log("✅ File uploaded successfully to S3:", res.item.imgSrc);
+          this.hideLoadingScreen();
           alert("Project created successfully!");
+          window.location.reload();
         } catch (err) {
           console.error("Error uploading to S3:", err);
           alert("Error uploading file to S3");

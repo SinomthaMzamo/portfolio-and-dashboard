@@ -1,0 +1,7 @@
+<div>
+    {{ displayText }}
+    <button type="button" *ngIf="text.length > maxLength" (click)="toggleExpand()">
+      {{ expanded ? 'Show Less' : 'Show More' }}
+    </button>
+  </div>
+  

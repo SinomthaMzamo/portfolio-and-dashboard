@@ -15,5 +15,6 @@ export class ModalComponent {
   onClose() {
     this.visible = false;
     this.close.emit();
+    window.location.reload();
   }
 }

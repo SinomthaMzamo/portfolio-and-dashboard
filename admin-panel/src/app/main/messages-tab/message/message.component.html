@@ -11,7 +11,8 @@
             </div>
             <div class="row body-row">
                 <span class="label">Message:</span>
-                <p class="body">{{message.message}}</p>
+                <app-expandable-text class="body" [text]="message.message" [maxLength]="100"></app-expandable-text>
+                <!-- <p class="body">{{message.message}}</p> -->
             </div>
         </div>
     </div>
@@ -32,5 +33,6 @@
 
         <!-- <textarea class="only-bottom" type="text" placeholder="Start typing your reply"></textarea> -->
         <button class="reply-btn right"><span><i class="fas fa-reply"></i></span>reply</button>
+        <app-loading-screen *ngIf="isLoading()" message="Sending..."></app-loading-screen>
     </div>
 </form>

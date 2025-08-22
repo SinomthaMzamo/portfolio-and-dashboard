@@ -92,7 +92,7 @@ img{
 }
 
 .container{
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     padding: 4em;
     overflow-x: hidden;
@@ -137,6 +137,7 @@ img{
     border-style: solid;
     border-radius: 1rem;
 }
+
 
 .blue{
     background-color: var(--blue-transparent);

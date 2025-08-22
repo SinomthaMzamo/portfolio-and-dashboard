@@ -42,6 +42,7 @@
                 [type]="''"  
                 formControlName="tags"
             />
+            <app-loading-screen *ngIf="isLoading()" message="Submitting your data..."></app-loading-screen>
             <button type="submit" class="form-btn">Release project</button>
         </form>
     </div>

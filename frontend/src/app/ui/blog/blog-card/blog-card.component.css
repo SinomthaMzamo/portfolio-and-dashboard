@@ -17,6 +17,9 @@ img{
     height: fit-content;
     
 }
+.card:hover{
+    transform: scale(1.02);
+}
 .img{
     width: 100%;
     overflow: hidden;
@@ -116,4 +119,10 @@ img{
 .full-form{
     justify-content: center;
     gap: 1.5rem;
+}
+
+@media (max-width: 1016px){
+    .card{
+        margin-bottom: 1rem;
+    }
 }

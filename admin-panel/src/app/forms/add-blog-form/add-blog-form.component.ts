@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { TextInputComponent } from "../fields/text-input/text-input.component";
 import { TextareaComponent } from "../fields/textarea/textarea.component";
 import { DateRangeComponent } from "../fields/date-range/date-range.component";
@@ -8,10 +8,12 @@ import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms'
 import { DateInputComponent } from "../fields/date-input/date-input.component";
 import { HttpClient } from '@angular/common/http';
+import { LoadingScreenComponent } from "../../shared/loading-screen/loading-screen.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-blog-form',
-  imports: [ReactiveFormsModule, FormsModule, TextInputComponent, TextareaComponent, DateRangeComponent, ImageUploaderComponent, TagInputComponent, DateInputComponent],
+  imports: [ReactiveFormsModule, FormsModule, TextInputComponent, TextareaComponent, DateRangeComponent, ImageUploaderComponent, TagInputComponent, DateInputComponent, LoadingScreenComponent, CommonModule],
   templateUrl: './add-blog-form.component.html',
   styleUrl: './add-blog-form.component.css'
 })
@@ -27,9 +29,13 @@ export class AddBlogFormComponent {
   });
 
   constructor(private http: HttpClient) {}
+  isLoading = signal(false);
+  showLoadingScreen(){this.isLoading.set(true)};
+  hideLoadingScreen(){this.isLoading.set(false)};
 
   onSubmit(formValue: any) {
     console.log(formValue);
+    this.showLoadingScreen()
     if (!this.blogForm.valid) {
       alert('Please fill out all required fields.');
       return;
@@ -52,7 +58,10 @@ export class AddBlogFormComponent {
       title: formValue.title,
       introduction: formValue.introduction,
       datePublished: formValue.datePublished,
-      tags: formValue.tags,
+      tags: formValue.tags.map( (str: string) => ({
+        colour: "green",
+        tag: str
+      })),
       url: formValue.url,
       ...fileMeta
     };
@@ -73,7 +82,10 @@ export class AddBlogFormComponent {
             }).toPromise();
   
             console.log("✅ File uploaded successfully to S3:", res.item.imgSrc);
-            alert("Project created successfully!");
+        
+            this.hideLoadingScreen();
+            alert("Blog published successfully!");
+            window.location.reload();
           } catch (err) {
             console.error("Error uploading to S3:", err);
             alert("Error uploading file to S3");

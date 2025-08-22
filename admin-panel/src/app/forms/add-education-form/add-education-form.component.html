@@ -51,7 +51,7 @@
                 [type]="''"  
                 formControlName="skills"
             />
-            
+            <app-loading-screen *ngIf="isLoading()" message="Submitting your data..."></app-loading-screen>
              <!-- password input -->
             <button type="submit" class="form-btn">Post milestone</button>
 

@@ -31,6 +31,7 @@ input, textarea{
     border: 2px groove var(--light-transparent);
     background-color: var(--dark-transparent);
     color: var(--new-accent-white);
+    font-size: medium;
 }
 
 .stretch{
@@ -42,4 +43,12 @@ input, textarea{
     flex-direction: column;
     gap: 0.5rem;
     font-size: 1rem;
+}
+.light-btn:hover{
+    background-color: var(--new-accent-white);
+    color: var(--new-accent-dark);
+}
+.light-btn:focus{
+    background-color: white;
+    color: var(--new-accent-dark);
 }

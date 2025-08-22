@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { TextInputComponent } from "../fields/text-input/text-input.component";
 import { TextareaComponent } from "../fields/textarea/textarea.component";
 import { DateRangeComponent } from "../fields/date-range/date-range.component";
@@ -7,10 +7,12 @@ import { TagInputComponent } from "../tag-input/tag-input.component";
 import { DropdownComponent } from "../fields/dropdown/dropdown.component";
 import { FormGroup, FormControl, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { LoadingScreenComponent } from "../../shared/loading-screen/loading-screen.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-education-form',
-  imports: [ReactiveFormsModule, FormsModule, TextInputComponent, TextareaComponent, DateRangeComponent, ImageUploaderComponent, TagInputComponent, DropdownComponent],
+  imports: [ReactiveFormsModule, FormsModule, TextInputComponent, TextareaComponent, DateRangeComponent, ImageUploaderComponent, TagInputComponent, DropdownComponent, LoadingScreenComponent, CommonModule],
   templateUrl: './add-education-form.component.html',
   styleUrl: './add-education-form.component.css'
 })
@@ -26,8 +28,12 @@ export class AddEducationFormComponent {
   });
 
   constructor(private http: HttpClient) {}
+  isLoading = signal(false);
+  showLoadingScreen(){this.isLoading.set(true)};
+  hideLoadingScreen(){this.isLoading.set(false)};
 
   onSubmit(formValue: any) {
+    this.showLoadingScreen()
     console.log(formValue);
     if (!this.educationForm.valid) {
       alert('Please fill out all required fields.');
@@ -53,7 +59,10 @@ export class AddEducationFormComponent {
       description: formValue.description,
       duration: formValue.duration,
       grade: formValue.grade,
-      tags: formValue.tags,
+      skills: formValue.skills.map((str: string) => ({
+        colour: "green",
+        skill: str
+      })),
       url: formValue.url,
       ...fileMeta
     };
@@ -74,7 +83,9 @@ export class AddEducationFormComponent {
             }).toPromise();
   
             console.log("✅ File uploaded successfully to S3:", res.item.imgSrc);
-            alert("Project created successfully!");
+            this.hideLoadingScreen();
+            alert("Career milestone created successfully!");
+            window.location.reload();
           } catch (err) {
             console.error("Error uploading to S3:", err);
             alert("Error uploading file to S3");

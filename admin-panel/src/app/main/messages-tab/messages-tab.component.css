@@ -1,18 +1,29 @@
-.messages-tab{
-    /* this is in case you need to manage the column from a higher level */
+.messages-wrapper{
     border: 2px solid goldenrod;
     border: none;
     border: 2px solid #f2f3f5;
-    padding: 1rem;
-    width: max-content;
-    height: 48rem;
-    border-radius: 1.5rem;
+    padding: 8px;
+    box-sizing: border-box;
     background: linear-gradient(
     135deg, 
     #f9f9f934 0%,   /* Light shade @30% opacity */
     #edefee1c 2%   /* Dark shade @30% opacity */
-  );
-  box-shadow: 0 0 8px rgba(33, 33, 33, 0.417);
+    );
+    border-radius: 1.5rem;
+    box-shadow: 0 0 8px rgba(89, 89, 89, 0.417);
+
+}
+.messages-tab{
+    /* this is in case you need to manage the column from a higher level */
+    
+    padding: 0.5rem;
+    height: 48rem;
+    width: max-content;
+    
+    
+  
+  overflow-y: auto; /* Enables vertical scrolling */
+  overflow-x: hidden;
 }
 
 .row{
@@ -119,4 +130,8 @@
     );
     border: 1px solid gainsboro;
     border-radius: 0.75rem;
+}
+.fixed-width{
+    width: 34rem;
+    min-height: 8.68rem;
 }
