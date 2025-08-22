@@ -1,4 +1,5 @@
 <div class="messages-wrapper">
+    <app-loading-screen *ngIf="isLoading()" message="Fetching the latest data...."></app-loading-screen>
     <div class="messages-tab">
         <app-column [title]="'My messages'">
             <div class="col-items-wrapper">

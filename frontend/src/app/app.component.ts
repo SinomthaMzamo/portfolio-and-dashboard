@@ -59,6 +59,7 @@ export class AppComponent {
       },
       error: (err) => {
         console.error('API error:', err);
+        this.hideLoadingScreen();
         
       }
     });

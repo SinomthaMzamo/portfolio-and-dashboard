@@ -44,6 +44,7 @@
 .sender{
     font-size: 1.25rem;
     font-weight: 400;
+    text-transform: capitalize;
 }
 .sender-column{
     padding: 0.5rem;
@@ -54,6 +55,7 @@
     font-weight: 400;
     text-align: start;
     padding-top: 0.2rem;
+    text-transform: capitalize;
 
 }
 

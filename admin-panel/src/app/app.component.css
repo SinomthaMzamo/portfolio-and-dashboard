@@ -132,6 +132,7 @@
     display: flex;
     white-space: nowrap;
     justify-content: space-between;
+    position: relative;
     /* background-color: rgba(242, 248, 243, 0.381); */
   }
 
@@ -139,3 +140,41 @@
     display: flex;
     margin-top: 2rem;
   }
+
+.pl-0{
+    padding-left: 0.5rem;
+}
+.pl-1{
+    padding-left: 1rem;
+}
+.pl-1-0{
+    padding-left: 1.5rem;
+}
+.pl-2{
+    padding-left: 2rem;
+}
+.ml-0{
+    margin-left: 0.5rem;
+}
+.ml-1{
+    margin-left: 1rem;
+}
+.ml-1-0{
+    margin-left: 1.5rem;
+}
+.ml-2{
+    margin-left: 2rem;
+}
+.logout{
+    font-size: 2rem;
+    margin: 0 4rem;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+}
+.logout:hover{
+    border: 2px solid gainsboro;
+    background-color: gainsboro;
+    border-radius: 50%;
+    padding: 0.5rem;
+}

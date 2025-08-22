@@ -25,7 +25,7 @@
     flex-direction: column;
     justify-content:center;
     gap: 1.5em;
-    font-size: 1.5em;
+    font-size: clamp(1rem, 3vw, 2rem);
     width: 45%;
     flex-grow: 1;
     

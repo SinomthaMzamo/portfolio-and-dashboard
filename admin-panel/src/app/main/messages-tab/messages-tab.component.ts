@@ -19,7 +19,11 @@ import { ExpandableTextComponent } from "../../shared/expandable-text/expandable
 export class MessagesTabComponent {
   @Input({required: true})messages:MessagesData[] = [
   ];
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {};
+  isLoading = signal(false);
+  showLoadingScreen(){this.isLoading.set(true)};
+  hideLoadingScreen(){this.isLoading.set(false)};
+
   // parent.component.ts
   longDescription: string = 'Hi I’m Sinomtha, a full-stack developer with a passion for building user-centered, cloud-powered web applications. With hands-on experience across design, frontend, backend, and cloud deployment, I take pride in turning ideas into scalable, well-crafted digital products.';
 

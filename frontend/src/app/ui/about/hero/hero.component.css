@@ -290,3 +290,19 @@
         transform: translate(0%, -50%);
     }
 }
+
+@media (max-width: 720px){
+  .cont{
+    height: 180px;
+    width: 360px;
+  }
+  .avatar{
+    height: 180px;
+    width: 180px;
+  }
+  .planet{
+    height: 50px;
+    width: 50px;
+  }
+
+}
