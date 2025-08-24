@@ -14,8 +14,8 @@
         <path d="M9.5 10.5L12 8l2.5 2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
   
-      <div style="font-weight:700; font-size:16px; color:#0b1220;">Drop images here or click to upload</div>
-      <div class="hint">Supported: JPG, JPEG, PNG, GIF, WEBP, SVG — max 5 MB each</div>
+      <div style="font-weight:700; font-size:16px; color:#0b1220;">Drop files here or click to upload</div>
+      <div class="hint">Supported: PDF — max 5 MB each</div>
   
       <div class="upload-actions">
         <label for="image" class="btn" style="cursor:pointer;">Choose files</label>
@@ -25,7 +25,7 @@
       <div class="meta">{{ metaText }}</div>
   
       <input id="image" type="file"
-       accept=".png,.jpg,.jpeg,.gif,.webp,.svg,.pdf"
+       accept=".pdf"
        multiple hidden
        (change)="onFileChange($event)" />
 

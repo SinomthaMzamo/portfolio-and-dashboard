@@ -1,7 +1,8 @@
-import { CommonModule } from '@angular/common';
 import { Component, forwardRef, HostListener } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BaseField } from '../fields/base-field';
+import { ImageUploaderComponent } from '../image-uploader/image-uploader.component';
+
 
 interface FileItem {
   file: File;
@@ -9,10 +10,10 @@ interface FileItem {
 }
 
 @Component({
-  selector: 'app-image-uploader',
-  imports: [CommonModule],
-  templateUrl: './image-uploader.component.html',
-  styleUrls: ['./image-uploader.component.css'],
+  selector: 'app-doc-uploader',
+  imports: [],
+  templateUrl: './doc-uploader.component.html',
+  styleUrl: './doc-uploader.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -21,10 +22,10 @@ interface FileItem {
     }
   ]
 })
-export class ImageUploaderComponent extends BaseField {
+export class DocUploaderComponent extends BaseField {
   readonly MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
   readonly ACCEPTED_TYPES = [
-    'image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/webp', 'image/svg+xml', 'application/pdf'
+    'image/png', 'image/jpeg', 'image/jpg', 'image/gif', 'image/webp', 'image/svg+xml'
   ];
 
   store: FileItem[] = [];
@@ -162,4 +163,5 @@ export class ImageUploaderComponent extends BaseField {
   private notifyChange() {
     this.onChange(this.store.map(f => f.file));
   }
+
 }

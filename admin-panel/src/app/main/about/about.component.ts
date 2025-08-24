@@ -12,11 +12,14 @@ import { ModalComponent } from "../../components/modal/modal.component";
 })
 export class AboutComponent {
   showModal = signal<boolean>(false);
+  formVariant = signal<"avatarUpload" | "docUpload">('avatarUpload');
   
 
-  onIconClick() {
+  onIconClick(variant: "avatarUpload" | "docUpload") {
     this.openModal();
-    console.log("Is this thing still on?", this.showModal())
+   
+    this.formVariant.set(variant);
+    console.log("Is this thing still on?", this.showModal(), this.formVariant())
 
   }
 

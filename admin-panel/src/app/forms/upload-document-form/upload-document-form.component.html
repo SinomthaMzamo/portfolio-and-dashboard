@@ -1,0 +1,15 @@
+<div class="form-wrapper">
+    <div class="scroll-inner">
+        <div class="form-title">Upload new avatar image</div>
+        <form class="form" [formGroup]="uploadDocForm" (ngSubmit)="onSubmit(uploadDocForm.value)">
+                        
+            <!-- image uploader -->
+            <div class="f-group">
+                <label for="document">Upload CV</label>
+                <app-image-uploader formControlName="document" [label]="''" [id]="''" [name]="''" [type]="''"   ></app-image-uploader>
+            </div>                
+                <app-loading-screen *ngIf="isLoading()" message="Uploading your image..."></app-loading-screen>
+            <button type="submit" class="form-btn">Upload</button>
+        </form>
+    </div>    
+</div>

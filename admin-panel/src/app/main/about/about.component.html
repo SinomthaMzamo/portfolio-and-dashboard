@@ -7,7 +7,7 @@
                 <div class="img">
                     <img src="https://sinomtha-portfolio.s3.af-south-1.amazonaws.com/Sinomtha_Mzamo_Picture.png" alt="profile photo"/>
                 </div>
-                <i [class]="'upload-img fas fa-plus-circle'" (click)="onIconClick()"></i>
+                <i [class]="'upload-img fas fa-plus-circle'" (click)="onIconClick('avatarUpload')"></i>
             </div>
             
             <div class="welcome-msg">
@@ -16,6 +16,7 @@
                 across design, frontend, backend, and cloud deployment, I take pride in
                 turning ideas into scalable, well-crafted digital products.
             </div>
+            <button class="upload-cv" (click)="onIconClick('docUpload')"><span><i class="fas fa-upload"></i></span>Update CV</button>
         </div>
         
     </div>
@@ -24,5 +25,5 @@
     [visible]="showModal()" 
     [title]="''" 
     (close)="closeModal()">
-    <app-poly-form [variant]="'avatarUpload'" />
+    <app-poly-form [variant]="formVariant()" />
 </app-modal>

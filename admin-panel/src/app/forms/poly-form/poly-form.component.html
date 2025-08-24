@@ -26,6 +26,12 @@
       
     </ng-container>
 
+    <ng-container *ngSwitchCase="'docUpload'">
+      <!-- add blog form -->
+       <app-upload-document-form/>
+      
+    </ng-container>
+
     <!-- fallback -->
     <ng-container *ngSwitchDefault>
         <p>No form available</p>

@@ -16,7 +16,7 @@ export class NavbarComponent {
   }
 
   downloadCV() {
-    window.open('CV.pdf', '_blank');
+    window.open('https://sinomtha-portfolio.s3.af-south-1.amazonaws.com/Sinomtha_Mzamo_CV.pdf', '_blank');
   }
 
   onItemClicked() {

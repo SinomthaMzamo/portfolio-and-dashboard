@@ -35,6 +35,18 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
                 message: 'No work experience yet.'+path,
             })
         };
+
+        if (method === "OPTIONS") {
+            return {
+                statusCode: 200,
+                headers: {
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Headers": "*",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+                },
+                body: "",
+            };
+        }
         
         if(method === "GET"){
             if(path.endsWith("/experiences")){
@@ -73,7 +85,7 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
                 } else if(endpoint === "blogs"){
                     response = await batchPostRequestHandler(path, TableName.BLOGS, response as Response, requestBody as Entry[]);
                 }
-            } else if (path.endsWith("/experiences") || path.endsWith("/education") || path.endsWith("/projects") || path.endsWith("/blogs") || path.endsWith("/avatar")){
+            } else if (path.endsWith("/experiences") || path.endsWith("/education") || path.endsWith("/projects") || path.endsWith("/blogs") || path.endsWith("/avatar") || path.endsWith("/cv")){
                 if(path.endsWith("/experiences")){
                     // add a new work experience entry to dynamodb table
                     response = await postRequestHandler(path, TableName.EXPERIENCES, response as Response, requestBody);
@@ -83,7 +95,7 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
                     response = await postRequestHandler(path, TableName.PROJECTS, response as Response, requestBody);
                 } else if(path.endsWith("/blogs")){
                     response = await postRequestHandler(path, TableName.BLOGS, response as Response, requestBody);
-                } else if (path.endsWith("/avatar")){
+                } else if (path.endsWith("/avatar") || path.endsWith("/cv")){
                     response = await postRequestHandler(path, TableName.BLOGS, response as Response, requestBody);
                 }
             }

@@ -65,3 +65,12 @@ img{
     justify-content: space-between;
     height: 100%;
 }
+
+.upload-cv span{
+    margin: 0 0.5rem;
+    font-size: 1rem;
+}
+button{
+    font-size: 1rem;
+    font-family: inherit;
+}

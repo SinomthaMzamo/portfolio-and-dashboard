@@ -1,36 +1,35 @@
 import { Component, signal } from '@angular/core';
-import { ImageUploaderComponent } from "../image-uploader/image-uploader.component";
 import { LoadingScreenComponent } from "../../shared/loading-screen/loading-screen.component";
+import { ImageUploaderComponent } from "../image-uploader/image-uploader.component";
 import { HttpClient } from '@angular/common/http';
-import { ReactiveFormsModule, FormsModule, FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { PolyFormComponent } from "../poly-form/poly-form.component";
 
 @Component({
-  selector: 'app-upload-image-form',
-  imports: [ReactiveFormsModule, FormsModule, CommonModule, ImageUploaderComponent, LoadingScreenComponent],
-  templateUrl: './upload-image-form.component.html',
-  styleUrl: './upload-image-form.component.css'
+  selector: 'app-upload-document-form',
+  imports: [ReactiveFormsModule, FormsModule, CommonModule, LoadingScreenComponent, ImageUploaderComponent],
+  templateUrl: './upload-document-form.component.html',
+  styleUrl: './upload-document-form.component.css'
 })
-export class UploadImageFormComponent {
-  uploadImageForm = new FormGroup({
-    image: new FormControl(null),
+export class UploadDocumentFormComponent {
+  uploadDocForm = new FormGroup({
+    document: new FormControl(null),
     });
   
     constructor(private http: HttpClient) {}
     isLoading = signal(false);
     showLoadingScreen(){this.isLoading.set(true)};
     hideLoadingScreen(){this.isLoading.set(false)};
-
-    
   
     onSubmit(formValue: any) {
       console.log(formValue);
       this.showLoadingScreen()
-      if (!this.uploadImageForm.valid) {
+      if (!this.uploadDocForm.valid) {
         alert('Please fill out all required fields.');
         return;
       }
-      const fileList:File[] | null = formValue.image as File[] | null;
+      const fileList:File[] | null = formValue.document as File[] | null;
       const file = fileList![0];
     
       let fileMeta: any = {};
@@ -48,7 +47,7 @@ export class UploadImageFormComponent {
         ...fileMeta
       };
     
-      const apiUrl = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/avatar';
+      const apiUrl = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/cv';
     
       this.http.post<any>(apiUrl, body, {
         headers: { 'Content-Type': 'application/json' }

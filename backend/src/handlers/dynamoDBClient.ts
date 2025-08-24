@@ -91,10 +91,17 @@ export async function postRequestHandler(path:string, tableName:TableName, respo
   
   // Check if request has file info
   if (request.fileName && request.fileType) {
-    if(path.endsWith("/avatar")){
-      const BASE_KEY = "Sinomtha_Mzamo_Picture.png";
+    if(path.endsWith("/avatar") || path.endsWith("/cv")){
+      let BASE_KEY:string;
+      let timestampedKey:string;
       const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-      const timestampedKey = `Sinomtha_Mzamo_Picture_${timestamp}.png`;
+      if(path.endsWith("/cv")){
+        BASE_KEY = "Sinomtha_Mzamo_CV.pdf";
+        timestampedKey = `Sinomtha_Mzamo_CV_${timestamp}.pdf`;
+      } else{
+        BASE_KEY = "Sinomtha_Mzamo_Picture.png";
+        timestampedKey = `Sinomtha_Mzamo_Picture_${timestamp}.png`;
+      }
       // copy the file to time-stamped
       try {
         // Check if base file exists
