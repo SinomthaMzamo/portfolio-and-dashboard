@@ -1,9 +1,12 @@
 .section{
     background-color: var(--new-accent-white);
+    min-height: 100vh;
 }
 
 .container{
     /* box-sizing: border-box; */
+    height: 100%;
+    padding-top: 2rem;
 }
 
 .section-title{
@@ -43,14 +46,16 @@ h1, h2, h3, h4, h5, h6, p{
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 1rem; /* row + column gap */
-    /* row-gap: 3rem; */
+    column-gap: 1rem; /* row + column gap */
+    row-gap: 1rem;
     align-items: stretch; /* make all items in a row match the tallest */
     margin-top: 4rem;
+    padding-bottom: 4rem;
+    box-sizing: border-box;
   }
   
   .projects-content > * {
-    height: 540px;
+    height: 530px;
   }
   
   /* Medium screens: 2 columns */

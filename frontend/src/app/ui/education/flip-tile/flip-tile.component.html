@@ -5,7 +5,7 @@
           <!-- front content -->
           <div class="item light item-1 col gap-2">
             <div class="subtitle duration right shadow light">
-                {{education.duration.startDate}} - {{education.duration.endDate}}
+                {{formatDate(education.duration.startDate)}} - {{formatDate(education.duration.endDate)}}
             </div>
             <div class="bottom dark col gap-1-0">
                 <div class="col gap-0">
@@ -19,7 +19,7 @@
                 <div class="img light-border">
                     <img [src]="education.imgSrc" [alt]="education.imgSrc.split('.png')[0]">
                 </div>              
-                <i class="icon fas fa-arrow-right right"></i>
+                <i class="icon fas fa-arrow-right right" (click)="toggleFlip(); $event.stopPropagation()"></i>
             </div>
           </div>
         </div>
@@ -43,6 +43,7 @@
                     }
                 </div>
             </div>
+            <i class="white-text icon fas fa-arrow-left left" (click)="toggleFlip(); $event.stopPropagation()"></i>
           </div>
            
         </div>

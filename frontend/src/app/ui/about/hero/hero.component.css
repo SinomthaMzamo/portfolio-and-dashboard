@@ -141,7 +141,7 @@
   .avatar{
     position: absolute;
     /* background: rgba( 255, 209, 0, 0.7 ); */
-    background-image: url('./assets/Sinomtha_Mzamo_Picture.jpg'); /* Relative path */
+    background-image: url('https://sinomtha-portfolio.s3.af-south-1.amazonaws.com/Sinomtha_Mzamo_Picture.png'); /* Relative path */
     background-size: cover; /* Ensures the image covers the entire div */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents tiling of the image */

@@ -1,5 +1,4 @@
-<div class="flip-card" [class.flipped]="flipped" (mouseenter)="toggleFlip(true)"
-(mouseleave)="toggleFlip(false)">
+<div class="flip-card" [class.flipped]="flipped">
     <div class="flip-card-inner">
   
       <!-- Front side -->
@@ -10,10 +9,10 @@
                 <div class="exp-role">{{header.roleDetails.role}}</div>
                 <div class="bottom row">
                     <div class="duration-mode">
-                        <div class="duration">{{duration.startDate}} - {{duration.endDate}}</div>
+                        <div class="duration">{{experienceEntry.header.duration.startDate}} - {{header.duration.endDate}}</div>
                         <div class="mode">{{header.mode}}</div>
                     </div>
-                    <i class="material-icons icon">subdirectory_arrow_right</i>
+                    <i class="material-icons icon" (click)="toggleFlip(); $event.stopPropagation()">subdirectory_arrow_right</i>
                 </div>
             </div>          
         </div>
@@ -42,6 +41,7 @@
                       {{item}}
                     </div>
                   }
+                  <i class="material-icons left-icon" (click)="toggleFlip(); $event.stopPropagation()">subdirectory_arrow_left</i>
                 </div>
             </div>
             
@@ -55,14 +55,13 @@
                     (click)="onTabSelected(i)">
                     {{ tab.name }}
                     </div>
-                    <div
-                    class="details"
-                    *ngIf="i === selectedTabIndex">
-                    <div class="info-pill" *ngFor="let pill of tab.notableOutcomes">
-                        <i class="fas fa-bolt"></i> {{ pill }}
-                    </div>
+                    <div class="details" *ngIf="i === selectedTabIndex">
+                      <div class="info-pill" *ngFor="let pill of tab.notableOutcomes">
+                          <i class="fas fa-bolt"></i> {{ pill }}
+                      </div>
                     </div>
                 </ng-container>
+                <i class="material-icons left-icon" (click)="toggleFlip(); $event.stopPropagation()">subdirectory_arrow_left</i>
                 </div>
             </div>
 

@@ -11,5 +11,13 @@ import { BadgeComponent } from "../../../shared/badge/badge.component";
 export class FlipTileComponent {
   @Input({required:true}) education!: Education;
   flipped:boolean = false;
+  formatDate(dateString: string): string {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', { month: 'short', year: 'numeric' });
+  }
 
+  toggleFlip() {
+    this.flipped = !this.flipped;
+  }
 }

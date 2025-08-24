@@ -1,3 +1,9 @@
+.card{
+    display: flex;
+    flex-direction: column;
+    gap: 8rem;
+    justify-content: space-between;
+}
 .about{
     display: flex;
     flex-direction: column;
@@ -29,9 +35,33 @@
     overflow: hidden;
     margin: 0 auto;
 }
-
+/* .img:hover{
+    transform: scale(1.008);
+} */
 img{
     height: 100%;
     width: 100%;
     object-fit: cover;
+}
+.upload{
+    position: relative;
+}
+.upload-img{
+    position: absolute;
+    color: rgb(231, 243, 241);
+    bottom: 0.5rem;
+    left: 60%;
+    font-size: xx-large;
+    border: 0 solid transparent;
+    border-radius: 1rem;
+    box-shadow: 2px 4px 0px rgba(33, 177, 141, 0.417);
+}
+.hidden{
+    /* display: none; */
+}
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }

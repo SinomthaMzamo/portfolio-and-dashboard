@@ -5,13 +5,14 @@ import { AddEducationFormComponent } from "../add-education-form/add-education-f
 import { AddExperienceFormComponent } from "../add-experience-form/add-experience-form.component";
 import { AddProjectFormComponent } from "../add-project-form/add-project-form.component";
 import { FormsModule } from '@angular/forms'
+import { UploadImageFormComponent } from "../upload-image-form/upload-image-form.component";
 
 @Component({
   selector: 'app-poly-form',
-  imports: [CommonModule, AddBlogFormComponent, AddEducationFormComponent, AddExperienceFormComponent, AddProjectFormComponent],
+  imports: [CommonModule, AddBlogFormComponent, AddEducationFormComponent, AddExperienceFormComponent, AddProjectFormComponent, UploadImageFormComponent],
   templateUrl: './poly-form.component.html',
   styleUrl: './poly-form.component.css'
 })
 export class PolyFormComponent {
-  @Input({required:true}) variant!: 'project' | 'education' | 'experience' | 'blog';
+  @Input({required:true}) variant!: 'project' | 'education' | 'experience' | 'blog' | 'avatarUpload';
 }

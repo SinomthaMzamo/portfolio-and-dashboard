@@ -1,13 +1,11 @@
-import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Education } from '../../models/education.model';
 import { CommonModule } from '@angular/common';
 import { FlipTileComponent } from "./flip-tile/flip-tile.component";
-import { HttpClient } from '@angular/common/http';
-import { CarouselComponent } from "../../shared/carousel/carousel.component";
 
 @Component({
   selector: 'app-education',
-  imports: [CommonModule, FlipTileComponent, CarouselComponent],
+  imports: [CommonModule, FlipTileComponent],
   templateUrl: './education.component.html',
   styleUrl: './education.component.css'
 })
@@ -69,4 +67,24 @@ export class EducationComponent {
       imgSrc: 'wghs-resized.png'
     },
   ]
+
+  // Sort newest first
+  get sorted(): Education[] {
+    return this.allEducation
+      // .filter(msg => !msg.hasReplied) 
+      .sort((a, b) => {
+        const tA = a.duration.endDate ? Date.parse(a.duration.endDate) : 0;
+        const tB = b.duration.endDate ? Date.parse(b.duration.endDate) : 0;
+        const aMs = Number.isNaN(tA) ? 0 : tA;
+        const bMs = Number.isNaN(tB) ? 0 : tB;
+        return bMs - aMs; // newest first
+      });
+  }
+
+  // Helper to format the timestamp for display
+  formatDate(dateString: string): string {
+    if (!dateString) return '';
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', { month: 'short', year: 'numeric' });
+  }
 }

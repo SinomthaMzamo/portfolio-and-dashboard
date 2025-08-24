@@ -1,12 +1,28 @@
-<app-card class="about">
-    <app-title-icon [title]="'About me'" [icon]="'fas fa-pencil-square'"></app-title-icon>
-    <div class="img">
-        <img src="AVATAR.jpeg" alt="profile photo"/>
+<div class="card">
+    <div class="about">
+        <div class="wrapper">
+            <app-title-icon [title]="'About me'" [icon]="'fas fa-pencil-square'"></app-title-icon>
+            
+            <div class="upload">
+                <div class="img">
+                    <img src="https://sinomtha-portfolio.s3.af-south-1.amazonaws.com/Sinomtha_Mzamo_Picture.png" alt="profile photo"/>
+                </div>
+                <i [class]="'upload-img fas fa-plus-circle'" (click)="onIconClick()"></i>
+            </div>
+            
+            <div class="welcome-msg">
+                Hi I’m Sinomtha, a full-stack developer with a passion for building
+                user-centered, cloud-powered web applications. With hands-on experience
+                across design, frontend, backend, and cloud deployment, I take pride in
+                turning ideas into scalable, well-crafted digital products.
+            </div>
+        </div>
+        
     </div>
-    <div class="welcome-msg">
-        Hi I’m Sinomtha, a full-stack developer with a passion for building
-         user-centered, cloud-powered web applications. With hands-on experience
-          across design, frontend, backend, and cloud deployment, I take pride in
-           turning ideas into scalable, well-crafted digital products.
-    </div>
-</app-card>
+</div>
+<app-modal class="hidden"
+    [visible]="showModal()" 
+    [title]="''" 
+    (close)="closeModal()">
+    <app-poly-form [variant]="'avatarUpload'" />
+</app-modal>

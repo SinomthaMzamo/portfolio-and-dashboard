@@ -1,0 +1,7 @@
+<div class="expandable">
+    <p>{{ displayText }}</p>
+    <button type="button" *ngIf="text.length > maxLength" (click)="toggleExpand()">
+      {{ expanded ? 'Show Less' : 'Show More' }}
+    </button>
+  </div>
+  

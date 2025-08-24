@@ -197,6 +197,20 @@ export class WorkExperienceComponent {
         ]
       }
       
-    ]
+ ];
+ // Convert "Jan 2023" → Date object
+ parseMonthYear(dateStr: string): number {
+  if (!dateStr) return 0;
+  return Date.parse(`01 ${dateStr}`); // adds a day to make it valid
+}
+
+get sorted(): ExperienceEntry[] {
+  return this.allWorkExperience.sort((a, b) => {
+    const tA = this.parseMonthYear(a.header.duration.startDate);
+    const tB = this.parseMonthYear(b.header.duration.startDate);
+    return tB - tA; // newest first
+  });
+}
+
 
 }

@@ -1,7 +1,8 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { S3Client } from "@aws-sdk/client-s3";
+import { CopyObjectCommand, HeadObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { getAllItems, Entry, batchPostRequestHandler, getRequestHandler, postRequestHandler, lastIndex } from './dynamoDBClient.ts';
 import { TableName, Response } from './types.ts';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 
 
@@ -14,6 +15,7 @@ export type GetAllResponseBody = {
 
 export const s3 = new S3Client({ region: process.env.AWS_REGION || "af-south-1" });
 export const BUCKET_NAME = process.env.S3_BUCKET_NAME || "sinomtha-portfolio";
+
 
 
 export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
@@ -71,7 +73,7 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
                 } else if(endpoint === "blogs"){
                     response = await batchPostRequestHandler(path, TableName.BLOGS, response as Response, requestBody as Entry[]);
                 }
-            } else if (path.endsWith("/experiences") || path.endsWith("/education") || path.endsWith("/projects") || path.endsWith("/blogs")){
+            } else if (path.endsWith("/experiences") || path.endsWith("/education") || path.endsWith("/projects") || path.endsWith("/blogs") || path.endsWith("/avatar")){
                 if(path.endsWith("/experiences")){
                     // add a new work experience entry to dynamodb table
                     response = await postRequestHandler(path, TableName.EXPERIENCES, response as Response, requestBody);
@@ -80,6 +82,8 @@ export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGat
                 } else if(path.endsWith("/projects")){
                     response = await postRequestHandler(path, TableName.PROJECTS, response as Response, requestBody);
                 } else if(path.endsWith("/blogs")){
+                    response = await postRequestHandler(path, TableName.BLOGS, response as Response, requestBody);
+                } else if (path.endsWith("/avatar")){
                     response = await postRequestHandler(path, TableName.BLOGS, response as Response, requestBody);
                 }
             }

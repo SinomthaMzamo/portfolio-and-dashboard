@@ -108,10 +108,14 @@ body {
   }
   #mobile-tabs.tab-card {
     display: block;
+    background-color: white;
+  }
+  #mobile-tabs .tab{
+    border-bottom: 2px solid var(--new-accent-white);
   }
 }
 /* Flip card styles */
-.flip-card:hover .flip-card-inner,
+.flip-card-front .flip-card-inner,
 .flip-card.flipped .flip-card-inner {
 transform: rotateY(180deg);
 }
@@ -227,6 +231,12 @@ transform: rotateY(180deg);
     padding: 0;
     margin: 0;
     font-size: 3em;
+  }
+  .left-icon{
+    padding: 0;
+    flex-grow: 0;
+    color: var(--new-accent-white);
+    font-size: 3rem;
   }
 
   .fa-bolt{

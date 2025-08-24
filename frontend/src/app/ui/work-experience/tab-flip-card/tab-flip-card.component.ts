@@ -27,6 +27,7 @@ export class TabFlipCardComponent {
 
   ngOnInit(): void {
     this.updateSelectedTab();
+    console.log(this.experienceEntry);
   }
 
   onTabSelected(index: number): void {
@@ -47,7 +48,7 @@ export class TabFlipCardComponent {
     }
   }
 
-  toggleFlip(state:boolean) {
-    this.flipped = state;
+  toggleFlip() {
+    this.flipped = !this.flipped;
   }
 }

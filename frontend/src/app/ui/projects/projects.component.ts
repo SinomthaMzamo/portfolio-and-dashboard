@@ -12,6 +12,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProjectsComponent {
   @Input({required:true}) allProjects!:Project[];
+
+    get sorted(): Project[] {
+        return this.allProjects
+          // .filter(msg => !msg.hasReplied) 
+          .sort((a, b) => {
+            const tA = a.duration.endDate ? Date.parse(a.duration.endDate) : 0;
+            const tB = b.duration.endDate ? Date.parse(b.duration.endDate) : 0;
+            const aMs = Number.isNaN(tA) ? 0 : tA;
+            const bMs = Number.isNaN(tB) ? 0 : tB;
+            return bMs - aMs; // newest first
+          });
+      }
+    
+      
   
     // for local testing and development
     projectsList: Project[] = [

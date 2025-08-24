@@ -1,5 +1,6 @@
 .section{
     background-color: var(--accent-white);
+    padding-top: 4rem;
 }
 .section-title{
     color: var(--new-accent-dark);
@@ -34,7 +35,9 @@
   @media (min-width: 1216px) and (max-width: 1818px) {
     .experience-content {
       grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
     }
+    
   }
   
   /* Large screens: 3 columns */

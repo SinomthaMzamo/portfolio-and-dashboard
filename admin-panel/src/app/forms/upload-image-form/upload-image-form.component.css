@@ -1,0 +1,11 @@
+:host{
+    display: block;
+    width: clamp(24rem, 80vw, 52rem);
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+    /* z-index: 1000; */
+}
+
+:host > * {
+    scroll-margin-top: 2rem
+}

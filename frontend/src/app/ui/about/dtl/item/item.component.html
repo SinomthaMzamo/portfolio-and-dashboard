@@ -2,5 +2,9 @@
   <p>{{title}}</p>
 </div>
 <div class="details">
-  <time>{{ year }}</time> {{ text }}
+  <time>{{ year }}</time>
+  <p>{{ displayText }}</p>
+    <button class="btn-expand" type="button" *ngIf="text.length > maxLength" (click)="toggleExpand()">
+      {{ expanded ? 'Show Less' : 'Show More' }}
+    </button> 
 </div>

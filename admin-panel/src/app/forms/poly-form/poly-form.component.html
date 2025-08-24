@@ -20,10 +20,16 @@
       
     </ng-container>
 
+    <ng-container *ngSwitchCase="'avatarUpload'">
+      <!-- add blog form -->
+       <app-upload-image-form/>
+      
+    </ng-container>
+
     <!-- fallback -->
     <ng-container *ngSwitchDefault>
         <p>No form available</p>
-      </ng-container>
+    </ng-container>
       
 </ng-container>
   

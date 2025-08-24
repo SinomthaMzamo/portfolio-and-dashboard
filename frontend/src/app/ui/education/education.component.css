@@ -1,6 +1,7 @@
 .section{
     background-color: var(--new-accent-dark);
     height: 100vh;
+    padding-top: 4rem;
 }
 
 .container{
@@ -22,6 +23,7 @@
     /* row-gap: 3rem; */
     align-items: stretch; /* make all items in a row match the tallest */
     margin-top: 4rem;
+    
   }
   
   .education-content > * {

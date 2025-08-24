@@ -1,7 +1,7 @@
 import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { BatchWriteCommand, DynamoDBDocumentClient, PutCommand, ScanCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { BlogPost, Education, ExperienceEntry, Project, TableName, Response } from "./types.ts";
-import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { CopyObjectCommand, HeadObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { v4 as uuidv4 } from 'uuid';
 import { BUCKET_NAME, s3 } from "./app.ts";
@@ -91,6 +91,42 @@ export async function postRequestHandler(path:string, tableName:TableName, respo
   
   // Check if request has file info
   if (request.fileName && request.fileType) {
+    if(path.endsWith("/avatar")){
+      const BASE_KEY = "Sinomtha_Mzamo_Picture.png";
+      const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+      const timestampedKey = `Sinomtha_Mzamo_Picture_${timestamp}.png`;
+      // copy the file to time-stamped
+      try {
+        // Check if base file exists
+        await s3.send(new HeadObjectCommand({ Bucket: BUCKET_NAME, Key: BASE_KEY }));
+        // upload new replacement
+        await s3.send(new CopyObjectCommand({
+          Bucket: BUCKET_NAME,
+          CopySource: `${BUCKET_NAME}/${BASE_KEY}`,
+          Key: timestampedKey
+          }));
+      } catch (err:any) {
+          if (err.name !== 'NotFound') {
+            response.body = JSON.stringify({error: "we dead, /avatar error hit!\n"+err, uploadUrl:"placeholder.com"});
+            response.statusCode = 200
+            // return response;
+          }
+          // No previous file exists, skip copy
+      }
+      // Generate signed URL for uploading the latest version
+      const uploadCommand = new PutObjectCommand({
+        Bucket: BUCKET_NAME,
+        Key: BASE_KEY,
+      });
+
+      const uploadUrl = await getSignedUrl(s3, uploadCommand, { expiresIn: 3600 });
+
+      response.body = JSON.stringify({message: "image uploaded to: "+`https://${BUCKET_NAME}.s3.af-south-1.amazonaws.com/${BASE_KEY}`, uploadUrl:uploadUrl});
+      response.statusCode = 200;
+      return response;
+      // confirm url is unchanged
+    } else{
+      // generate unique key
       const s3Key = `uploads/${request.id}-${request.fileName}`;
 
       // Generate pre-signed URL
@@ -115,6 +151,7 @@ export async function postRequestHandler(path:string, tableName:TableName, respo
           uploadUrl,
           item: request
       });
+    } 
   } else {
       // Normal DB-only case
       response.body = JSON.stringify({ message: `New ${tableName} entry added successfully`, item: request });

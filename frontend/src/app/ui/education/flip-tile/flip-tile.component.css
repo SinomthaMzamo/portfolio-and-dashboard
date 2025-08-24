@@ -83,7 +83,7 @@ h1, h2, h3, h4, h5, h6, p{
   color: black;
 }
 
-.flip-card:hover .flip-card-inner,
+.flip-card-front .flip-card-inner,
 .flip-card.flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
@@ -105,10 +105,17 @@ h1, h2, h3, h4, h5, h6, p{
     align-self: flex-end;
     width: max-content;
 }
+.left{
+  align-self: flex-start;
+  width: max-content;
+}
 .col{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+}
+.white-text{
+  color: aliceblue;
 }
 .title{
     font-size: 0.8rem;
