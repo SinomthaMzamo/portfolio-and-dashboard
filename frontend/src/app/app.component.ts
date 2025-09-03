@@ -53,7 +53,8 @@ export class AppComponent {
           this.hideLoadingScreen();
           if (res.data) {
             this.siteData.set(res.data);
-            console.log(res.data);
+            console.log("This is the response", res.data);
+            console.log("This is the education data", this.siteData().education);
           }
         }, 1500);   
       },

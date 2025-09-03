@@ -4,6 +4,12 @@
     --orbit-duration: 10s;    /* Default duration of animation */
 }
 
+:host{
+  display: flex;
+  justify-content: center;  /* Horizontal */
+  align-items: center;
+}
+
 .cont{
     /* margin:right; */
     position: relative;

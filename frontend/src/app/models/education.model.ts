@@ -4,7 +4,8 @@ export type Education = {
     duration: {startDate: string, endDate: string},
     grade: "A-" | "A- with 5 distinctions" | "Incomplete",
     skills: Skill[],
-    imgSrc: string
+    imgSrc: string,
+    description:string,
 }
 
 export type Skill = {

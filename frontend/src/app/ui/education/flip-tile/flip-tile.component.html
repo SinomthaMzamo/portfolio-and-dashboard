@@ -19,7 +19,7 @@
                 <div class="img light-border">
                     <img [src]="education.imgSrc" [alt]="education.imgSrc.split('.png')[0]">
                 </div>              
-                <i class="icon fas fa-arrow-right right" (click)="toggleFlip(); $event.stopPropagation()"></i>
+                <i class="icon fas fa-arrow-right right" (click)="toggleFlip()"></i>
             </div>
           </div>
         </div>
@@ -27,13 +27,14 @@
           <!-- back content -->
           <div class="fill item light col gap-2 p-1-0">
             <div class="project-description">
-              Messages are password-protected and self-destruct after a single view. 
-              Hosted using AWS Elastic Beanstalk and S3 static hosting. 
-              Focused on privacy, simplicity, and cloud deployment.
+                <p>{{ displayText }}</p>
+                <button class="btn-expand" type="button" *ngIf="education.description!.length > maxLength" (click)="toggleExpand(); $event.stopPropagation()">
+                {{ expanded ? 'Show Less' : 'Show More' }}
+                </button> 
             </div>
             <div class="qualification-info">
-                <div class="qualification">{{education.qualification}}</div>
-                <div class="grade">{{education.grade}}</div>
+                <!-- <div class="qualification">{{education.qualification}}</div> -->
+                <div class="grade">Grade: {{education.grade}}</div>
             </div>
             <div class="skills-wrapper">
                 <small>skills</small>
@@ -43,7 +44,7 @@
                     }
                 </div>
             </div>
-            <i class="white-text icon fas fa-arrow-left left" (click)="toggleFlip(); $event.stopPropagation()"></i>
+            <i class="white-text icon fas fa-arrow-left left" (click)="toggleFlip()"></i>
           </div>
            
         </div>

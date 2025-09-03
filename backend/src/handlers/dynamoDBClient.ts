@@ -124,6 +124,7 @@ export async function postRequestHandler(path:string, tableName:TableName, respo
       const uploadCommand = new PutObjectCommand({
         Bucket: BUCKET_NAME,
         Key: BASE_KEY,
+        CacheControl: 'no-cache, no-store, must-revalidate'
       });
 
       const uploadUrl = await getSignedUrl(s3, uploadCommand, { expiresIn: 3600 });

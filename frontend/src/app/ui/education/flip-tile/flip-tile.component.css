@@ -60,6 +60,8 @@ h1, h2, h3, h4, h5, h6, p{
   border-radius: 2rem;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(255, 255, 255, 0.15);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 
 }
 
@@ -83,7 +85,6 @@ h1, h2, h3, h4, h5, h6, p{
   color: black;
 }
 
-.flip-card-front .flip-card-inner,
 .flip-card.flipped .flip-card-inner {
   transform: rotateY(180deg);
 }
@@ -115,7 +116,7 @@ h1, h2, h3, h4, h5, h6, p{
     justify-content: space-between;
 }
 .white-text{
-  color: aliceblue;
+  color: rgb(36, 79, 46);
 }
 .title{
     font-size: 0.8rem;
@@ -230,6 +231,19 @@ h1, h2, h3, h4, h5, h6, p{
 }
 .institution{
   font-size: 1.2rem;
+  font-weight: 500;
+}
+
+ /* expandable text */
+ .btn-expand {
+  background: none;
+  border: none;
+  color: rgb(79, 79, 85);
+  cursor: pointer;
+  text-decoration: underline;
+  /* margin-left: 5px; */
+}
+.grade{
   font-weight: 500;
 }
 

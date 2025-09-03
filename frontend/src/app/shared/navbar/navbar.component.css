@@ -49,7 +49,7 @@
   }
   
   /* Responsive Styles */
-  @media (max-width: 1270px) {
+  @media (max-width: 1284px) {
     .hamburger {
       display: block;
     }

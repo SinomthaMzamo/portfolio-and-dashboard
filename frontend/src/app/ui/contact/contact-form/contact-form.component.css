@@ -52,3 +52,12 @@ input, textarea{
     background-color: white;
     color: var(--new-accent-dark);
 }
+
+@media (max-width: 800px){
+    strong{
+      font-size: 0.8rem;
+    }
+    p{
+        font-size: 0.8rem;
+    }
+  }

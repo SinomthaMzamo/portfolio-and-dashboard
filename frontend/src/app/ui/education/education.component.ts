@@ -28,7 +28,8 @@ export class EducationComponent {
         { skill: "oop", colour: "green" },
         { skill: "full-stack development", colour: "mustard" }
       ],
-      imgSrc: 'wtc-logo-resized.png'
+      imgSrc: 'wtc-logo-resized.png',
+      description: ''
     },
     {
       institution: "University of the Free State",
@@ -46,7 +47,8 @@ export class EducationComponent {
         { skill: "scientific computing", colour: "pink" },
         { skill: "mathematical modelling", colour: "gray" }
       ],
-      imgSrc: 'ufs-resized.png'
+      imgSrc: 'ufs-resized.png',
+      description: ''
     },
     {
       institution: "Wynberg Girls' High School",
@@ -64,7 +66,8 @@ export class EducationComponent {
         { skill: "level 3 first-aid", colour: "gray" },
         { skill: "public speaking", colour: "mustard" }
       ],
-      imgSrc: 'wghs-resized.png'
+      imgSrc: 'wghs-resized.png',
+      description: ''
     },
   ]
 
