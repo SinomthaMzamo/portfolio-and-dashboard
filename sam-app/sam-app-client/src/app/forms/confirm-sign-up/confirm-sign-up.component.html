@@ -1,0 +1,9 @@
+<form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+    <h3 class="form-title">Confirm Sign up</h3>
+    <div class="form-group">
+        <label for="code">OTP</label>
+        <input ngModel required type="text" name="code" id="code" placeholder="Enter the code sent to your email address to get authenticated.">
+    </div>
+    
+    <button class="submit-btn">Sign Up</button>
+</form>

@@ -1,0 +1,3 @@
+<app-sign-up (signedUp)="onSignedUp($event)"></app-sign-up>
+<app-confirm-sign-up *ngIf="username" [username]="username"></app-confirm-sign-up>
+<app-sign-in/>
