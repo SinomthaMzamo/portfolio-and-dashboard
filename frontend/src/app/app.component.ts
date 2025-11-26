@@ -45,7 +45,8 @@ export class AppComponent {
   hideLoadingScreen(){this.isLoading.set(false)};
   
   loadCoreResources() {
-    const url = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/core';
+    const url =
+      'https://ugb5qr3kx0.execute-api.af-south-1.amazonaws.com/Prod/core';
     this.showLoadingScreen()
     this.http.get<any>(url).subscribe({
       next: (res) => {
@@ -55,6 +56,9 @@ export class AppComponent {
             this.siteData.set(res.data);
             console.log("This is the response", res.data);
             console.log("This is the education data", this.siteData().education);
+          } else {
+            // something went wrong
+            console.log('This is the response', res);
           }
         }, 1500);   
       },

@@ -79,6 +79,12 @@ export async function getRequestHandler(path:string, tableName:TableName, respon
           data: allRecords
       }
       response.body = JSON.stringify(responseBody);
+  } else if (allRecords?.length == 0){
+    const responseBody = {
+      message: "No Work experiences found",
+      data: allRecords,
+    };
+    response.body = JSON.stringify(responseBody);
   } return response
 };
 

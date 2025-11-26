@@ -4,7 +4,6 @@ import { AddBlogFormComponent } from "../add-blog-form/add-blog-form.component";
 import { AddEducationFormComponent } from "../add-education-form/add-education-form.component";
 import { AddExperienceFormComponent } from "../add-experience-form/add-experience-form.component";
 import { AddProjectFormComponent } from "../add-project-form/add-project-form.component";
-import { FormsModule } from '@angular/forms'
 import { UploadImageFormComponent } from "../upload-image-form/upload-image-form.component";
 import { UploadDocumentFormComponent } from "../upload-document-form/upload-document-form.component";
 

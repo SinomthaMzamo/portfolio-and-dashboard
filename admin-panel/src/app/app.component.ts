@@ -59,29 +59,33 @@ export class AppComponent {
   }
 
   loadCoreResources() {
-    const url = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/core';
+    const url =
+      'https://ugb5qr3kx0.execute-api.af-south-1.amazonaws.com/Prod/core/';
 
     this.http.get<any>(url).subscribe({
       next: (res) => {
         if (res.data) {
           this.siteData.set(res.data);
           console.log("✅SITE DATA LOADED: ", res.data);
-          this.loadTaskCardFaces();
-        }
+        } else{
+          this.siteData.set({blogs:[], projects:[], education:[], experiences:[]});
+        } this.loadTaskCardFaces();
       },
       error: (err) => {
         console.error('API error:', err);
-        
       }
     });
   }
   
   loadMessageData() {
-    const url = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/contact';
+    const url =
+      'https://ugb5qr3kx0.execute-api.af-south-1.amazonaws.com/Prod/contact';
 
     this.http.get<any>(url).subscribe({
       next: (res) => {
+        console.log(res);
         if (res.data) {
+          
           this.messagesData.set(res.data);
         }
       },

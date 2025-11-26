@@ -48,7 +48,8 @@ export class UploadImageFormComponent {
         ...fileMeta
       };
     
-      const apiUrl = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/avatar';
+      const apiUrl =
+        'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/avatar';
     
       this.http.post<any>(apiUrl, body, {
         headers: { 'Content-Type': 'application/json' }

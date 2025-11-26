@@ -47,7 +47,8 @@ export class UploadDocumentFormComponent {
         ...fileMeta
       };
     
-      const apiUrl = 'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/cv';
+      const apiUrl =
+        'https://9o9p856081.execute-api.af-south-1.amazonaws.com/Prod/cv';
     
       this.http.post<any>(apiUrl, body, {
         headers: { 'Content-Type': 'application/json' }

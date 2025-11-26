@@ -8,7 +8,7 @@ Resources:
   PortfolioAdminBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: sinomtha-portfolio-admin
+      BucketName: sinomtha-portfolio-admin-v2
       CorsConfiguration:
         CorsRules:
           - AllowedHeaders:
@@ -19,7 +19,8 @@ Resources:
               - POST
             AllowedOrigins:
               - "http://localhost:4200"
-              - "https://d2xeg1i0ncz1qu.cloudfront.net"
+              - "http://localhost:53240"
+              # - "https://d2xeg1i0ncz1qu.cloudfront.net"
             ExposedHeaders:
               - ETag
             MaxAge: 3000
@@ -58,7 +59,7 @@ Resources:
   PortfolioBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: sinomtha-portfolio
+      BucketName: sinomtha-portfolio-v2
       CorsConfiguration:
         CorsRules:
           - AllowedHeaders:
@@ -69,9 +70,10 @@ Resources:
               - POST
             AllowedOrigins:
               - "http://localhost:4200"
-              - "http://localhost:61151"
-              - "https://d2xeg1i0ncz1qu.cloudfront.net"                       # allow admin to access bucket contents
-              - "https://d1yhuwsaiydh6d.cloudfront.net"                      # allow website to access bucket contents
+              - "http://localhost:53240"                                      # allow admin to access bucket contents
+              - "*"
+              # - "https://d2xeg1i0ncz1qu.cloudfront.net"                       # allow admin to access bucket contents
+              # - "https://d1yhuwsaiydh6d.cloudfront.net"                      # allow website to access bucket contents
             ExposedHeaders:
               - ETag
             MaxAge: 3000
@@ -144,7 +146,6 @@ Resources:
         DefaultRootObject: index.html
         Comment: CloudFront for sinomtha-portfolio
         PriceClass: PriceClass_100  
-
 
   PortfolioAdminCloudFrontDistribution:
     Type: AWS::CloudFront::Distribution
@@ -242,11 +243,20 @@ Resources:
           KeyType: HASH
       BillingMode: PAY_PER_REQUEST
 
+  PortfolioApi:
+    Type: AWS::Serverless::Api
+    Properties:
+      StageName: Prod
+      Cors:
+        AllowMethods: "'OPTIONS,GET,PUT,POST,DELETE'"
+        AllowHeaders: "'Content-Type,Authorization'"
+        AllowOrigin: "'*'"
+
   ContactFunction:
     Type: AWS::Serverless::Function
     Properties:
       Handler: ./src/handlers/contact.handler
-      Runtime: nodejs18.x
+      Runtime: nodejs22.x
       MemorySize: 256
       Timeout: 10
       Environment:
@@ -264,16 +274,19 @@ Resources:
           Properties:
             Path: /contact
             Method: post
+            RestApiId: !Ref PortfolioApi
         AdminReply:
           Type: Api
           Properties:
             Path: /contact/reply
             Method: post
+            RestApiId: !Ref PortfolioApi
         GetAllMessages:
           Type: Api
           Properties:
             Path: /contact
             Method: get
+            RestApiId: !Ref PortfolioApi
     Metadata:
       BuildMethod: esbuild
       BuildProperties:
@@ -283,13 +296,11 @@ Resources:
         Target: es2020
         Bundle: true        # <-- important to bundle dependencies
 
-  
-
   ExperiencesFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
       Handler: ./src/handlers/app.lambdaHandler
-      Runtime: nodejs18.x
+      Runtime: nodejs22.x
       Architectures:
       - x86_64
       Events:
@@ -298,96 +309,115 @@ Resources:
           Properties:
             Path: /avatar
             Method: post
+            RestApiId: !Ref PortfolioApi
         UploadNewCV:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /cv
             Method: post
+            RestApiId: !Ref PortfolioApi
         GetAllCoreData:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /core
             Method: get
+            RestApiId: !Ref PortfolioApi
         GetAllExperiences:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /experiences
             Method: get
+            RestApiId: !Ref PortfolioApi
         AddExperiences:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /experiences
             Method: post
+            RestApiId: !Ref PortfolioApi
         BatchAddExperiences:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /experiences/batch
             Method: post
+            RestApiId: !Ref PortfolioApi
         UpdateExperience:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /experiences/{id}
             Method: put
+            RestApiId: !Ref PortfolioApi
         GetAllEducation:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /education
             Method: get
+            RestApiId: !Ref PortfolioApi
         AddEducation:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /education
             Method: post
+            RestApiId: !Ref PortfolioApi
         BatchAddEducation:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /education/batch
             Method: post
+            RestApiId: !Ref PortfolioApi
         UpdateEducation:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /education/{id}
             Method: put
+            RestApiId: !Ref PortfolioApi
         GetAllProjects:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /projects
             Method: get
+            RestApiId: !Ref PortfolioApi
         AddProjects:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /projects
             Method: post
+            RestApiId: !Ref PortfolioApi
         BatchAddProjects:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /projects/batch
             Method: post
+            RestApiId: !Ref PortfolioApi
         UpdateProjects:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /projects/{id}
             Method: put
+            RestApiId: !Ref PortfolioApi
         GetAllBlogs:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /blogs
             Method: get
+            RestApiId: !Ref PortfolioApi
         AddBlogs:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /blogs
             Method: post
+            RestApiId: !Ref PortfolioApi
         BatchAddBlogs:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /blogs/batch
             Method: post
+            RestApiId: !Ref PortfolioApi
         UpdateBlogs:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
             Path: /blogs/{id}
             Method: put
+            RestApiId: !Ref PortfolioApi
       Policies:
         - DynamoDBCrudPolicy:
             TableName: !Ref ExperiencesTable
@@ -413,9 +443,9 @@ Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
   # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
-  ExperiencesApi:
+  PortfolioApi:
     Description: API Gateway endpoint URL for Prod stage for Experiences function
-    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/experiences/"
+    Value: !Sub "https://${PortfolioApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/experiences/"
   ExperiencesFunction:
     Description: Experiences Lambda Function ARN
     Value: !GetAtt ExperiencesFunction.Arn
@@ -451,3 +481,10 @@ Globals:
   Function:
     LoggingConfig:
       LogFormat: JSON
+
+  Api:
+    Cors:
+      AllowMethods: "'OPTIONS,GET,PUT,POST,DELETE'"
+      AllowHeaders: "'Content-Type,Authorization'"
+      AllowOrigin: "'http://localhost:53240'"
+
